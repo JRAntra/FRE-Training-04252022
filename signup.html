@@ -11,7 +11,7 @@
     <main>
         <h1>Sign Up</h1>
         <form>
-            <fieldset>
+            <fieldset class="first-last-name">
                 <section>
                     <label class="hide" for="firstName">First Name:</label>
                     <input id="firstName" name="firstName" type="text" placeholder="First Name" />
@@ -33,7 +33,7 @@
                     <input id="email" name="email" type="email" placeholder="Email Address" aria-required="true" />
                 </section>
             </fieldset>
-            <fieldset>
+            <fieldset class="password">
                 <section>
                     <label class="hide" for="password">Password:</label>
                     <input id="password" name="password" type="password" placeholder="Password" aria-required="true" />
@@ -44,20 +44,20 @@
                 </section>
             </fieldset>
             <fieldset>
-                <section>
+                <section class="iAgree">
                     <input id="iAgree" name="iAgree" type="checkbox">
                     <label for="iAgree">I Agree</label>
                 </section>
                 <p>
-                    By clicking <span>Register</span>, you agree to the
+                    By clicking <span class="bg-blue">Register</span>, you agree to the
                     <a href="#" target="_blank">Terms and Conditions</a> set out by this site,
                     including our Cookie Use.
                 </p>
             </fieldset>
-            <section>
-                <button class="bgBlue" id="register" type="submit" formaction="#">Register</button>
-                <button class="bgGreen" id="signIn" type="submit" formaction="#">Sign In</button>
-            </section>
+            <fieldset>
+                <button class="btn-blue" id="register" type="submit" formaction="#">Register</button>
+                <button class="btn-green" id="signIn" type="submit" formaction="#">Sign In</button>
+            </fieldset>
         </form>
     </main>
 </body>

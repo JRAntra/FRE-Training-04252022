@@ -3,26 +3,75 @@
   font-size: min(4rem, max(1rem, 2vw));
 }
 
-section {
-  display: flex;
-  flex-direction: column;
+main {
+  margin: 1rem 1rem 1rem 1rem;
 }
 
-label.hide {
-  /* visibility: hidden; */
+h1 {
+  text-align: center;
+  font-size: min(4rem, max(2rem, 2vw));
 }
 
-button,
-input {
+span {
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
   border-radius: 0.2rem;
 }
 
-.btnBlue {
+fieldset {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 2rem;
+  border: none;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+section.iAgree {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  flex-basis: 15%;
+}
+
+label.hide {
+  visibility: hidden;
+}
+
+button {
+  border: none;
+  border-radius: 0.2rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+input {
+  border-radius: 0.2rem;
+  border-color: lightgray;
+  line-height: 2rem;
+  padding-left: 1rem;
+}
+
+input:hover {
+  border-color: lightskyblue;
+  box-shadow: 0.1em 0.1em 0.1em lightskyblue;
+}
+
+.btn-blue,
+.bg-blue {
   background-color: midnightblue;
   color: white;
 }
 
-.btnGreen {
+.btn-green {
   background-color: darkgreen;
   color: white;
 }
