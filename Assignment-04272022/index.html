@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section class="signup-container">
+      <header class="form-signup-header">
+        <h1 class="heading">Sign Up</h1>
+      </header>
+      <form>
+        <ul class="form-signup">
+          <li class="form-row">
+            <div class="form-item">
+              <input
+                type="text"
+                id="fname"
+                required
+                autofocus
+                placeholder="First Name"
+              />
+            </div>
+            <div class="form-item">
+              <input type="text" id="lname" required placeholder="Last Name" />
+            </div>
+          </li>
+          <li class="form-row">
+            <div class="form-item">
+              <input type="tel" placeholder="Mobile No." />
+            </div>
+          </li>
+          <li class="form-row">
+            <div class="form-item">
+              <input type="email" id="email" required placeholder="Email" />
+            </div>
+          </li>
+          <li class="form-row">
+            <div class="form-item">
+              <input
+                type="password"
+                id="password"
+                required
+                placeholder="Password"
+              />
+            </div>
+            <div class="form-item">
+              <input
+                type="password"
+                id="confirmPassword"
+                required
+                placeholder="Confirm Password"
+              />
+            </div>
+          </li>
+          <li class="form-row">
+            <div class="form-item-checkbox">
+              <input type="checkbox" id="cb" />
+              <label style="margin: 0.3rem" for="cb">I agree</label>
+            </div>
+            <div class="form-item">
+              <p>
+                By Click
+                <span
+                  ><button class="small primary" disabled>
+                    Register
+                  </button></span
+                >, You agree the <a href="#">Terms and Conditions</a>set out by
+                the site, including our Cookie Use
+              </p>
+            </div>
+          </li>
+          <li class="form-row">
+            <div class="form-item">
+              <input type="submit" class="btn-primary" value="Register" />
+            </div>
+            <div class="form-item">
+              <input type="button" class="btn-success" value="Sign In" />
+            </div>
+          </li>
+        </ul>
+      </form>
+    </section>
+  </body>
+</html>
