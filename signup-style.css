@@ -41,7 +41,7 @@ section.iAgree {
   flex-basis: 15rem;
 }
 
-label.hide {
+label.field-label {
   visibility: hidden;
 }
 
