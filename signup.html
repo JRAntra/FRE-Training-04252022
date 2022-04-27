@@ -9,49 +9,51 @@
 <body>
     <main>
         <h1>Sign Up</h1>
-        <fieldset>
-            <section>
-                <div>
-                    <label>First Name:</label>
-                    <input type="text" placeholder="First Name" />
-                </div>
-                <div>
-                    <label>Last Name:</label>
-                    <input type="text" placeholder="Last Name" />
-                </div>
-            </section>
-            <section>
-                <label>Mobile No.:</label>
-                <input type="text" placeholder="Mobile No., e.g. (123)456-7890" />
-            </section>
-            <section>
-                <label>Email Address:</label>
-                <input type="email" placeholder="Email Address" />
-            </section>
-            <section>
-                <div>
-                    <label>Password:</label>
-                    <input type="password" placeholder="Password" />
-                </div>
-                <div>
-                    <label>Confirm Password:</label>
-                    <input type="password" placeholder="Confirm Password" />
-                </div>
-            </section>
-            <section>
-                <input type="checkbox">
-                <label>I Agree</label>
+        <form>
+            <fieldset>
+                <section>
+                    <label for="firstName">First Name:</label>
+                    <input id="firstName" name="firstName" type="text" placeholder="First Name" aria-required="true" />
+                </section>
+                <section>
+                    <label for="lastName">Last Name:</label>
+                    <input id="lastName" name="lastName" type="text" placeholder="Last Name" />
+                </section>
+            </fieldset>
+            <fieldset>
+                <label for="mobileNo">Mobile No.:</label>
+                <input id="mobileNo" name="mobileNo" type="text" placeholder="Mobile No., e.g. (123)456-7890" />
+            </fieldset>
+            <fieldset>
+                <label for="email">Email Address:</label>
+                <input id="email" name="email" type="email" placeholder="Email Address" aria-required="true" />
+            </fieldset>
+            <fieldset>
+                <section>
+                    <label for="password">Password:</label>
+                    <input id="password" name="password" type="password" placeholder="Password" aria-required="true" />
+                </section>
+                <section>
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Confirm Password" aria-required="true" />
+                </section>
+            </fieldset>
+            <fieldset>
+                <section>
+                    <input id="iAgree" name="iAgree" type="checkbox">
+                    <label for="iAgree">I Agree</label>
+                </section>
                 <p>
                     By clicking <span>Register</span>, you agree to the
                     <a href="#" target="_blank">Terms and Conditions</a> set out by this site,
                     including our Cookie Use.
                 </p>
-            </section>
+            </fieldset>
             <section>
-                <button>Register</button>
-                <button>Sign In</button>
+                <button id="register">Register</button>
+                <button id="signIn">Sign In</button>
             </section>
-        </fieldset>
+        </form>
     </main>
 </body>
 </html>
