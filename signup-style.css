@@ -38,7 +38,7 @@ section.iAgree {
   flex-direction: row;
   align-items: center;
   gap: 1rem;
-  flex-basis: 20%;
+  flex-basis: 15rem;
 }
 
 label.hide {
@@ -75,4 +75,18 @@ input:hover {
 .btn-green {
   background-color: darkgreen;
   color: white;
+}
+
+@media (max-width: 585px) {
+  main {
+    margin: 0rem;
+  }
+  fieldset {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  section.iAgree {
+    gap: 0rem;
+    flex-basis: 0;
+  }
 }
