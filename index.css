@@ -1,0 +1,122 @@
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit
+}
+
+html {
+    font-size: 62.25%;
+}
+
+body {
+    font-size: 1.6rem;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+
+.form-container {
+    position: fixed;
+    width: 100%;
+    max-width: 50rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.form-signup {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.form-row {
+    display: flex;
+    margin: 1rem;
+}
+
+.form-item {
+    flex: 1 1 100%;
+    margin: 1rem;
+}
+
+.form-item input {
+    padding: 1rem;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid rgb(244, 241, 241);
+    outline: none;
+}
+
+.form-item input:focus {
+    box-shadow: 0 0 2px 1px #337AB7;
+}
+
+.btn {
+    color: white;
+    padding: 2rem;
+    border-radius: 1;
+    margin: 1rem;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.agree-wrap {
+    display: flex;
+    margin: -1rem;
+}
+
+.agree-checkbox {
+    flex: 1 1 50%;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.terms {
+    font-size: 1.3rem;
+}
+
+.regi {
+    color: white;
+    border-radius: 5px;
+    padding: 3px;
+    background-color: #337AB7;
+}
+
+@media (max-width: 540px) {
+    .form-row {
+        flex-direction: column;
+        margin: 0rem;
+    }
+
+    .agree-checkbox label{
+        display: none;
+    }
+
+    .agree-wrap {
+        margin: 0;
+    }
+
+    .agree-checkbox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.primary {
+  background-color: #337AB7;
+}
+.sucess {
+background-color: #5CB85C;
+}
