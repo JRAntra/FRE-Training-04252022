@@ -29,4 +29,5 @@ implement the assignment under this feature branch.
 - Because this is multi-use form, the formaction attribute given for each button, and html required attribute is only embedded on Email Address field, Password, and Confirm Password since those fields have to be filled either on Registration or Sign In. For the First Name, Last Name, and Mobile No., validation can only relies on JavaScript validation;
 - Font-size is set globally to be Accessible on any screen size using min and max value;
 - All sizing units use relative units, i.e. .em or .rem to maintain proportion on any screen size;
-- Added media queries for max-width 585px so that page became responsive.
+- Added media queries for max-width 585px so that page became responsive;
+- Border radius for all the boxes for subtle effect that we care about aesthetics.
