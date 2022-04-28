@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="description" content="Free Web tutorials">
+    <meta name="author" content="John Doe">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" , user-scalable="yes" />
+    <meta http-equiv="refresh" content="30">
+    <title>Homework 1</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        h1 {
+            margin: 10px auto 5px;
+            font-family: Tahoma, Verdana, sans-serif;
+            font-weight: lighter;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        #myForm {
+            width: 800px;
+            margin: 10px auto;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        #lname, #cPassword {
+            height: 40px;
+            width: 240px;
+            border-radius: 5px;
+            margin: 10px 150px 10px 10px;
+        }
+        
+        #fname, #password {
+            height: 40px;
+            width: 240px;
+            border-radius: 5px;
+            margin: 10px 10px 10px 150px;
+        }
+
+        #phone, #email {
+            height: 40px;
+            width: 500px;
+            border-color: lightgrey;
+            border-radius: 5px;
+            margin: 10px 150px;
+        }
+
+        #box1 {
+            margin-right: 40px;
+            margin-left: 100px;
+            margin-top: 10px;
+        }
+
+        #box2 {
+            width: 410px;
+            height: 50px;
+            margin-right: 110px;
+            margin-top: 10px;
+        }
+
+        p {
+            font-size: 13px;
+        }       
+
+        label {
+            font-weight: bold;
+        }
+        
+
+        a:link {
+            text-decoration: none;
+        }
+
+        .btn {
+            height: 50px;
+            width: 230px;
+            margin: 0 20px;
+        }
+
+        span {
+            color: white;
+            font-weight: bold;
+            padding: 3px;
+            border-radius: 3px;
+        }
+
+        @media only screen and (max-width: 800px) {
+            #myForm {
+                width: auto;
+            }
+
+            #lname, #cPassword, #fname, #password, #phone, #email {
+                height: 40px;
+                margin: 10px 30px;
+                width: 100%;
+            }
+
+            #box1 {
+                margin: 10px 30px;
+            }
+
+            #box2 {
+                width: auto;
+                height: auto;
+                margin: 10px 30px;
+            }
+
+            .btn {
+                height: 50px;
+                width: 100%;
+                margin: 10px 30px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Sign Up</h1>
+
+    <form id="myForm">
+        <input type="text" placeholder="First Name" name="fname" id="fname" class="form-control" aria-describedby="passwordHelpBlock" />
+        <input type="text" placeholder="Last Name" name="lname" id="lname" class="form-control" aria-describedby="passwordHelpBlock" />
+        <input type="text" placeholder="Mobile No." name="phone" id="phone" class="form-control" aria-describedby="passwordHelpBlock" />
+        <input type="email" placeholder="Email Address" name="email" id="email" class="form-control" aria-describedby="passwordHelpBlock" />
+        <input type="password" placeholder="Password" name="password" id="password" class="form-control" aria-describedby="passwordHelpBlock" />
+        <input type="password" placeholder="Confirm Password" name="cPassword" id="cPassword" class="form-control" aria-describedby="passwordHelpBlock" />
+        <div id="box1">
+            <input type="checkbox" name="agreement" value="agree" id="agree" />
+            <label for="agree">I Agree</label>
+        </div>
+
+        <div id="box2">
+            <p>By clicking <span id="register" class="bg-primary">Register </span>. you agree to the <a href="#" id="contract">Terms and conditions</a> set out by this site, including our Cookie Use</p>
+        </div>
+        <button type="button" class="btn btn-primary btn1">Register</button>
+        <button type="button" class="btn btn-success btn1">Sign in</button>
+    </form>
+
+</body>
+</html>
