@@ -1,6 +1,26 @@
 // "use strict"
 
 // ~~~~~~~~~~~~~~~~~~~~ Day 1 ~~~~~~~~~~~~~~~~~~~~
+
+/**
+ *  * @class
+ * what is javascript, ECMAScript
+ * javascript vs. nodejs vs. ECMAScript
+ *
+ * Primitive Data
+ * Object Data or reference Data
+ *
+ * coercion
+ * equality == vs. ===
+ *
+ * var vs. let vs. const
+ *
+ * oop: Object oriented programming in JS
+ * encapsulation; inheritance; Poly-morph-ism; abstraction;
+ * constructer function, prototype chain
+ *
+ */
+
 // Javascript = ESMscript + Web Api
 // Nodejs = ESMscript + Node Api
 // ES6
@@ -135,24 +155,24 @@
 // const b = foo('456', 5);
 
 // inheritance
-class Person {
-    constructor(name, age) {
-        this.name = name;
-        this.age = age;
-    }
-    foo() {
-        console.log(this.name + ' is ' + this.age);
-    }
-}
-class Employee extends Person {
-    constructor(name, age, company) {
-        super(name, age);
-        this.company = company;
-    }
-    foo(name = 'default') {
-        console.log(name);
-    }
-}
+// class Person {
+//     constructor(name, age) {
+//         this.name = name;
+//         this.age = age;
+//     }
+//     foo() {
+//         console.log(this.name + ' is ' + this.age);
+//     }
+// }
+// class Employee extends Person {
+//     constructor(name, age, company) {
+//         super(name, age);
+//         this.company = company;
+//     }
+//     foo(name = 'default') {
+//         console.log(name);
+//     }
+// }
 // function Person(name, age) {
 //     this.name = name;
 //     this.age = age;
@@ -166,11 +186,25 @@ class Employee extends Person {
 // }
 // Employee.prototype = Person.prototype;
 
-const employee = new Employee('Jojo', 18, 'Jump');
-console.log(employee);
-employee.foo();
+// const employee = new Employee('Jojo', 18, 'Jump');
+// console.log(employee);
+// employee.foo();
 
 // polymorphism // 
-
 // abstruction // Ts
 
+// ~~~~~~~~~~~~~~~~~~~~ Day 2 ~~~~~~~~~~~~~~~~~~~~
+/**
+ *  * @class
+ *
+ * prototype
+ *
+ * loop in JS: array, object
+ * myForeach, myMap, myFilter, myReduce
+ *
+ * destructure
+ *
+ * rest parameter vs. spread operator
+ *
+ * object copy
+ */
