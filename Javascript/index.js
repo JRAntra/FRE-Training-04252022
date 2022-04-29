@@ -147,7 +147,6 @@
 // obj.name = 'Dio';
 // console.log(obj);
 
-
 // function foo(a, b) {
 //     return 5
 // }
@@ -190,7 +189,7 @@
 // console.log(employee);
 // employee.foo();
 
-// polymorphism // 
+// polymorphism //
 // abstruction // Ts
 
 // ~~~~~~~~~~~~~~~~~~~~ Day 2 ~~~~~~~~~~~~~~~~~~~~
@@ -206,5 +205,224 @@
  *
  * rest parameter vs. spread operator
  *
- * object copy
+
  */
+
+// const arr = [1122, 1222, 34123];
+
+// const obj = {
+// 	name: "Jojo",
+// 	age: 12,
+// 	id: 2,
+// };
+
+// console.log(obj);
+
+// for (let index = 0; index < arr.length; index++) {
+//     if (index === 1) {
+//         // break;
+//         continue;
+//     }
+//     console.log(index, 1234);
+// }
+
+// for (const index in arr) {
+// }
+// for (const num of arr) {
+//     console.log(num);
+// }
+// for (const key in obj) {
+// 	console.log(obj[key]);
+// }
+
+// console.log(Object.keys(obj));
+// console.log(Object.values(obj));
+// console.log(Object.entries(obj));
+
+// obj.name = 'Dio';
+// // const name = 'name';
+// obj[name] = 'Hello';
+
+// Array.prototype.myForEach = function(callback) {
+//     for (let i = 0; i < this.length; i++) {
+//         callback(this[i], i, this);
+//     }
+// }
+// console.log(arr);
+// console.log(arr.forEach(function(cur, i, array) {
+//     array[i] = cur + 5;
+//     return;
+// }));
+
+// Array.prototype.myMap = function (callback) {
+// 	const array = [];
+// 	for (let i = 0; i < this.length; i++) {
+// 		array.push(callback(this[i], i, this));
+// 	}
+// 	return array;
+// };
+
+// console.log(
+// 	arr.myMap(function (cur, i, array) {
+// 		return cur + 5;
+// 	})
+// );
+// const arr = [3, 4, 5];
+
+// Array.prototype.myFilter = function (callback) {
+// 	const array = [];
+// 	for (let i = 0; i < this.length; i++) {
+// 		if(callback(this[i], i, this)) {
+//             array.push(this[i])
+//         }
+// 	}
+//     return array;
+// };
+
+// console.log(
+// 	arr.myFilter(function (cur, i, array) {
+// 		return cur >= 4;
+// 	})
+// );
+
+// Array.prototype.myFilter = function (callback) {
+// 	const array = [];
+// 	for (let i = 0; i < this.length; i++) {
+// 		if(callback(this[i], i, this)) {
+//             array.push(this[i])
+//         }
+// 	}
+//     return array;
+// };
+
+// console.log(
+// 	arr.myFilter(function (cur, i, array) {
+// 		return cur >= 4;
+// 	})
+// );
+
+// console.log(arr);
+
+// Array.prototype.myReduce = function (...args) {
+// 	let [acc, index] = args.length > 1 ? [args[1], 0] : [this[0], 1];
+
+// 	for (let i = index; i < this.length; i++) {
+// 		acc = args[0](acc, this[i], i, this);
+// 	}
+// 	return acc;
+// };
+
+// const numbers = [175, 50, 25];
+// console.log(numbers.myReduce(myFunc));
+// // numbers.myReduce(myFunc, 0); // this[0]
+
+// function myFunc(acc, cur) {
+// 	return acc - cur;
+// }
+// const str = 'abc'; // <-----
+// // const arr = str.split(''); // ['a', 'b', 'c'];
+// console.log(str.split('').myReduce(function(acc, cur, i, array) {
+//     return acc + cur + cur;
+// }, '')); // 'aabbcc'
+// '' + a + a = aa + b + b = aabb + c + c = aabbcc;
+// const arr = [1, 2, 3];
+// console.log(arr.myReduce((acc, cur) => acc - cur)); // 45 + 1 = 46 + 2 = 103 + 3 = 106
+// function foo(arr) {
+// 	return arr.myReduce((acc, cur) => {
+// 		acc[cur.name] = cur.age;
+// 		return acc;
+// 	}, {});
+// 	// const obj = {};
+// 	// for (let i = 0; i < arr.length; i++) {
+// 	// 	obj[arr[i].name] = arr[i].age;
+// 	// }
+// 	// return obj;
+// }
+// const arr = [
+// 	{ name: "AA", age: 12 },
+// 	{ name: "BB", age: 2 },
+// 	{ name: "CC", age: 16 },
+// 	{ name: "DD", age: 22 },
+// ];
+// console.log(foo(arr));
+
+// // spread operator vs. rest parameter
+
+// function sum(a, b, c, d, e) {
+//     console.log(a, b, c, d, e);
+// }
+
+// function wrapsum(sum) {
+//     return function(...args) { // rest parameter : args = [1, 2, 3, 4, 5]
+//         sum(...args); // spread operator : 1, 2, 3, 4, 5
+//     }
+// }
+// const newsum = wrapsum(sum);
+
+// newsum(1, 2, 3, 4, 5);
+
+// function foo(num, ...args) { // take : collect
+//     console.log(num, args);
+// }
+// foo(1, 2, '3', 5, true, 2, 4, 1)
+
+// const arr = [1, 2, 3];
+// const arr1 = [3, ...arr, 4, 5]; // drop
+
+// const strlist = [...'abc'];
+
+// const tarstr = 'sdfersfsrewf';
+// const res = [...new Set([...tarstr])].join('');
+
+// const obj = {
+//     name: 'Jojo',
+//     company: 'Jump'
+// };
+// const resobj = {
+//     ...obj,
+//     name: 'Dio',
+//     age: 12,
+// };
+
+// console.log(resobj);
+
+// // destructure
+// const arr = [13, 32, 3];
+// const [a, _, c] = arr;
+
+// const obj = {
+//     name: 'Jojo',
+//     age: 18,
+//     link: [
+//         {name: 'cnn', link: 'www.cnn.com'},
+//         {name: 'bbc', link: 'www.bbc.com'},
+//         {name: 'fox', link: 'www.fox.com'}
+//     ]
+// };
+// const {link} = obj;
+// console.log(link.find(({name}) => name === 'bbc').link);
+
+// const [test, name, age] = aaa;
+
+// const a = arr[0];
+// const b = arr[1];
+
+// console.log(test, name, age);
+
+/** @class
+ * object copy
+ * iife
+ * closure
+ * currying
+ *
+ * this
+ * call, apply, bind
+ *
+ * arrow function
+ *
+ * event loop
+ */
+
+// const num = 1245131;
+
+// console.log(+[...(num + '')].reverse().join(''));
