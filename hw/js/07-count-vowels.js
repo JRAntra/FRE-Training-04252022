@@ -13,6 +13,9 @@ Q:
 - Is it case sensitive? I presume no. 'A' is the same with 'a'.
 */
 
+// O(N) runtime where N represents the amount of characters in the string
+// O(1) space for the counter ?
+
 function countVowel(str) {
     if (typeof str !== 'string') return 'Invalid input.';
     let count = 0;
