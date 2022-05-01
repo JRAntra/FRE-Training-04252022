@@ -17,6 +17,8 @@ optimized solution. I'd rather iterate directly from the string and do the count
 - What if input is an empty string? I'd return empty object {}
 */
 
+// Runtime O(N) as we have to iterate through all the characters in the string.
+// Space is O(N) where N represents all the unique letters we have found and kept in our res object.
 const charCounter = (str) => {
     if (typeof str !== 'string') return 'Invalid input.';
     const res = {};
