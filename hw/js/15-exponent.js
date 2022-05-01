@@ -1,6 +1,14 @@
 /*
 Write a JavaScript function to compute the value of bn where n is the exponent and b is the
 bases. Accept b and n from the user and display the result.
+
+I: base integer, power integer;
+O: an integer result of exponentiation
+C: -
+Q:
+- What if any number is not a number
+- What if any number is a negative number
+- Can I use built-in method?
 */
 
 // Runtime is normally O(N) for exponentiation where N represents the n power.
