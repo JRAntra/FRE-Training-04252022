@@ -17,6 +17,7 @@ Runtime for both operation is O(logN) as the interval got sliced in half in ever
 Space would be O(1) as we won't create anything in our function.
 */
 
+/* Iterative function. Working. */
 function binarySearch(arr, target) {
     if (!Array.isArray(arr) || typeof target !== 'number') return 'Invalid input.';
     let start = 0;
@@ -29,6 +30,18 @@ function binarySearch(arr, target) {
     }
     return -1;
 }
+
+/* Recursive function. Working.
+function binarySearch(arr, target) {
+    if (!Array.isArray(arr) || typeof target !== 'number') return 'Invalid input.';
+
+    if (!arr.length) return -1;
+    let mid = Math.floor(arr.length / 2);
+    if (arr[mid] === target) return mid;
+    else if (arr[mid] < target) return binarySearch(arr.slice(mid + 1), target);
+    else return binarySearch(arr.slice(0, mid - 1), target);
+}
+*/
 
 console.log(binarySearch([1,2,3])); // 'Invalid input.'
 console.log(binarySearch([1,2,3], '1')); // 'Invalid input.'
