@@ -34,6 +34,7 @@ function amountToCoins(nominal, coins = [25, 10, 5, 1]) {
     return result;
 }
 
+// TEST
 console.log(amountToCoins('46', [25, 10, 5, 2, 1])); // 'Invalid input.'
 console.log(amountToCoins(46, [])); // 'Invalid input.'
 console.log(amountToCoins()); // 'Invalid input.'

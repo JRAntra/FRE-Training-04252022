@@ -33,6 +33,7 @@ function uniqueChars(str) {
     return resA.join('');   // O(N)
 }
 
+// TEST
 console.log(uniqueChars('thequickbrownfoxjumpsoverthelazydog')); // 'thequickbrownfxjmpsvlazydg'
 console.log(uniqueChars('thequickbrownfOxjumpsoverthelazydog')); // 'thequickbrownfOxjmpsvlazydg'
 console.log(uniqueChars('')); // ''

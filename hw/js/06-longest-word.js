@@ -41,6 +41,7 @@ function longestWord(str) {
     return set[max];
 }
 
+// TEST
 console.log(longestWord('Web Development Tutorial')); // Development
 console.log(longestWord('Web     Development Tutorial')); // Development
 console.log(longestWord('')); // ''

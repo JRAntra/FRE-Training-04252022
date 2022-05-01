@@ -35,6 +35,7 @@ const findSecondMinMax = (arr) => {
     return res.join(', ');
 }
 
+// TEST
 console.log(findSecondMinMax([1,3,4,2,5])); // '2, 4'
 console.log(findSecondMinMax([1,1,3,5,5,6,4,7,3,4,2,5,5])); // '2, 6'
 console.log(findSecondMinMax([1,-5,-4,-10,3,4,2,5])); // '-5, 4'

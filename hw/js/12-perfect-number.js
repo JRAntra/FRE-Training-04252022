@@ -31,6 +31,7 @@ function perfectNum(n) {
     return sum === n;
 }
 
+// TEST
 console.log(perfectNum(6)); // true
 console.log(perfectNum(28)); // true
 console.log(perfectNum(496)); // true

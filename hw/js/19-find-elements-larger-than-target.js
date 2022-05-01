@@ -24,6 +24,7 @@ function findLargerNums(arr, targetNum) {
     return result;
 }
 
+// TEST
 console.log(findLargerNums([1,2,3,4,5,6,7])); // 'Invalid input.'
 console.log(findLargerNums([1,2,3,4,5,6,7], 'Hello')); // 'Invalid input.'
 console.log(findLargerNums(1, 4)); // 'Invalid input.'

@@ -22,6 +22,7 @@ function sortChar(str) {
     return res;
 }
 
+// TEST
 console.log(sortChar([1,2,3])); // 'Invalid input.'
 console.log(sortChar({'a': true, 'b': 1})); // 'Invalid input.'
 console.log(sortChar()); // 'Invalid input.'

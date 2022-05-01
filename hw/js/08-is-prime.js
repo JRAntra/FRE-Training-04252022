@@ -23,6 +23,7 @@ function isPrime(int) {
     return true;
 }
 
+// TEST
 console.log(isPrime(7)); // true
 console.log(isPrime(1)); // false
 console.log(isPrime(0)); // false

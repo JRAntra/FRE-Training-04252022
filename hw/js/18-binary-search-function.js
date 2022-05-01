@@ -43,6 +43,8 @@ function binarySearch(arr, target) {
 }
 */
 
+
+// TEST
 console.log(binarySearch([1,2,3])); // 'Invalid input.'
 console.log(binarySearch([1,2,3], '1')); // 'Invalid input.'
 console.log(binarySearch([1,2,3], null)); // 'Invalid input.'

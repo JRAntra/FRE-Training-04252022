@@ -37,6 +37,7 @@ function countVowel(str) {
     return count;
 }
 
+// TEST
 console.log(countVowel('The quick brown fox')); // 5
 console.log(countVowel('')); // 0
 console.log(countVowel('Over And Over Again')); // 8

@@ -15,6 +15,7 @@ function capsFirstChar(str) {
     return strArr.join(' ');    // O(N) runtime where N is the amount of words, O(N) space for creating a new sentence
 }
 
+// TEST
 console.log(capsFirstChar([1,2,3])); // 'Invalid input.'
 console.log(capsFirstChar({'a': true, 'b': 1})); // 'Invalid input.'
 console.log(capsFirstChar()); // 'Invalid input.'

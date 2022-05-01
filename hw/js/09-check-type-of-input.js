@@ -11,6 +11,7 @@ const checkType = (input) => {
     typeof input;
 }
 
+// TEST
 console.log(checkType([])); // 'array'
 console.log(checkType({})); // 'object'
 console.log(checkType()); // 'undefined'

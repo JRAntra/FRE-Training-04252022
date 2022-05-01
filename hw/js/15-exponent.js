@@ -18,6 +18,7 @@ function exponent(b, n) {
     return Math.pow(b, n);
 }
 
+// TEST
 console.log(exponent(2, 3)); // 8
 console.log(exponent(144, 1/2)); // 12
 console.log(exponent(4, 0.5)); // 2

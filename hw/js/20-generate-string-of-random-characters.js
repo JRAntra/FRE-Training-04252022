@@ -34,7 +34,7 @@ console.log(generateID('10', null)); // 'Invalid input.'
 console.log(generateID(10, '10')); // 'Invalid input.'
 
 
-// Test helper
+// Test function helper
 function check(resStr, permittedStr, reqLength) {
     if (resStr.length !== reqLength) return false;
     for (let i = 0; i < resStr.length; i++) {

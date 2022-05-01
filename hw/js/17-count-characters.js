@@ -35,6 +35,7 @@ const charCounter = (str) => {
     return res;
 }
 
+// TEST
 console.log(charCounter()); // 'Invalid input.'
 console.log(charCounter(123)); // 'Invalid input.'
 console.log(charCounter(['abca'])); // 'Invalid input.'

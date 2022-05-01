@@ -12,6 +12,7 @@ function palindrome(str) {
     return true;
 }
 
+// TEST
 console.log(palindrome(['abc'])); // false
 console.log(palindrome({a: 2})); // false
 console.log(palindrome(123)); // false
