@@ -22,8 +22,11 @@ const charCounter = (str) => {
     const res = {};
     for (let i = 0; i < str.length; i++) {
         let char = str[i].toLowerCase();
+        // if character have ASCII code between 97 - 122, it is a lowercased letter
         if (char.charCodeAt(0) >= 97 && char.charCodeAt(0) <= 122) {
+            // if we have seen this letter before, add the counter in our object
             if (res[char]) res[char] += 1;
+            // else we create that letter as a key in our object with a counter value of 1
             else res[char] = 1;
         }
     }
