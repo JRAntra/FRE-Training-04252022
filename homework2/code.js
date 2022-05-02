@@ -531,7 +531,7 @@ function foo(arr, leng) {
     for (let i = 0; i <= arr.length - leng; i++) {
         let j = i;
         const arr2 = [];
-        for (let k = 0; k < arr.length; k++) {
+        for (let k = 0; k < leng; k++) {
             arr2.push(arr[j]);
             j++;
         }
@@ -541,7 +541,7 @@ function foo(arr, leng) {
     return arr1;
 }
 
-console.log(foo([1, 2, 3, 4, 5], 2)); */
+console.log(foo([1, 2, 3, 4, 5], 3));  */
 
 
 /*
@@ -549,6 +549,19 @@ console.log(foo([1, 2, 3, 4, 5], 2)); */
 will count the number of occurrences of the specified letter within the string.
 Sample arguments: 'microsoft.com', 'o' Expected output: 3
 */
+
+/*
+function foo(str, char) {
+    str = str.split("");
+    let count = 0;
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === char) count++;
+    }
+
+    return count;
+}
+
+console.log(foo('microsoft.com', 'o')); */
 
 /*
 23. Write a JavaScript function to find the first not repeated character.
