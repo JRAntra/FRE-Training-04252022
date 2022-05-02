@@ -1,5 +1,5 @@
 // "use strict"
-
+console.clear();
 // ~~~~~~~~~~~~~~~~~~~~ Day 1 ~~~~~~~~~~~~~~~~~~~~
 
 /**
@@ -176,11 +176,11 @@
 //     this.name = name;
 //     this.age = age;
 // }
-// Person.prototype.foo = function() {
-//     console.log(`${this.name} is ${this.age}`);
-// }
+// // Person.prototype.foo = function() {
+// //     console.log(`${this.name} is ${this.age}`);
+// // }
 // function Employee(name, age, company) {
-//     Person.call(this, name, age);
+//     Person.apply(this, [name, age]);
 //     this.company = company;
 // }
 // Employee.prototype = Person.prototype;
@@ -409,7 +409,10 @@
 
 // console.log(test, name, age);
 
-/** @class
+// ~~~~~~~~~~~~~~~~~~~~ Day 3 ~~~~~~~~~~~~~~~~~~~~
+
+/**
+ * @class
  * object copy
  * iife
  * closure
@@ -422,7 +425,269 @@
  *
  * event loop
  */
+// // object copy
+// shallow && deep
+//  const obj = {name: 'Jojo'};
+//  const coypobj = obj;
+//  console.log(obj === coypobj);
 
-// const num = 1245131;
+// // spread operator
+//  const obj = {
+//      name: 'Jojo',
+//      links: {
+//          name: 'abc',
+//          link: 'abc.com'
+//      }
+// };
+// const coypobj = {...obj, links: {...obj.links}};
 
-// console.log(+[...(num + '')].reverse().join(''));
+// mutable && immutable
+
+// // mutable
+// const obj = {};
+// obj.name = 'Jojo';
+
+// // immutable
+// let objtest = {age: 12};
+// objtest = {...objtest, name: 'Dio'};
+
+// function foo(arr) {
+// 	let obj = {};
+// 	for (let i = 0; i < arr.length; i++) {
+// 		obj = {...obj, [arr[i].name]: arr[i].age};
+// 	}
+// 	return obj;
+// }
+// const arr = [
+// 	{ name: "AA", age: 12 },
+// 	{ name: "BB", age: 2 },
+// 	{ name: "CC", age: 16 },
+// 	{ name: "DD", age: 22 },
+// ];
+// console.log(foo(arr));
+// {
+//     AA: 12,
+//     ...
+// }
+
+//  console.log(coypobj.links.name);
+//  coypobj.links.name = 'cnn';
+//  console.log(obj.links.name);
+
+// // JSON.parse && JSON.stringify
+// const obj = {
+// 	name: "Jojo",
+// 	links: {
+// 		name: "abc",
+// 		link: "abc.com",
+// 	},
+// };
+// console.log(obj);
+// const copyobj = JSON.parse(JSON.stringify(obj));
+// console.log(copyobj);
+
+// const obj = {
+// 	name: "Jojo",
+//     // date: new Date(),
+// 	links: {
+// 		name: "abc",
+// 		link: "abc.com",
+// 	},
+//     foo: function() {}
+// };
+// console.log(obj);
+// // const copyobj = JSON.parse(JSON.stringify(obj));
+// console.log(JSON.stringify(obj));
+
+// const obj = {
+// 	// name: "Jojo",
+//     // date: new Date(),
+// 	// links: {
+// 	// 	name: "abc",
+// 	// 	link: "abc.com",
+// 	// },
+//     foo() {
+//         console.log(1111);
+//     }
+// }
+// obj.foo();
+
+// const copyobj = structuredClone(obj);
+
+// console.log(copyobj);
+
+// const _ = require('lodash');
+// var deepCopy = _.cloneDeep(obj);
+
+// // iife
+// const api = (function (age) {
+// 	const obj = {
+// 		name: "Jojo",
+//         age
+// 	};
+
+// 	return obj;
+// // }(12));
+// })(12);
+// console.log(api);
+
+// // closure
+// class Person {
+//     baz() {
+//         console.log('hello');
+//     }
+// }
+// const p = new Person();
+// const o = new Person();
+
+// // currying -- hight order function : map filter ...
+// function foo() {
+
+//     function baz(b) {
+//         return 4 + b;
+//     }
+
+//     return {
+//         baz
+//     };
+// };
+// const bar = foo();
+
+// console.log(foo().baz(5));
+
+// const bar = foo(4);
+// bar(5);
+
+// console.log(foo(4)(5)); // 9
+
+//~~~~~~~~~~~ interview ~~~~~~~~~~~~~
+// function target(a, b) {
+//     console.log(a, b);
+// }
+// function limitedFunction(num, cb) {
+//     let counter = 0;
+
+//     return function(...args) {
+//         if (counter === num) {
+//             console.log('over limited');
+//         } else {
+//             counter++;
+//             cb(...args);
+//         }
+//     }
+// }
+// const fn = limitedFunction(3, target); // [counter = 0]
+
+// fn(3, 4); // 3, 4   [counter = 1]
+// fn(5, 4); // 5, 4   [counter = 2]
+// fn(6, 4); // 6, 4   [counter = 3]
+// fn(3, 8); // over limited;
+// fn(2, 4); // over limited;
+// fn(1, 4); // over limited;
+
+// //~~~~~~~~~~~ interview ~~~~~~~~~~~~~
+// const callback1 = (a) => a + 2; // 6
+// const callback2 = (b) => b * 2; // 12
+// const callback3 = (c) => c - 2; // 10
+
+// console.log(runAll(callback1, callback2, callback3)(4)); // 10
+
+// function runAll(...args) {
+
+//     return function(x) {
+//         // return args.reduce((prevReturn, cb) => cb(prevReturn), x);
+//         let prevReturn = x;
+//         for (let i = 0; i < args.length; i++) {
+//             prevReturn = args[i](prevReturn);
+//         }
+//         return prevReturn;
+//     }
+// }
+
+// // this
+
+// function foo() {
+//     console.log(this);
+// }
+// foo();
+// const obj = {
+//     name: 'Jojo',
+//     printname: function() {
+//         console.log('printname: ', this); // << ------
+
+//         function foo() {
+//             console.log('foo: ', this); 
+//         }
+//         foo();
+//         const foo = () => {
+//             console.log('foo: ', this); 
+//         }
+//         foo();
+
+//         // const bar = foo.bind(this); // << ------
+//         // bar();
+//     }
+// }
+
+// const obj = {
+//     printname: () => {
+//         console.log(this);
+//     }
+// }
+
+// obj.printname();
+
+// class Person {
+// 	name = "Dio";
+
+//     constructor(callback) {
+//         callback(this.printname);
+//     }
+
+// 	printname = () => {
+// 		console.log("printname: ", this); // << ------
+// 	}
+// }
+
+// const p = new Person((print) => {
+//     print();
+// });
+
+// p.printname();
+// console.log(p);
+
+// //4. call, apply, bind
+
+// const obj = {
+//     hello: 'Jojo',
+// }
+// function printname(a, b) { // 100
+//     console.log("printname: ", this.hello, a, b); // << ------
+// }
+
+// // bind
+// const newprint = printname.bind(obj); // lazy // 1
+// newprint(3, true); // 100
+// // call
+// printname.call(obj, 3, true); // 101 = 1 + 100
+// // apply
+// printname.apply(obj, [3, true]); // 2 = 1 + [100]
+
+// arrow function
+// function foo() {
+//     console.log(arguments);
+// }
+// // foo(1, 2, 3, 5, 6, 1, 31);
+// const bar = (...args) => {
+//     console.log(args);
+// }
+// bar(1, 2, 3, 5, 6, 1, 31);
+
+const state = {
+    a: "apple",
+    b: "banana",
+    c: "city",
+    d: "dom",
+    e: "end",
+    f: "forEach"
+};
