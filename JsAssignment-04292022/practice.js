@@ -204,7 +204,7 @@ function occurNum(str) {
   }
   return obj;
 }
-console.log(occurNum("heelllo"));
+console.log(occurNum("heellloe again hello"));
 //18. binary search
 function recursiveFunction(arr, x, start, end) {
   if (start > end) {
@@ -254,7 +254,7 @@ function subset(arr, num) {
   var result = allSets.filter((set) => set.length === num);
   return result;
 }
-console.log(subset([1, 2, 3], 2));
+console.log(subset([1, 2, 3, 4], 2));
 
 //22.count the number of occurrences of the specified letter
 function countNumber(str, char) {
