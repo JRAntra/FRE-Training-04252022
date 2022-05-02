@@ -357,11 +357,18 @@
 //     }
 //     return res;
 // };
+/* 
+    const subSet = (arr, length) => arr.reduce((acc, curr) => [...acc, ...(acc.map((ele) => [...ele, curr]))], [[]]).filter((ele) => ele.length === length);
+    console.log(subSet([1, 2, 3, 4, 5], 3));
+*/
+
 
 // // ~test~
 // const arr = [4, 6, 5, 4, 2];
 // const len = 2;
 // console.log(subset(arr, len));
+
+
 
 // // 22. Write a JavaScript function that accepts two arguments, a string and a letter and the function will count the number of occurrences of the specified letter within the string.
 // // Sample arguments : 'microsoft.com', 'o'
