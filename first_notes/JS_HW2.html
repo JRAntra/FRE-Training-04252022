@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dropdown Box</title>
+  </head>
+  <body>
+    <select id="keys">
+      <option value="volvo">Volvo</option>
+    </select>
+    <select id="values">
+      <option value="volvo">Volvo</option>
+    </select>
+
+    <style>
+      #keys,
+      #values {
+        background-color: bisque;
+        width: 5rem;
+        height: 1.5rem;
+        border-radius: 5px;
+        text-align: center;
+      }
+    </style>
+
+    <script>
+      const state = {
+        a: 'apple',
+        b: 'banana',
+        c: 'chicken',
+        d: 'duck',
+        e: 'egg',
+        f: 'flour',
+        g: 'goose',
+      };
+
+      function createTemp(arr) {
+        let htmlStyle = '';
+        arr.forEach((elem) => {
+          htmlStyle += `<option value="${elem}">${elem}</option>`;
+        });
+        return htmlStyle;
+      }
+
+      // Get the HTML style of keys and values
+      const tmpkeys = createTemp(Object.keys(state));
+      const tmpvalues = createTemp(Object.values(state));
+
+      // Selector of keys and values
+      const keys = document.querySelector('#keys');
+      const values = document.querySelector('#values');
+
+      function render() {
+        keys.innerHTML = tmpkeys;
+        values.innerHTML = tmpvalues;
+      }
+
+      // Add change events
+      // Keys to Values
+      keys.addEventListener('change', (event) => {
+        values.value = state[event.target.value];
+      });
+
+      //Values to Keys
+      values.addEventListener('change', (event) => {
+        keys.value = Object.keys(state).find(
+          (key) => state[key] === event.target.value
+        );
+      });
+
+      render();
+    </script>
+  </body>
+</html>
