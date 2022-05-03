@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta description="Assignment to create a drop down with JavaScript DOM.">
+    <title>Dropdown with JavaScript DOM</title>
+</head>
+<body>
+    <main></main>
+    <script>
+        const state = {
+            a: "apple",
+            b: "banana",
+            c: "city",
+            d: "dom",
+            e: "end",
+            f: "forEach",
+            g: "gesdrwesf",
+        }
+
+        // function to create html string for options
+        function createDropdown(values) {
+            let htmlStr = '';
+            for (let i = 0; i < values.length; i++) {
+                let element = values[i];
+                let label = element[0].toUpperCase() + element.slice(1);
+                htmlStr += `<option id="opt-${element}" class="opt-${i}" value="${element}">${label}</option>`
+            }
+            return htmlStr;
+        }
+
+        // create a new select element
+        const selectKeys = document.createElement("SELECT");
+        // giving id attribute 'keys'
+        selectKeys.setAttribute("id", "keys");
+        // giving class atribute 'select-keys'
+        selectKeys.setAttribute("class", "select-keys");
+        // adding html string into selectKeys
+        selectKeys.innerHTML = createDropdown(Object.keys(state));
+        // grab the html element as root
+        const root = document.querySelector("main");
+        // append the selectKeys into root
+        root.appendChild(selectKeys);
+
+        // create a new select element
+        const selectValues = document.createElement("SELECT");
+        // giving id attribute 'values'
+        selectValues.setAttribute("id", "values");
+        // giving class attribute 'select-values'
+        selectValues.setAttribute("class", "select-values");
+        // adding html string into selectValues
+        selectValues.innerHTML = createDropdown(Object.values(state));
+        // append the selectValues into root
+        root.appendChild(selectValues);
+
+        selectKeys.addEventListener("change", selectKeyVal);
+        selectValues.addEventListener("change", selectKeyVal);
+
+        function selectKeyVal(e) {
+            let toSelect;
+            if (state[e.target.value]) {
+                toSelect = document.getElementById(`opt-${state[e.target.value]}`);
+                toSelect.setAttribute("selected", true);
+                return;
+            } else {
+                for (let key in state) {
+                    if (state[key] === e.target.value) {
+                        toSelect = document.getElementById(`opt-${key}`);
+                        toSelect.setAttribute("selected", true);
+                        return;
+                    }
+                }
+            }
+        }
+
+        /*
+        // create a button element
+        const insertKeyButton = document.createElement("button");
+        // add the text inside the button
+        insertKeyButton.innerText = "Insert Key";
+        // append it to root
+        root.appendChild(insertKeyButton);
+        insertKeyButton.addEventListener("click", (input) => insertOption(selectKeys, input))
+        function insertOption(selectEl, input) {
+            console.log('Hey')
+            const option = document.createElement("option");
+            option.text = input;
+            selectEl.add(option);
+        } */
+
+        // function to add option items into an html select element
+        function createOptions(selectEl, list) {
+            for (let i = 0; i < list.length; i++) {
+                let item = list[i];
+                let label = item[0].toUpperCase() + item.slice(1);
+                let option = document.createElement("option");
+                option.text = label;
+                option.value = item;
+                option.id = `opt1-${item}`;
+                option.className = `opt1-${i}`;
+                selectEl.add(option);
+            }
+            return selectEl;
+        }
+        // create another html select element
+        const selectKeys1 = document.createElement("select");
+        // append it to our root
+        root.appendChild(selectKeys1);
+        // list of options
+        const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+        // add the options in the list on to our html select element;
+        createOptions(selectKeys1, colors);
+    </script>
+</body>
+</html>
