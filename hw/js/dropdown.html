@@ -7,6 +7,20 @@
     <meta description="Assignment to create a drop down with JavaScript DOM.">
     <title>Dropdown with JavaScript DOM</title>
 </head>
+<style>
+    body {
+        height: 25vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    main,
+    .select-keys,
+    .select-values,
+    .select-keys1 {
+        font-size: min(4rem, max(.875rem, 2vw))
+    }
+</style>
 <body>
     <main></main>
     <script>
@@ -31,8 +45,8 @@
             return htmlStr;
         }
 
-        // create a new select element
-        const selectKeys = document.createElement("SELECT");
+        // create a new select element for keys
+        const selectKeys = document.createElement("select");
         // giving id attribute 'keys'
         selectKeys.setAttribute("id", "keys");
         // giving class atribute 'select-keys'
@@ -44,8 +58,8 @@
         // append the selectKeys into root
         root.appendChild(selectKeys);
 
-        // create a new select element
-        const selectValues = document.createElement("SELECT");
+        // create a new select element for values
+        const selectValues = document.createElement("select");
         // giving id attribute 'values'
         selectValues.setAttribute("id", "values");
         // giving class attribute 'select-values'
@@ -75,21 +89,7 @@
             }
         }
 
-        /*
-        // create a button element
-        const insertKeyButton = document.createElement("button");
-        // add the text inside the button
-        insertKeyButton.innerText = "Insert Key";
-        // append it to root
-        root.appendChild(insertKeyButton);
-        insertKeyButton.addEventListener("click", (input) => insertOption(selectKeys, input))
-        function insertOption(selectEl, input) {
-            console.log('Hey')
-            const option = document.createElement("option");
-            option.text = input;
-            selectEl.add(option);
-        } */
-
+        // Another experiment to use another way
         // function to add option items into an html select element
         function createOptions(selectEl, list) {
             for (let i = 0; i < list.length; i++) {
@@ -104,14 +104,33 @@
             }
             return selectEl;
         }
+
         // create another html select element
         const selectKeys1 = document.createElement("select");
+        // add a class
+        selectKeys1.className = 'select-keys1';
         // append it to our root
         root.appendChild(selectKeys1);
         // list of options
         const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
         // add the options in the list on to our html select element;
         createOptions(selectKeys1, colors);
+
+        /* // Experiment for creating a button for user to add another option, but we'll need an input field.
+        // create a button element
+        const insertKeyButton = document.createElement("button");
+        // add the text inside the button
+        insertKeyButton.innerText = "Insert Key";
+        // append it to root
+        root.appendChild(insertKeyButton);
+        insertKeyButton.addEventListener("click", (input) => insertOption(selectKeys, input))
+        function insertOption(selectEl, input) {
+            console.log('Hey')
+            const option = document.createElement("option");
+            option.text = input;
+            selectEl.add(option);
+        } */
+
     </script>
 </body>
 </html>
