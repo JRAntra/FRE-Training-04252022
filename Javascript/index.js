@@ -616,11 +616,11 @@ console.clear();
 //         console.log('printname: ', this); // << ------
 
 //         function foo() {
-//             console.log('foo: ', this); 
+//             console.log('foo: ', this);
 //         }
 //         foo();
 //         const foo = () => {
-//             console.log('foo: ', this); 
+//             console.log('foo: ', this);
 //         }
 //         foo();
 
@@ -683,11 +683,244 @@ console.clear();
 // }
 // bar(1, 2, 3, 5, 6, 1, 31);
 
-const state = {
-    a: "apple",
-    b: "banana",
-    c: "city",
-    d: "dom",
-    e: "end",
-    f: "forEach"
-};
+// const state = {
+//     a: "apple",
+//     b: "banana",
+//     c: "city",
+//     d: "dom",
+//     e: "end",
+//     f: "forEach"
+// };
+
+// ~~~~~~~~~~~~~~~~~~~~ Day 4 ~~~~~~~~~~~~~~~~~~~~
+
+/**
+ * @class
+ * event loop
+ *
+ * XHR
+ * callback function; callback hell
+ * Promise
+ */
+
+// event loop
+// console.log('hello');
+
+// for (let i = 0; i < 5; i++) {
+//     setTimeout(() => console.log(i), (5 - i) * 1000);
+
+//     // function foo(v) {
+//     //     setTimeout(() => console.log(v), (5 - v) * 1000);
+//     // }
+//     // foo(i);
+// } // 10
+
+// call stack: [() => console.log(v), [v === 4]]
+
+// web api: async api:
+/* 
+    |    () => console.log(v), [v === 0], 5s
+    |() => console.log(v), [v === 1], 4s
+    | () => console.log(v), [v === 2], 3s
+    , 2s
+    , 1s
+*/
+
+// tasks queue : message queue: [] push
+/* 
+    () => console.log(v), [v === 3]
+    () => console.log(v), [v === 2]
+    () => console.log(v), [v === 1]
+    () => console.log(v), [v === 0]
+*/
+
+// 0, 1, 2, 3, 4
+//    4, 3, 2, 1, 0
+
+// // ~~~~~~interview question~~~~~~~~~~~~
+// const first = [
+// 	{ userid: 2, name: "Velen" },
+// 	{ userid: 56, name: "Illidan" },
+// 	{ userid: 23, name: "Muradin" },
+// 	{ userid: 12, name: "Sylvanas" },
+// 	{ userid: 44, name: "Cenarius" },
+// 	{ userid: 4, name: "Gul'Dan" },
+// ];
+// const second = [
+// 	{ userid: 2, role: "Mage" },
+// 	{ userid: 4, role: "Worlock" },
+// 	{ userid: 56, role: "Demon Hunter" },
+// 	{ userid: 66, role: "Druid" },
+// 	{ userid: 87, role: "Shaman" },
+// 	{ userid: 12, role: "Hunter" },
+// ];
+
+// function mergeArrs(first, second) {
+// 	const arr = [...first, ...second];
+//     const map = {};
+
+//     arr.forEach(ele => {
+//         map[ele.userid] = {
+//             ...{userid: null, name: null, role: null},
+//             ...map[ele.userid],
+//             ...ele,
+//         }
+//     });
+
+//     return Object.values(map);
+// }
+// console.log(mergeArrs(first, second));
+
+// {
+//     2: { userid: 2, name: "Velen", role: "Mage" },
+//     56: { userid: 56, name: "Illidan" },
+//     ...
+// }
+
+// [
+//     {userid: 2, name: 'Velen', role: 'Mage'},
+//     {userid: 44, name: 'Cenarius', role: null },
+//     {userid: 87, name: null, role: 'Shaman' },
+//     ...
+//     ...
+// ]
+
+// const a = {name: 'AA'};
+// const b = {name: 'BB'};
+
+// const map = new Map();
+
+// map.set(a, 123);
+// map.set(b, 456);
+
+// console.log(map.get(b));
+
+// console.log(obj[a]);
+
+// // callback function; callback hell
+
+// const foo = () => console.log('foo!!!');
+// const randomNum = () => Math.floor(Math.random() * 6);
+// // 0 ~ 5
+
+// const callFnInRandomTime = (callback) => {
+//     const timer = randomNum();
+//     console.log(`let's wait for ${timer}s`);
+
+//     setTimeout(callback, timer * 1000);
+// }
+
+// // callFnInRandomTime(foo);
+// callFnInRandomTime(() => {
+//     callFnInRandomTime(() => {
+//         callFnInRandomTime(() => {
+//             callFnInRandomTime(() => {
+//                 callFnInRandomTime(() => {
+//                     callFnInRandomTime(() => {
+//                         callFnInRandomTime(() => {
+//                             callFnInRandomTime(() => {
+//                                 callFnInRandomTime(() => {
+//                                     foo();
+//                                 });
+//                             });
+//                         });
+//                     });
+//                 });
+//             });
+//         });
+//     });
+// });
+
+// // XHR
+
+function getTodo(id) {
+	const baseUrl = "https://jsonplaceholder.typicode.com/todos";
+
+	return new Promise((resolve, reject) => {
+		const xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				resolve(JSON.parse(xhttp.response));
+			}
+		};
+		xhttp.open("GET", [baseUrl, id].join("/"));
+		xhttp.send();
+	});
+}
+function print(data) {
+	console.log(data);
+}
+
+// // primise
+// getTodo(100)
+//     .then((data) => {
+// 	    print(data);
+//         return getTodo(34);
+//     })
+//     .then(data => {
+//         print(data);
+//         return getTodo(176);
+//     })
+//     .then((data) => {
+//         print(data);
+//     });
+
+// // async && await
+// (async () => {
+//     const data100 = await getTodo(100);
+//     print(data100);
+//     const data34 = await getTodo(34);
+//     print(data34);
+//     const data176 = await getTodo(176);
+//     print(data176);
+// })();
+
+// // callback 
+// getTodo((data100) => {
+// 	print(data100);
+// 	getTodo((data34) => {
+// 		print(data34);
+// 		getTodo((data176) => {
+// 			print(data176);
+// 		}, 176);
+// 	}, 34);
+// }, 100);
+
+// getTodo(print, 100);
+// getTodo(print, 34);
+// getTodo(print, 176);
+
+// new Promise((resolve, reject) => {
+//     setTimeout(() => resolve('hello'));
+// }).then((data) => {
+//     console.log(data);
+//     return 4;
+// }).then(console.log);
+
+// ~~~~~~~~~~~~~~~~~~~~ Day 5 ~~~~~~~~~~~~~~~~~~~~
+
+/**
+ * @class
+ * MyPromise
+ * MyFetch
+ */
+
+// ~~~~~~~~~~~~~~~~~~~~ Day 6 ~~~~~~~~~~~~~~~~~~~~
+
+/**
+ * @class
+ * todolist:
+ *   MVC
+ *   NodeList vs. HTMLCollection
+ *   Event bubbling
+ */
+
+// ~~~~~~~~~~~~~~~~~~~~ Day 7 ~~~~~~~~~~~~~~~~~~~~
+
+/**
+ * @class
+ * todolist
+ *
+ * @class
+ * JQuery
+ */
