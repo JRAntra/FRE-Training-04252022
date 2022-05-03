@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="description" content="Free Web tutorials">
+    <meta name="author" content="John Doe">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" , user-scalable="yes" />
+    <title>homework3</title>
+</head>
+<body>
+    <select name="list1" size="1" id="list1" onInput="foo1()">
+    </select>
+
+    <select name="list2" size="1" id="list2" onInput="foo2()">
+        <option value="a2">apple</option>
+        <option value="b2">banana</option>
+        <option value="c2">city</option>
+        <option value="d2">dom</option>
+        <option value="e2">end</option>
+        <option value="f2">foreach</option>
+    </select>
+
+    <script>
+        const state = {
+            a: "apple",
+            b: "banana",
+            c: "city",
+            d: "dom",
+            e: "end",
+            f: "forEach",
+            g: "gesdrwesf"
+        };
+
+        const arr1 = Object.keys(state);
+        const arr2 = Object.values(state);
+        let str1 = "";
+        let str2 = "";
+
+        for (let i = 0; i < arr1.length; i++) {
+            str1 += "<option value=" + "\"" + arr1[i] + "\">" + arr1[i] + "</option>";
+            str2 += "<option value=" + "\"" + arr1[i] + "\">" + arr2[i] + "</option>";
+        }
+
+        document.getElementById("list1").innerHTML = str1;
+        document.getElementById("list2").innerHTML = str2;
+
+        function foo1() {
+            let value = document.getElementById("list1").value;
+            document.getElementById("list2").value = value;
+        }
+
+        function foo2() {
+            let value = document.getElementById("list2").value;
+            document.getElementById("list1").value = value;
+        }
+
+    </script>
+</body>
+</html>
+
+
+        

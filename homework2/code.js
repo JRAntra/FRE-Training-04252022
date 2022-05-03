@@ -567,18 +567,115 @@ console.log(foo('microsoft.com', 'o')); */
 23. Write a JavaScript function to find the first not repeated character.
 Sample arguments: 'abacddbec'
 Expected output: 'e'
+*/
+
+/*
+function foo(str) {
+    const myMap = new Map();
+    str = str.split("");
+    for (let i = 0; i < str.length; i++) {
+        if (myMap.has(str[i])) {
+            let j = myMap.get(str[i]);
+            j++;
+            myMap.set(str[i], j);
+        }
+        else {
+            myMap.set(str[i], 1);
+        }
+    }
+
+    let char = undefined;
+
+    myMap.forEach(function (value, key) {
+        if (value === 1) {
+            if (char === undefined) char = key;      
+        }
+    });
+
+    return char;
+}
+
+console.log(foo('abacddbecv')); */
+
+/*
 24. Write a JavaScript function to apply Bubble Sort algorithm.
     Note: According to wikipedia "Bubble sort, sometimes referred to as sinking sort, is a simple
 sorting algorithm that works by repeatedly stepping through the list to be sorted, comparing
 each pair of adjacent items and swapping them if they are in the wrong order". 
 Sample array: [12, 345, 4, 546, 122, 84, 98, 64, 9, 1, 3223, 455, 23, 234, 213]
 Expected output: [3223, 546, 455, 345, 234, 213, 122, 98, 84, 64, 23, 12, 9, 4, 1]
+*/
+
+/*
+function foo(arr) {
+    if (arr.length <= 1) return arr;
+    for (let i = arr.length - 1; i >= 1; i--) {
+        for (let j = 0; j < i; j++) {
+            let a = arr[j];
+            let b = arr[j + 1];
+            let c = Math.max(a, b);
+            let d = Math.min(a, b);
+            arr[j] = d;
+            arr[j + 1] = c;
+        }
+    }
+
+    return arr;
+}
+
+console.log(foo([3223, 546, 455, 345, 234, 213, 122, 98, 84, 64, 23, 12, 9, 4, 1])); */
+
+/*
 25. Write a JavaScript function that accept a list of country names as input and returns the
 longest country name as output.
 Sample function: Longest_Country_Name(["Australia", "Germany", "United States of America"])
 Expected output: "United States of America"
+
+
+function foo(arr) {
+    let max = "";
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].length > max.length) {
+            
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+console.log(foo(["Australia", "Germany", "United States of America"]));
+*/
+
+/*
 26. Write a JavaScript function to find longest substring in a given a string without repeating
-characters. 
+characters.  
+var lengthOfLongestSubstring = function (s) {
+    const map1 = new Map();
+    var max1 = 0;
+    var curr = 0;
+    var lastbreak = -1;
+    for (var i in s) {
+        if (!map1.has(s[i])) {
+            curr++;
+            map1.set(s[i], i);
+        }
+        else {
+            max1 = Math.max(max1, curr);
+            var temp = map1.get(s[i]);
+            map1.set(s[i], i);
+
+            if (lastbreak === -1) lastbreak = temp;
+            else lastbreak = Math.max(lastbreak, temp);
+            curr = i - lastbreak;
+
+        }
+    }
+
+    max1 = Math.max(max1, curr);
+    return max1;
+};*/
+
+/*
 27. Write a JavaScript function that returns the longest palindrome in a given string.
     Note: According to Wikipedia "In computer science, the longest palindromic substring or longest
 symmetric factor problem is the problem of finding a maximum - length contiguous substring of a
@@ -590,9 +687,54 @@ In some applications it may be necessary to return all maximal palindromic subst
 substrings that are themselves palindromes and cannot be extended to larger palindromic
 substrings) rather than returning only one substring or returning the maximum length of a
 palindromic substring.
-28. Write a JavaScript program to pass a 'JavaScript function' as parameter. 
-29. Write a JavaScript function to get the function name.
-_________________________________________________________________________________________ */
+*/
+/*
+ * var longestPalindrome = function(s) {
+  if (s.length < 2) return s;
+  let max = '';
+  for (let i = 0; i < s.length; i++) {
+    let left = helper(i, i, s);
+    let right = helper(i, i + 1, s);
+    let currMax = left.length >= right.length ? left : right;
+    max = currMax.length > max.length ? currMax : max;
+  }
+
+  return max;
+};
+
+function helper(left, right, s) {
+  let curr = '';
+
+  while (left >= 0 && right < s.length && s[left] === s[right]) {
+    curr = s.substring(left, right + 1);
+    left -= 1;
+    right += 1;
+  }
+
+  return curr;
+}
+*/
+
+//28. Write a JavaScript program to pass a 'JavaScript function' as parameter. 
+
+function foo1() {
+    console.log("hello!");
+}
+
+function foo(callback) {
+    callback();
+}
+
+console.log(foo(foo1));
+
+//29. Write a JavaScript function to get the function name.
+
+function abc() {
+    console.log(arguments.callee.name);
+}
+
+abc();
+
 
 
 
