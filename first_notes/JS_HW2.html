@@ -36,7 +36,7 @@
         g: 'goose',
       };
 
-      function createTemp(arr) {
+      function createHtmlStyle(arr) {
         let htmlStyle = '';
         arr.forEach((elem) => {
           htmlStyle += `<option value="${elem}">${elem}</option>`;
@@ -45,16 +45,16 @@
       }
 
       // Get the HTML style of keys and values
-      const tmpkeys = createTemp(Object.keys(state));
-      const tmpvalues = createTemp(Object.values(state));
+      const keysHtml = createHtmlStyle(Object.keys(state));
+      const valuesHtml = createHtmlStyle(Object.values(state));
 
       // Selector of keys and values
       const keys = document.querySelector('#keys');
       const values = document.querySelector('#values');
 
       function render() {
-        keys.innerHTML = tmpkeys;
-        values.innerHTML = tmpvalues;
+        keys.innerHTML = keysHtml;
+        values.innerHTML = valuesHtml;
       }
 
       // Add change events
