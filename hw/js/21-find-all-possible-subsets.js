@@ -9,7 +9,31 @@ O: 2D array
 C: -
 Q:
 */
-/*
+
+function findSubsets(arr, idx = 0, subA = [], result = []) {
+    if (arr.length === idx) {
+        result.push(subA);
+        return result;
+    }
+
+    // not includes current value, which is at idx
+    findSubsets(arr, idx + 1, [...subA], result);
+
+    // includes current value, which is at idx
+    findSubsets(arr, idx + 1, [...subA, arr[idx]], result);
+
+    return result;
+}
+
+
+let ar = [1, 2, 3], size = 2;
+console.log(findSubsets(ar, size));
+ar = [1, 2, 3, 4, 5], size = 3;
+console.log(findSubsets(ar, size));
+size = 4;
+console.log(findSubsets(ar, size));
+
+/* DOES NOT WORK
 function findSubsets(arr, len) {
     const result = [];
 
@@ -28,8 +52,8 @@ function findSubsets(arr, len) {
     dfs([], arr[0]);
     return result;
 } */
-
-// using DFS NOT WORKING YET
+/*
+// using DFS NOT WORK
 function findSubsets(arr, len, idx = 0, current = [], result = []) {
     // if we're given an empty array / or array has been sliced to nothing recursively, return result
     if (!arr.length || len < 1) return result;
@@ -47,11 +71,4 @@ function findSubsets(arr, len, idx = 0, current = [], result = []) {
         findSubsets(arr, len, idx + 1, [...current, arr[i]], result)
     }
     return result;
-}
-
-let ar = [1, 2, 3], size = 2;
-console.log(findSubsets(ar, size));
-ar = [1, 2, 3, 4, 5], size = 3;
-console.log(findSubsets(ar, size));
-size = 4;
-console.log(findSubsets(ar, size));
+} */
