@@ -5,47 +5,31 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
-		<script async src="./index.js"></script>
+		<!-- <script async src="./index.js"></script> -->
 	</head>
 	<body>
-		<select id="keys">
-			<option value="volvo">Volvo</option>
-		</select>
-
-		<select id="values">
-			<option value="volvo">Volvo</option>
-		</select>
+		<button onclick="addli()">add li</button>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
 
 		<script>
-			const state = {
-				a: "apple",
-				b: "banana",
-				c: "city",
-				d: "dom",
-				e: "end",
-				f: "forEach",
-				g: "gesdrwesf",
-			};
-			const elekeys = document.getElementById("keys");
-			const elevalues = document.querySelector("#values");
+			const liHtmlCollection = document.getElementsByTagName("li");
+			// console.log(liHtmlCollection);
+			const liNodeList = document.querySelectorAll("li");
+			// console.log(liNodeList);
 
-			elekeys.addEventListener("change", (event) => {
-				console.log(event.target.value);
-			});
+			const ulHtmlCollection = document.getElementsByTagName("ul")[0];
 
-			function render(ele, tmp) {
-				ele.innerHTML = tmp;
+			function addli() {
+				const newli = document.createElement("li");
+				ulHtmlCollection.appendChild(newli);
+
+				console.log("htmlcollection: ", liHtmlCollection.length);
+				console.log("linodelist: ", liNodeList.length);
 			}
-			function createTmp(arr) {
-				let tmp = "";
-				arr.forEach((key) => {
-					tmp += `<option value="${key}">${key}</option>`;
-				});
-				return tmp;
-			}
-			const tmpkeys = createTmp(Object.keys(state));
-
-			render(elekeys, tmpkeys);
 		</script>
 	</body>
 </html>
