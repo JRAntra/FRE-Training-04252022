@@ -8,28 +8,41 @@
 		<!-- <script async src="./index.js"></script> -->
 	</head>
 	<body>
-		<button onclick="addli()">add li</button>
+		<div class="grand" onclick="handleClick()">
+			<div class="parent">
+				<div
+					class="child"
+					id="1234"
+					style="width: 200px; height: 200px; background-color: red"
+				></div>
+			</div>
+		</div>
+
+		<!-- <button onclick="addli()">add li</button>
 		<ul>
 			<li></li>
 			<li></li>
 			<li></li>
-		</ul>
+		</ul> -->
 
 		<script>
-			const liHtmlCollection = document.getElementsByTagName("li");
-			// console.log(liHtmlCollection);
-			const liNodeList = document.querySelectorAll("li");
-			// console.log(liNodeList);
-
-			const ulHtmlCollection = document.getElementsByTagName("ul")[0];
-
-			function addli() {
-				const newli = document.createElement("li");
-				ulHtmlCollection.appendChild(newli);
-
-				console.log("htmlcollection: ", liHtmlCollection.length);
-				console.log("linodelist: ", liNodeList.length);
+			function handleClick() {
+				console.log(event.target.id);
 			}
+			// const liHtmlCollection = document.getElementsByTagName("li");
+			// // console.log(liHtmlCollection);
+			// const liNodeList = document.querySelectorAll("li");
+			// // console.log(liNodeList);
+
+			// const ulHtmlCollection = document.getElementsByTagName("ul")[0];
+
+			// function addli() {
+			// 	const newli = document.createElement("li");
+			// 	ulHtmlCollection.appendChild(newli);
+
+			// 	console.log("htmlcollection: ", liHtmlCollection.length);
+			// 	console.log("linodelist: ", liNodeList.length);
+			// }
 		</script>
 	</body>
 </html>
