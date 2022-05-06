@@ -1,146 +1,121 @@
-// ~~~~~~~~~~~~~~~~~~ Api ~~~~~~~~~~~~~~~~~~
-const Api = (() => {
-	// const baseUrl = "https://jsonplaceholder.typicode.com";
-    const baseUrl = 'http://localhost:3000';
-	const path = "todos";
+// import {Api} from './mvc/api.js';
 
-	const getTodos = () =>
-		fetch([baseUrl, path].join("/")).then((response) => response.json());
+// // ~~~~~~~~~~~~~~~~~~ View ~~~~~~~~~~~~~~~~~~
+// const View = (() => {
+// 	const domstr = {
+// 		todolist: "#todolist__container",
+// 		deletebtn: ".deletebtn",
+// 		inputbox: ".todolist__input",
+// 	};
 
-	const deleteTodo = (id) =>
-		fetch([baseUrl, path, id].join("/"), {
-			method: "DELETE",
-		});
+// 	const render = (ele, tmp) => {
+// 		ele.innerHTML = tmp;
+// 	};
+// 	const createTmp = (arr) => {
+// 		let tmp = "";
+// 		arr.forEach((todo) => {
+// 			tmp += `
+//                 <li>
+//                     <span>${todo.id}-${todo.title}</span>
+//                     <button class="dlt ${todo.id} deletebtn">X</button>
+//                 </li>
+//             `;
+// 		});
+// 		return tmp;
+// 	};
 
-	const addTodo = (newtodo) =>
-		fetch([baseUrl, path].join("/"), {
-			method: "POST",
-			body: JSON.stringify(newtodo),
-			headers: {
-				"Content-type": "application/json; charset=UTF-8",
-			},
-		}).then((response) => response.json());
+// 	return {
+// 		render,
+// 		createTmp,
+// 		domstr,
+// 	};
+// })();
+// // ~~~~~~~~~~~~~~~~~~ Model ~~~~~~~~~~~~~~~~~~
+// const Model = ((api, view) => {
+// 	const { getTodos, deleteTodo, addTodo } = api;
 
-	return {
-		getTodos,
-		deleteTodo,
-        addTodo
-	};
-})();
+// 	class Todo {
+// 		constructor(title) {
+// 			this.title = title;
+// 			this.userId = 3;
+// 			this.completed = false;
+// 		}
+// 	}
 
-// ~~~~~~~~~~~~~~~~~~ View ~~~~~~~~~~~~~~~~~~
-const View = (() => {
-	const domstr = {
-		todolist: "#todolist__container",
-		deletebtn: ".deletebtn",
-		inputbox: ".todolist__input",
-	};
+// 	class State {
+// 		#todolist = [];
 
-	const render = (ele, tmp) => {
-		ele.innerHTML = tmp;
-	};
-	const createTmp = (arr) => {
-		let tmp = "";
-		arr.forEach((todo) => {
-			tmp += `
-                <li>
-                    <span>${todo.id}-${todo.title}</span>
-                    <button class="dlt ${todo.id} deletebtn">X</button>
-                </li>
-            `;
-		});
-		return tmp;
-	};
+// 		get todolist() {
+// 			return this.#todolist;
+// 		}
+// 		set todolist(newtodolist) {
+// 			this.#todolist = [...newtodolist];
 
-	return {
-		render,
-		createTmp,
-		domstr,
-	};
-})();
-// ~~~~~~~~~~~~~~~~~~ Model ~~~~~~~~~~~~~~~~~~
-const Model = ((api, view) => {
-	const { getTodos, deleteTodo, addTodo } = api;
+// 			const todolistEle = document.querySelector(view.domstr.todolist);
+// 			const tmp = view.createTmp(this.todolist);
 
-	class Todo {
-		constructor(title) {
-			this.title = title;
-			this.userId = 3;
-			this.completed = false;
-		}
-	}
+// 			view.render(todolistEle, tmp);
+// 		}
+// 	}
 
-	class State {
-		#todolist = [];
+// 	return {
+// 		getTodos,
+// 		deleteTodo,
+//         addTodo,
+// 		State,
+// 		Todo,
+// 	};
+// })(Api, View);
+// // ~~~~~~~~~~~~~~~~~~ Controller ~~~~~~~~~~~~~~~~~~
+// const Controller = ((model, view) => {
+// 	const state = new model.State();
 
-		get todolist() {
-			return this.#todolist;
-		}
-		set todolist(newtodolist) {
-			this.#todolist = [...newtodolist];
+// 	const addTodo = () => {
+// 		const inputbox = document.querySelector(view.domstr.inputbox);
+// 		inputbox.addEventListener("keyup", (event) => {
+// 			if (event.key === "Enter" && event.target.value.trim() !== '') {
+// 				const newtodo = new model.Todo(event.target.value);
 
-			const todolistEle = document.querySelector(view.domstr.todolist);
-			const tmp = view.createTmp(this.todolist);
+//                 model.addTodo(newtodo).then(todo => {
+//                     state.todolist = [todo, ...state.todolist];
+//                 });
 
-			view.render(todolistEle, tmp);
-		}
-	}
+//                 event.target.value = '';
+// 			}
+// 		});
+// 	};
 
-	return {
-		getTodos,
-		deleteTodo,
-        addTodo,
-		State,
-		Todo,
-	};
-})(Api, View);
-// ~~~~~~~~~~~~~~~~~~ Controller ~~~~~~~~~~~~~~~~~~
-const Controller = ((model, view) => {
-	const state = new model.State();
+// 	const deleteTodo = () => {
+// 		const todolistEle = document.querySelector(view.domstr.todolist);
+// 		todolistEle.addEventListener("click", (event) => {
+// 			const [type, id] = event.target.className.split(" ");
+// 			console.log(type, id);
 
-	const addTodo = () => {
-		const inputbox = document.querySelector(view.domstr.inputbox);
-		inputbox.addEventListener("keyup", (event) => {
-			if (event.key === "Enter" && event.target.value.trim() !== '') {
-				const newtodo = new model.Todo(event.target.value);
+// 			if (type === "dlt") {
+// 				state.todolist = state.todolist.filter(
+// 					(todo) => +todo.id !== +id
+// 				);
+// 			}
+// 			model.deleteTodo(id);
+// 		});
+// 	};
 
-                model.addTodo(newtodo).then(todo => {
-                    state.todolist = [todo, ...state.todolist];
-                });
+// 	const init = () => {
+// 		model.getTodos().then((todolist) => {
+// 			state.todolist = [...todolist.reverse()];
+// 		});
+// 	};
 
-                event.target.value = '';
-			}
-		});
-	};
+// 	const bootstrap = () => {
+// 		init();
+// 		deleteTodo();
+// 		addTodo();
+// 	};
 
-	const deleteTodo = () => {
-		const todolistEle = document.querySelector(view.domstr.todolist);
-		todolistEle.addEventListener("click", (event) => {
-			const [type, id] = event.target.className.split(" ");
-			console.log(type, id);
+// 	return { bootstrap };
+// })(Model, View);
 
-			if (type === "dlt") {
-				state.todolist = state.todolist.filter(
-					(todo) => +todo.id !== +id
-				);
-			}
-			model.deleteTodo(id);
-		});
-	};
+// Controller.bootstrap();
 
-	const init = () => {
-		model.getTodos().then((todolist) => {
-			state.todolist = [...todolist.reverse()];
-		});
-	};
 
-	const bootstrap = () => {
-		init();
-		deleteTodo();
-		addTodo();
-	};
-
-	return { bootstrap };
-})(Model, View);
-
-Controller.bootstrap();
+console.log(document.getElementsByTagName('h1')[0]);
