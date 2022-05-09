@@ -336,7 +336,25 @@ const controller = ((model, view, node, endPoint) => {
     const state = new State();
 
     const editItemText = (prefix, id, event) => {
-        console.log("edit", id)
+        // console.log("edit", id)
+        const btn = event;
+        console.log(341, btn)
+        const parentNode = event.target.parentNode;
+        const inputNode = view.addOneNode(undefined, "input", textNode.className, id, prefix, textNode.innerText);
+        console.log(inputNode)
+        textNode.addEventListener("keyup", (e) => {
+            if (e.target.value.trim() === '' || e.key !== "Enter") return;
+            const update = {title: e.target.value};
+            model.editOne(id, update)
+            .then((res) => {
+                state.list = state.list.map((doc) => {
+                    if (doc.id === id) {
+                        doc.title = update.title;
+                    }
+                })
+            })
+        })
+
     }
 
     const done = async (id) => {
@@ -364,7 +382,6 @@ const controller = ((model, view, node, endPoint) => {
     const listUpdateListener = () => {
         const listNode = document.getElementById(`${node.list.container.prefix}${node.idConcater}${node.list.container.id}`);
         listNode.addEventListener("click", (event) => {
-            console.log(310, event.target.id)
             const [prefix, id] = event.target.id.split(node.idConcater);
             if (prefix === node.list.item.buttonDelete.prefix) deleteItem(+id);
             else if (prefix === node.list.item.buttonDone.prefix) done(+id);
