@@ -1,4 +1,7 @@
+// 除了图标基本都实现了，但是犯了策略错误，我一次性加载所有JSON file到本地后，每修改一些内容都做成1个JSON file再上传，但是没有覆盖掉原来的JSON
+
 var copyPaste = "";
+var loaded = 0;
 
 function getJOSN() {
     const url = 'http://localhost:3000/todos';
@@ -35,6 +38,7 @@ function initial(arr) {
             addPending();
         }   
     }
+    loaded = 1;
 }
 
 
@@ -51,9 +55,8 @@ function submit() {
 }
 
 function addPending() {
-    let edit = 0;
+
     if (copyPaste === "") {
-        edit = 1;
         copyPaste = this.parentElement.firstChild.innerHTML;
         let oldLi = this.parentElement;
         oldLi.style.display = "none";
@@ -78,19 +81,16 @@ function addPending() {
     li.appendChild(button1);
     list.appendChild(li);
 
-    if(edit === 1)postData();
+    if(loaded === 1)postData();
 }
-
+// Delete BUTTON
 function deleteItem() {
     let li = this.parentElement;
     li.style.display = "none";
     postData();
 }
-
 function addCompleted() {
-    let edit = 0;
     if (copyPaste === "") {
-        edit = 1;
         copyPaste = this.parentElement.firstChild.innerHTML;
         let oldLi = this.parentElement;
         oldLi.style.display = "none";
@@ -126,10 +126,11 @@ function addCompleted() {
     li.appendChild(button1);
     list.appendChild(li);
 
-    if (edit === 1) postData();
+    if (loaded === 1) postData();
 }
 
 function postData() {
+    // make JSON
     let arr = [];
     let j = 1;
 
@@ -158,8 +159,18 @@ function postData() {
             arr.push(obj);
         }
     }
-    
-    console.log(arr);
+
+    // POST
+    let req = new XMLHttpRequest();
+    let url = "http://localhost:3000/todos";
+    req.open("POST", url, true);
+    req.setRequestHeader("Content-Type", "application/json");
+    req.onload = function () {
+        if (this.status >= 200 && this.status < 300) {
+            console.log("success");
+        }
+    };
+    req.send(JSON.stringify(arr));
 }
 
 
