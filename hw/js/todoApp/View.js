@@ -16,5 +16,34 @@ const View = (node) => {
         return childNode;
     };
 
+    // function to add a chain of nodes (items in a list)
+    const addMoreNodes = (parentNode, childTag, childClass, childIDPrefix, dataList) => {
 
+        if (!dataList.length || !Array.isArray(dataList)) return;
+        // this counter is to populate the sequence no. in the rendered list in REVERSE order
+        let counter = dataList.length;
+
+        dataList.forEach((doc) => {
+            // create node to contain all the elements to render in each item
+            const itemNode = addOneNode(undefined, childTag, childClass, item.id, childIDPrefix)
+
+            const no = node.list.item.no;
+            addOneNode(itemNode, no.tag, no.className, doc.id, no.prefix, `${counter}`);
+
+            const buttonDelete = node.list.item.buttonDelete;
+            addOneNode(itemNode, buttonDelete.tag, buttonDelete.className, doc.id, buttonDelete.prefix, buttonDelete.text);
+
+            const completed = node.list.item.completed;
+            const chkBox = addOneNode(itemNode, completed.tag, completed.className, doc.id, completed.prefix);
+            chkBox.type = completed.type;
+            if (item.completed == true) chkBox.checked = "checked";
+
+            const text = node.list.item.text;
+            addOneNode(itemNode, text.tag, text.className, doc.id, text.prefix, doc.title);
+
+            parentNode.appendChild(itemNode);
+            counter--;
+        });
+        return parentNode;
+    }
 }
