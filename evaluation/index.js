@@ -336,25 +336,7 @@ const controller = ((model, view, node, endPoint) => {
     const state = new State();
 
     const editItemText = (prefix, id, event) => {
-        // console.log("edit", id)
-        const btn = event;
-        console.log(341, btn)
-        const parentNode = event.target.parentNode;
-        const inputNode = view.addOneNode(undefined, "input", textNode.className, id, prefix, textNode.innerText);
-        console.log(inputNode)
-        textNode.addEventListener("keyup", (e) => {
-            if (e.target.value.trim() === '' || e.key !== "Enter") return;
-            const update = {title: e.target.value};
-            model.editOne(id, update)
-            .then((res) => {
-                state.list = state.list.map((doc) => {
-                    if (doc.id === id) {
-                        doc.title = update.title;
-                    }
-                })
-            })
-        })
-
+        console.log("edit", id)
     }
 
     const done = async (id) => {
