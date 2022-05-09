@@ -73,7 +73,7 @@ const node = {
             text: undefined
         },
 
-        containerA: {
+        subcontainerA: {
             tag: "section",
             className: "container__sublist",
             prefix: "sublist",
@@ -81,7 +81,7 @@ const node = {
             text: undefined
         },
 
-        containerB: {
+        subcontainerB: {
             tag: "section",
             className: "container__sublist",
             prefix: "sublist",
@@ -283,4 +283,6 @@ const main = document.querySelector(node.main.tag)
             , inputField = view.addOneNode(inputContainer, node.input.field.tag, node.input.field.className, node.input.field.id, node.input.field.prefix).placeholder = node.input.field.placeholder
             , addButton = view.addOneNode(inputContainer, node.input.buttonAdd.tag, node.input.buttonAdd.className, node.input.buttonAdd.id, node.input.buttonAdd.prefix, node.input.buttonAdd.text)
     // this listSection must exist and hooked to main so that callback can grab it and add event listener
-    , listContainer = view.addOneNode(main, node.list.container.tag, node.list.container.className, node.list.container.id, node.list.container.prefix);
+    , listContainer = view.addOneNode(main, node.list.container.tag, node.list.container.className, node.list.container.id, node.list.container.prefix)
+        , subListContainerA = view.addOneNode(listContainer, node.list.subcontainerA.tag, node.list.subcontainerA.className, node.list.subcontainerA.id, node.list.subcontainerA.prefix)
+        , subListContainerB = view.addOneNode(listContainer, node.list.subcontainerB.tag, node.list.subcontainerB.className, node.list.subcontainerB.id, node.list.subcontainerB.prefix)
