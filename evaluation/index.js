@@ -231,7 +231,8 @@ const view = ((node) => {
 
 // ------------------------------------- API ---------------------------------------
 // api: variable to store functioons returned from calling an anonymous IIFE "Class"
-const api = (() => {
+const api = ((endPoint) => {
+    const {url, path} = endPoint;
 
     const getAll = async (url, path) => {
         const result = await fetch(`${url}/${path}`)
@@ -275,7 +276,7 @@ const api = (() => {
         editOne,
         deleteOne
     }
-})();
+})(endPoint);
 
 
 // ------------------------------------- MODEL ---------------------------------------
@@ -333,16 +334,29 @@ const controller = ((model, view, node, endPoint) => {
     const {Item, State} = model;
     const state = new State();
 
-    const addItem = (e) => {
-        console.log(event)
+    const addItem = async (event) => {
+        const inputField = document.getElementById(`${node.input.field.prefix}${node.idConcater}${node.input.field.id}`);
+        // create id for the new item/document by checking the id from doc at tail of the list, if list empty start with 1
+        const docID = state.list.length ? state.list[state.list.length - 1].id + 1 : 1
+        const inputText = inputField.value;
+        if (!inputText.trim().length) return;
+        // create new instance of item
+        const newItem = new Item(inputText, docID);
+        inputField.value = "";
+        // persist the addition to backend, then update the state.list for a re-render
+        const addedItem = await model.addOne(newItem);
+        state.list = [...state.list, addedItem];
+        return addedItem;
     }
 
+    // function to add event listener into the input adding button
     const addItemListener = () => {
         const btn = document.getElementById(`${node.input.buttonAdd.prefix}${node.idConcater}${node.input.buttonAdd.id}`);
         btn.addEventListener("click", addItem);
         return btn;
     }
 
+    // function to grab all data from backend, populate the list and trigger DOM rendering
     const init = async () => {
         const {url, path} = endPoint;
         const list = await model.getAll(url, path);
