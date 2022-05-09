@@ -346,8 +346,13 @@ const controller = ((model, view, node, endPoint) => {
         console.log("undo", id)
     }
 
-    const deleteItem = (id) => {
-        console.log("delete", id)
+    const deleteItem = async (id) => {
+        const result = await model.deleteOne(id);
+        if (result) state.list = state.list.filter((doc) => doc.id !== id);
+        // after deleting, refresh listener to the list container
+        else state.list = [...state.list];
+        console.log("DELETED", result, id)
+        return result;
     }
 
     const listUpdateListener = () => {
