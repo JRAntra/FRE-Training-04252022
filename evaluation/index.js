@@ -284,7 +284,7 @@ const model = ((view, api, node) => {
         constructor(content, id = 0, isCompleted = false) {
             this.content = content,
             this.isCompleted = isCompleted,
-            this.id = id,
+            this.id = id
         }
     }
     class State {
@@ -298,14 +298,24 @@ const model = ((view, api, node) => {
 
         set list(newList) {
             this.#list = [...newList];
-            // create a parent node to stick all the child nodes
-            const listNode = view.addOneNode(undefined, node.list.container.tag, node.list.container.className, node.list.container.id, node.list.container.prefix)// "section", "section__list", "list", "section");
+
+            // create a parent node to stick all the child nodes in sublist todo
+            const listNodeA = view.addTodoNodes(undefined, node.list.subcontainerA.tag, node.list.subcontainerA.className, node.list.subcontainerA.id, node.list.subcontainerA.prefix);
+            const listA = this.#list.filter((item) => item.isCompleted === true);
             // adding child nodes to listNode
-            view.addMoreNodes(listNode, node.list.item.container.tag, node.list.item.container.className, node.list.item.container.prefix, this.#list)
+            view.addTodoNodes(listNodeA, node.list.item.container.tag, node.list.item.container.className, node.list.item.container.prefix, listA);
+
+            // create a parent node to stick all the child nodes in sublist done
+            const listNodeB = view.addTodoNodes(undefined, node.list.subcontainerB.tag, node.list.subcontainerB.className, node.list.subcontainerB.id, node.list.subcontainerB.prefix);
+            const listB = this.#list.filter((item) => item.isCompleted === false);
+            // adding child nodes to listNode
+            view.addTodoNodes(listNodeB, node.list.item.container.tag, node.list.item.container.className, node.list.item.container.prefix, listB);
+
             // grab container element to hook
-            const mainNode = document.querySelector(node.main.tag);
+            const listContainer = document.getElementById(`${node.list.container.prefix}${node.idConcater}${node.list.container.id}`);
             // render on client by sticking the listNode -parentNode- to mainNode
-            view.render(mainNode, listNode);
+            view.render(listContainer, listNodeA);
+            view.render(listContainer, listNodeB);
         }
     }
 
