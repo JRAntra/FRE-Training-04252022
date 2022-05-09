@@ -177,11 +177,11 @@ const view = ((node) => {
     // function to add a chain of nodes (items in a list Todo, NOT done)
     const addTodoNodes = (parentNode, childTag, childClass, childIDPrefix, dataList) => {
         if (!dataList.length || !Array.isArray(dataList)) return;
-console.log(parentNode)
+
         dataList.forEach((item) => {
             const listNode = addOneNode(undefined, childTag, childClass, item.id, childIDPrefix);
             // add the item text to childNode
-            addOneNode(listNode, node.list.item.text.tag, node.list.item.text.className, item.id, node.list.item.text.prefix, item.title);
+            addOneNode(listNode, node.list.item.text.tag, node.list.item.text.className, item.id, node.list.item.text.prefix, item.content);
             // add edit button to childNode
             addOneNode(listNode, node.list.item.buttonEdit.tag, node.list.item.buttonEdit.className, item.id, node.list.item.buttonEdit.prefix, node.list.item.buttonEdit.text);
             // add delete button to childNode
@@ -198,11 +198,12 @@ console.log(parentNode)
         if (!dataList.length || !Array.isArray(dataList)) return;
 
         dataList.forEach((item) => {
+            console.log(item)
             const listNode = addOneNode(undefined, childTag, childClass, item.id, childIDPrefix);
             // add todo button to childNode
             addOneNode(listNode, node.list.item.buttonTodo.tag, node.list.item.buttonTodo.className, item.id, node.list.item.buttonTodo.prefix, node.list.item.buttonTodo.text);
             // add the item text to childNode
-            addOneNode(listNode, node.list.item.text.tag, node.list.item.text.className, item.id, node.list.item.text.prefix, item.title);
+            addOneNode(listNode, node.list.item.text.tag, node.list.item.text.className, item.id, node.list.item.text.prefix, item.content);
             // add edit button to childNode
             addOneNode(listNode, node.list.item.buttonEdit.tag, node.list.item.buttonEdit.className, item.id, node.list.item.buttonEdit.prefix, node.list.item.buttonEdit.text);
             // add delete button to childNode
@@ -303,16 +304,16 @@ const model = ((view, api, node) => {
 
             // create a parent node to stick all the child nodes in sublist todo
             const listNodeA = view.addOneNode(undefined, node.list.subcontainerA.tag, node.list.subcontainerA.className, node.list.subcontainerA.id, node.list.subcontainerA.prefix);
-            const listA = this.#list.filter((item) => item.isCompleted === true);
+            const listA = this.#list.filter((item) => item.isCompleted === false);
             console.log(listA)
             // adding child nodes to listNode
             view.addTodoNodes(listNodeA, node.list.item.container.tag, node.list.item.container.className, node.list.item.container.prefix, listA);
             console.log(310)
             // create a parent node to stick all the child nodes in sublist done
             const listNodeB = view.addOneNode(undefined, node.list.subcontainerB.tag, node.list.subcontainerB.className, node.list.subcontainerB.id, node.list.subcontainerB.prefix);
-            const listB = this.#list.filter((item) => item.isCompleted === false);
+            const listB = this.#list.filter((item) => item.isCompleted === true);
             // adding child nodes to listNode
-            view.addTodoNodes(listNodeB, node.list.item.container.tag, node.list.item.container.className, node.list.item.container.prefix, listB);
+            view.addDoneNodes(listNodeB, node.list.item.container.tag, node.list.item.container.className, node.list.item.container.prefix, listB);
             console.log(listB)
             // grab container element to hook
             const listContainer = document.getElementById(`${node.list.container.prefix}${node.idConcater}${node.list.container.id}`);
