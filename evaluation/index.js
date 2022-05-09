@@ -275,14 +275,53 @@ const api = (() => {
     }
 })();
 
-// Static Lay-out
+
+// ------------------------------------- MODEL ---------------------------------------
+// model: variable to store functioons returned from calling an anonymous IIFE "Class"
+const model = ((view, api, node) => {
+    const {getAll, addOne, editOne, deleteOne} = api;
+    class Item {
+        constructor(content, id = 0, isCompleted = false) {
+            this.content = content,
+            this.isCompleted = isCompleted,
+            this.id = id,
+        }
+    }
+    class State {
+
+        #list = [];
+
+        get list() {
+            console.log(this.#list)
+            return this.#list;
+        }
+
+        set list(newList) {
+            this.#list = [...newList];
+            // create a parent node to stick all the child nodes
+            const listNode = view.addOneNode(undefined, node.list.container.tag, node.list.container.className, node.list.container.id, node.list.container.prefix)// "section", "section__list", "list", "section");
+            // adding child nodes to listNode
+            view.addMoreNodes(listNode, node.list.item.container.tag, node.list.item.container.className, node.list.item.container.prefix, this.#list)
+            // grab container element to hook
+            const mainNode = document.querySelector(node.main.tag);
+            // render on client by sticking the listNode -parentNode- to mainNode
+            view.render(mainNode, listNode);
+        }
+    }
+
+    return {Item, State, getAll, addOne, editOne, deleteOne};
+
+})(view, api, node);
+
+
+// -------------------------------- STATIC LAYOUT ---------------------------------------
+// Block below depends on the user pre-defined node object.
 const main = document.querySelector(node.main.tag)
     , header = view.addOneNode(main, node.header.tag, node.header.className)
         , title = view.addOneNode(header, node.title.tag, node.title.className, node.title.id, node.title.prefix, node.title.text)
         , inputContainer = view.addOneNode(header, node.input.container.tag, node.input.container.className, node.input.container.id, node.input.container.prefix)
             , inputField = view.addOneNode(inputContainer, node.input.field.tag, node.input.field.className, node.input.field.id, node.input.field.prefix).placeholder = node.input.field.placeholder
             , addButton = view.addOneNode(inputContainer, node.input.buttonAdd.tag, node.input.buttonAdd.className, node.input.buttonAdd.id, node.input.buttonAdd.prefix, node.input.buttonAdd.text)
-    // this listSection must exist and hooked to main so that callback can grab it and add event listener
     , listContainer = view.addOneNode(main, node.list.container.tag, node.list.container.className, node.list.container.id, node.list.container.prefix)
         , subListContainerA = view.addOneNode(listContainer, node.list.subcontainerA.tag, node.list.subcontainerA.className, node.list.subcontainerA.id, node.list.subcontainerA.prefix)
         , subListContainerB = view.addOneNode(listContainer, node.list.subcontainerB.tag, node.list.subcontainerB.className, node.list.subcontainerB.id, node.list.subcontainerB.prefix)
