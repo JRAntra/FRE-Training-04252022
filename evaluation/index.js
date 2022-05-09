@@ -150,8 +150,10 @@ const node = {
     }
 }
 
-const url = "http://localhost:3000";
-const path = "todos";
+const endPoint = {
+    url: "http://localhost:3000",
+    path: "todos"
+}
 
 
 // ------------------------------------- VIEW ------------------------------------
@@ -175,7 +177,7 @@ const view = ((node) => {
     // function to add a chain of nodes (items in a list Todo, NOT done)
     const addTodoNodes = (parentNode, childTag, childClass, childIDPrefix, dataList) => {
         if (!dataList.length || !Array.isArray(dataList)) return;
-
+console.log(parentNode)
         dataList.forEach((item) => {
             const listNode = addOneNode(undefined, childTag, childClass, item.id, childIDPrefix);
             // add the item text to childNode
@@ -300,17 +302,18 @@ const model = ((view, api, node) => {
             this.#list = [...newList];
 
             // create a parent node to stick all the child nodes in sublist todo
-            const listNodeA = view.addTodoNodes(undefined, node.list.subcontainerA.tag, node.list.subcontainerA.className, node.list.subcontainerA.id, node.list.subcontainerA.prefix);
+            const listNodeA = view.addOneNode(undefined, node.list.subcontainerA.tag, node.list.subcontainerA.className, node.list.subcontainerA.id, node.list.subcontainerA.prefix);
             const listA = this.#list.filter((item) => item.isCompleted === true);
+            console.log(listA)
             // adding child nodes to listNode
             view.addTodoNodes(listNodeA, node.list.item.container.tag, node.list.item.container.className, node.list.item.container.prefix, listA);
-
+            console.log(310)
             // create a parent node to stick all the child nodes in sublist done
-            const listNodeB = view.addTodoNodes(undefined, node.list.subcontainerB.tag, node.list.subcontainerB.className, node.list.subcontainerB.id, node.list.subcontainerB.prefix);
+            const listNodeB = view.addOneNode(undefined, node.list.subcontainerB.tag, node.list.subcontainerB.className, node.list.subcontainerB.id, node.list.subcontainerB.prefix);
             const listB = this.#list.filter((item) => item.isCompleted === false);
             // adding child nodes to listNode
             view.addTodoNodes(listNodeB, node.list.item.container.tag, node.list.item.container.className, node.list.item.container.prefix, listB);
-
+            console.log(listB)
             // grab container element to hook
             const listContainer = document.getElementById(`${node.list.container.prefix}${node.idConcater}${node.list.container.id}`);
             // render on client by sticking the listNode -parentNode- to mainNode
@@ -324,8 +327,25 @@ const model = ((view, api, node) => {
 })(view, api, node);
 
 
+// ------------------------------------- CONTROLLER ------------------------------------------
+const controller = ((model, view, node, endPoint) => {
+
+    const {Item, State} = model;
+    const state = new State();
+
+    const init = async () => {
+        const {url, path} = endPoint;
+        const list = await model.getAll(url, path);
+        state.list = [...list];
+        return state.list;
+    }
+
+    return {init}
+})(model, view, node, endPoint);
+
+
 // -------------------------------- STATIC LAYOUT ---------------------------------------
-// Block below depends on the user pre-defined node object.
+// Block below depends on the user pre-defined node object, also view object's functions.
 const main = document.querySelector(node.main.tag)
     , header = view.addOneNode(main, node.header.tag, node.header.className)
         , title = view.addOneNode(header, node.title.tag, node.title.className, node.title.id, node.title.prefix, node.title.text)
@@ -335,3 +355,7 @@ const main = document.querySelector(node.main.tag)
     , listContainer = view.addOneNode(main, node.list.container.tag, node.list.container.className, node.list.container.id, node.list.container.prefix)
         , subListContainerA = view.addOneNode(listContainer, node.list.subcontainerA.tag, node.list.subcontainerA.className, node.list.subcontainerA.id, node.list.subcontainerA.prefix)
         , subListContainerB = view.addOneNode(listContainer, node.list.subcontainerB.tag, node.list.subcontainerB.className, node.list.subcontainerB.id, node.list.subcontainerB.prefix)
+
+
+// ----------------------------------- TRIGGER -----------------------------------------
+controller.init();
