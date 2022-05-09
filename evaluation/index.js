@@ -65,18 +65,26 @@ const node = {
     },
 
     list: {
-        containerA: {
+        container: {
             tag: "section",
             className: "container__list",
             prefix: "list",
+            id: "container",
+            text: undefined
+        },
+
+        containerA: {
+            tag: "section",
+            className: "container__sublist",
+            prefix: "sublist",
             id: "containerA",
             text: undefined
         },
 
         containerB: {
             tag: "section",
-            className: "container__list",
-            prefix: "list",
+            className: "container__sublist",
+            prefix: "sublist",
             id: "containerB",
             text: undefined
         },
@@ -146,8 +154,8 @@ const url = "http://localhost:3000";
 const path = "todos";
 
 
-// ------------------------------------- view ------------------------------------
-// view is a variable to contain all the functions returned from calling an IIFE anonymous "Class"
+// ------------------------------------- VIEW ------------------------------------
+// view: variable to store functions returned from calling an IIFE anonymous "Class"
 const view = ((node) => {
 
     // function to add a single DOM node and attach it to the parent (if defined)
@@ -217,5 +225,62 @@ const view = ((node) => {
     }
     return {addOneNode, addTodoNodes, addDoneNodes, render};
 
-
 })(node)
+
+// ------------------------------------- API ---------------------------------------
+// api: variable to store functioons returned from calling an anonymous IIFE "Class"
+const api = (() => {
+
+    const getAll = async (url, path) => {
+        const result = await fetch(`${url}/${path}`)
+        .then((response) => response.json())
+        return result;
+    };
+
+    const addOne = async (newDocument) => {
+        const result = await fetch(`${url}/${path}`, {
+            method: 'POST',
+            body: JSON.stringify(newDocument),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then((response) => response.json());
+        return result; // is the new doc being added
+    };
+
+    const editOne = async (id, obj) => {
+        const result = await fetch(`${url}/${path}/${id}`, {
+            method: 'PATCH',
+            body: JSON.stringify(obj),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then((response) => response.json());
+        return result;
+    };
+
+    const deleteOne = async (id) => {
+        const result = await fetch(`${url}/${path}/${id}`, {
+            method: 'DELETE',
+        })
+        console.log(result.status)
+        return result;
+    };
+
+    return {
+        getAll,
+        addOne,
+        editOne,
+        deleteOne
+    }
+})();
+
+// Static Lay-out
+const main = document.querySelector(node.main.tag)
+    , header = view.addOneNode(main, node.header.tag, node.header.className)
+        , title = view.addOneNode(header, node.title.tag, node.title.className, node.title.id, node.title.prefix, node.title.text)
+        , inputContainer = view.addOneNode(header, node.input.container.tag, node.input.container.className, node.input.container.id, node.input.container.prefix)
+            , inputField = view.addOneNode(inputContainer, node.input.field.tag, node.input.field.className, node.input.field.id, node.input.field.prefix).placeholder = node.input.field.placeholder
+            , addButton = view.addOneNode(inputContainer, node.input.buttonAdd.tag, node.input.buttonAdd.className, node.input.buttonAdd.id, node.input.buttonAdd.prefix, node.input.buttonAdd.text)
+    // this listSection must exist and hooked to main so that callback can grab it and add event listener
+    , listContainer = view.addOneNode(main, node.list.container.tag, node.list.container.className, node.list.container.id, node.list.container.prefix);
