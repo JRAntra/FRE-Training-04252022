@@ -45,5 +45,22 @@ const View = (node) => {
             counter--;
         });
         return parentNode;
+    };
+
+    // function to render all the list nodes after chaining them
+    const render = (containerNode, listNode) => {
+        if (!listNode || !containerNode) return;
+        const field = node.input.field;
+        // reset input valut to "" if there's any existing content
+        document.getElementById(`${field.prefix}${node.idConcater}${field.id}`).value = "";
+
+        const id = listNode.id;
+        // reset display by removing all list nodes in the container node (with the same id) from client
+        if (document.getElementById(id)) document.getElementById(id).remove();
+        // append the new listNode
+        containerNode.appendChild(listNode);
+        return containerNode;
     }
+
+    return {addOneNode, addMoreNodes, render};
 }
