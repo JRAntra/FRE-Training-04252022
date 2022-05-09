@@ -1,69 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="index.css">
-    <script src="index.js"></script>
-</head>
-<body>
-
-  <section class="form-container">
-    <form class="form-signup">
-      <h1 class="header">Sign Up</h1>
-      <div class="form-row">
-        <div class="form-item">
-          <input type="text" class="fname" placeholder="First Name">
-        </div>
-        <div class="form-item">
-          <input type="text" class="lname" placeholder="Last Name">
-        </div>
-      </div>
-      <div class="form-row">
-
-      <div class="form-item">
-        <input type="text" class="mnumber" placeholder="Mobile No.">
-      </div>
-      </div>
-      <div class="form-row">
-
-      <div class="form-item">
-        <input type="email" class="email" placeholder="Email Address">
-      </div>
-      </div>
-      <div class="form-row">
-
-      <div class="form-item">
-        <input type="password" class="password" placeholder="Password">
-      </div>
-      <div class="form-item">
-        <input type="password" class="confpwd" placeholder="Confirm Password">
-      </div>
-      </div>
-      <div class="form-row">
-        <div class="agree-wrap">
-          <div class="agree-checkbox">
-            <input type="checkbox" id="agree">
-            <label for="agree">I Agree</label>
-          </div>
-       <div class="terms">
-           By Clicking <span class="regi">Register</span>, you agree to the <a href="#">
-           Terms and Conditions</a> set out by this site,including our Cookie Use.
-          </div>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-item">
-          <input type="submit" class="primary" value="Register">
-        </div>
-        <div class="form-item">
-          <input type="submit" class="sucess" value="Sign In">
-        </div>
-      </div>
-    </form>
-  </section>
-
-</body>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+  </head>
+  <body>
+    <div class="header">
+      <h2 style="margin: 5px">Task Evaluation..</h2>
+      <input type="text" id="myInput" placeholder="Tasks..." />
+      <span onclick="addTask()" class="addBtn">submit</span>
+    </div>
+    <div>
+      <h3>Pending tasks..</h3>
+    </div>
+    <ul id="myTsk">
+      <li class="checked">Eat lunch</li>
+      <li>functional first style scecond</li>
+      <li>what more than the original to do list</li>
+      <li>apply some styles you may like</li>
+      <li>give some thought to the data structure</li>
+      <li>there should be totally 5 http request</li>
+      <li>Comprehend interview questions</li>
+    </ul>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
 </html>
