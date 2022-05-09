@@ -198,7 +198,6 @@ const view = ((node) => {
         if (!dataList.length || !Array.isArray(dataList)) return;
 
         dataList.forEach((item) => {
-            console.log(item)
             const listNode = addOneNode(undefined, childTag, childClass, item.id, childIDPrefix);
             // add todo button to childNode
             addOneNode(listNode, node.list.item.buttonTodo.tag, node.list.item.buttonTodo.className, item.id, node.list.item.buttonTodo.prefix, node.list.item.buttonTodo.text);
@@ -295,7 +294,7 @@ const model = ((view, api, node) => {
         #list = [];
 
         get list() {
-            console.log(this.#list)
+            console.log("list", this.#list)
             return this.#list;
         }
 
@@ -305,16 +304,16 @@ const model = ((view, api, node) => {
             // create a parent node to stick all the child nodes in sublist todo
             const listNodeA = view.addOneNode(undefined, node.list.subcontainerA.tag, node.list.subcontainerA.className, node.list.subcontainerA.id, node.list.subcontainerA.prefix);
             const listA = this.#list.filter((item) => item.isCompleted === false);
-            console.log(listA)
+            console.log("todo", listA)
             // adding child nodes to listNode
             view.addTodoNodes(listNodeA, node.list.item.container.tag, node.list.item.container.className, node.list.item.container.prefix, listA);
-            console.log(310)
+
             // create a parent node to stick all the child nodes in sublist done
             const listNodeB = view.addOneNode(undefined, node.list.subcontainerB.tag, node.list.subcontainerB.className, node.list.subcontainerB.id, node.list.subcontainerB.prefix);
             const listB = this.#list.filter((item) => item.isCompleted === true);
             // adding child nodes to listNode
             view.addDoneNodes(listNodeB, node.list.item.container.tag, node.list.item.container.className, node.list.item.container.prefix, listB);
-            console.log(listB)
+            console.log("done", listB)
             // grab container element to hook
             const listContainer = document.getElementById(`${node.list.container.prefix}${node.idConcater}${node.list.container.id}`);
             // render on client by sticking the listNode -parentNode- to mainNode
@@ -334,6 +333,16 @@ const controller = ((model, view, node, endPoint) => {
     const {Item, State} = model;
     const state = new State();
 
+    const addItem = (e) => {
+        console.log(event)
+    }
+
+    const addItemListener = () => {
+        const btn = document.getElementById(`${node.input.buttonAdd.prefix}${node.idConcater}${node.input.buttonAdd.id}`);
+        btn.addEventListener("click", addItem);
+        return btn;
+    }
+
     const init = async () => {
         const {url, path} = endPoint;
         const list = await model.getAll(url, path);
@@ -341,7 +350,12 @@ const controller = ((model, view, node, endPoint) => {
         return state.list;
     }
 
-    return {init}
+    const exec = async () => {
+        await init();
+        addItemListener();
+    }
+
+    return {exec}
 })(model, view, node, endPoint);
 
 
@@ -359,4 +373,4 @@ const main = document.querySelector(node.main.tag)
 
 
 // ----------------------------------- TRIGGER -----------------------------------------
-controller.init();
+controller.exec();
