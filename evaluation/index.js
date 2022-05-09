@@ -331,6 +331,7 @@ const model = ((view, api, node) => {
 // ------------------------------------- CONTROLLER ------------------------------------------
 const controller = ((model, view, node, endPoint) => {
 
+    const {url, path} = endPoint;
     const {Item, State} = model;
     const state = new State();
 
@@ -338,12 +339,18 @@ const controller = ((model, view, node, endPoint) => {
         console.log("edit", id)
     }
 
-    const done = (id, x) => {
-        console.log("done", id)
+    const done = async (id) => {
+        const result = await model.editOne(id, {isCompleted: true});
+        if (result) state.list = await model.getAll(url, path);
+        else state.list = [...state.list];
+        return result;
     }
 
-    const undone = (id, x) => {
-        console.log("undo", id)
+    const undone = async (id) => {
+        const result = await model.editOne(id, {isCompleted: false});
+        if (result) state.list = await model.getAll(url, path);
+        else state.list = [...state.list];
+        return result;
     }
 
     const deleteItem = async (id) => {
@@ -351,7 +358,6 @@ const controller = ((model, view, node, endPoint) => {
         if (result) state.list = state.list.filter((doc) => doc.id !== id);
         // after deleting, refresh listener to the list container
         else state.list = [...state.list];
-        console.log("DELETED", result, id)
         return result;
     }
 
@@ -361,8 +367,8 @@ const controller = ((model, view, node, endPoint) => {
             console.log(310, event.target.id)
             const [prefix, id] = event.target.id.split(node.idConcater);
             if (prefix === node.list.item.buttonDelete.prefix) deleteItem(+id);
-            else if (prefix === node.list.item.buttonDone.prefix) done(+id, event.target.checked);
-            else if (prefix === node.list.item.buttonTodo.prefix) undone(+id, event.target.checked);
+            else if (prefix === node.list.item.buttonDone.prefix) done(+id);
+            else if (prefix === node.list.item.buttonTodo.prefix) undone(+id);
             else if (prefix === node.list.item.buttonEdit.prefix) editItemText(prefix, +id, event);
         });
         return listNode;
@@ -399,7 +405,7 @@ const controller = ((model, view, node, endPoint) => {
     }
 
     // function to fire up the initialization for grabbing data and DOM rendering, also applying event listeners
-    const exec = async () => {
+    async function exec() {
         await init();
         addItemListener();
         listUpdateListener();
