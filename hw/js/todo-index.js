@@ -179,35 +179,40 @@ const view = ((node) => {
 // API
 const api = (() => {
 
-    const getAll = (url, path) => {
-        return fetch(`${url}/${path}`)
+    const getAll = async (url, path) => {
+        const result = await fetch(`${url}/${path}`)
         .then((response) => response.json())
+        return result;
     };
 
-    const addOne = (newDocument) => {
-        return fetch(`${url}/${path}`, {
+    const addOne = async (newDocument) => {
+        const result = await fetch(`${url}/${path}`, {
             method: 'POST',
             body: JSON.stringify(newDocument),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
             }
         }).then((response) => response.json());
+        return result; // is the new doc being added
     };
 
-    const editOne = (id, obj) => {
-        return fetch(`${url}/${path}/${id}`, {
+    const editOne = async (id, obj) => {
+        const result = await fetch(`${url}/${path}/${id}`, {
             method: 'PATCH',
             body: JSON.stringify(obj),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
             }
         }).then((response) => response.json());
+        return result;
     };
 
-    const deleteOne = (id) => {
-        return fetch(`${url}/${path}/${id}`, {
+    const deleteOne = async (id) => {
+        const result = await fetch(`${url}/${path}/${id}`, {
             method: 'DELETE',
         })
+        console.log(result.status)
+        return result;
     };
 
     return {
@@ -283,46 +288,59 @@ const controller = ((model, view, node) => {
         })
     }
 
-    const toggleItem = (id, newCheckBoxValue) => {
+    const toggleItem = async (id, newCheckBoxValue) => {
         const update = {completed: newCheckBoxValue};
-        model.editOne(id, update)
-        .then((res) => {
-            state.list = state.list.map((doc) => {
-                if (doc.id === id) {
-                    doc.completed = newCheckBoxValue;
-                }
-            })
-        })
+        const updatedItem = await model.editOne(id, update);
+        state.list = state.list.map((doc) => {
+            if (doc.id === id) {
+                doc.completed = newCheckBoxValue;
+            }
+        });
+        console.log(state.list)
+        // after updating, refresh listener to the list container
+        listUpdateListener();
+        return state.list;
     }
 
-    const deleteItem = (id) => {
-        state.list = state.list.filter((doc) => doc.id !== id);
-        model.deleteOne(id);
+    const deleteItem = async (id) => {
+        const status = await model.deleteOne(id);
+        if (status) state.list = state.list.filter((doc) => doc.id !== id);
+        // after deleting, refresh listener to the list container
+        else state.list = [...state.list];
+        listUpdateListener();
+        return status;
     }
 
     const listUpdateListener = () => {
+        console.log(304)
         const listNode = document.getElementById(`${node.list.container.prefix}${node.idConcater}${node.list.container.id}`);
         listNode.addEventListener("click", (event) => {
+            console.log(310, event.target)
             const [prefix, id] = event.target.id.split(node.idConcater);
             if (prefix === node.list.item.buttonDelete.prefix) deleteItem(+id);
             else if (prefix === node.list.item.completed.prefix) toggleItem(+id, event.target.checked);
             else if (prefix === node.list.item.text.prefix) setEditable(prefix, +id, event);
         });
+        console.log(312, listNode)
         return listNode;
     }
 
-    const addItem = (event) => {
-        const inputText = document.getElementById(`${node.input.field.prefix}${node.idConcater}${node.input.field.id}`).value
-            , docID = state.list.length ? state.list[state.list.length - 1].id + 1 : 1;
+    const addItem = async (event) => {
+        const inputField = document.getElementById(`${node.input.field.prefix}${node.idConcater}${node.input.field.id}`)
+            , docID = state.list.length ? state.list[state.list.length - 1].id + 1 : 1
+            , inputText = inputField.value;
         if (!inputText.trim().length) return;
         // create new instance of item
-        const item = new Item(inputText, docID);
+        const newItem = new Item(inputText, docID);
+        inputField.value = "";
         // persist the addition to backend, then update the state.list for a re-render
-        model.addOne(item).then((item) => {
-            state.list = [...state.list, item]
-        });
-        inputText.target.value = "";
-    }
+        const addedItem = await model.addOne(newItem);
+        state.list = [...state.list, addedItem];
+
+        // after adding an item, refresh listener to the list container
+        listUpdateListener();
+        return addedItem;
+    };
 
     const addItemListener = () => {
         const btn = document.getElementById(`${node.input.buttonAdd.prefix}${node.idConcater}${node.input.buttonAdd.id}`);
@@ -331,11 +349,15 @@ const controller = ((model, view, node) => {
     }
 
     // grab data from backend and assign to state, embed event listeners
-    const init = async (url, path, id) => state.list = await model.getAll(url, path, id);
+    const init = async (url, path, id) => {
+        const list = await model.getAll(url, path, id)
+        state.list = [...list];
+        return state.list;
+    }
 
     const exec = async (url, path, id) => {
         await init(url, path, id);
-        addItemListener();
+        addItemListener()
         // without async await, the chain of items not formed yet for listeners to work properly
         listUpdateListener();
     }
