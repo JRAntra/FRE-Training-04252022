@@ -334,6 +334,35 @@ const controller = ((model, view, node, endPoint) => {
     const {Item, State} = model;
     const state = new State();
 
+    const editItemText = (prefix, id, event) => {
+        console.log("edit", id)
+    }
+
+    const done = (id, x) => {
+        console.log("done", id)
+    }
+
+    const undone = (id, x) => {
+        console.log("undo", id)
+    }
+
+    const deleteItem = (id) => {
+        console.log("delete", id)
+    }
+
+    const listUpdateListener = () => {
+        const listNode = document.getElementById(`${node.list.container.prefix}${node.idConcater}${node.list.container.id}`);
+        listNode.addEventListener("click", (event) => {
+            console.log(310, event.target.id)
+            const [prefix, id] = event.target.id.split(node.idConcater);
+            if (prefix === node.list.item.buttonDelete.prefix) deleteItem(+id);
+            else if (prefix === node.list.item.buttonDone.prefix) done(+id, event.target.checked);
+            else if (prefix === node.list.item.buttonTodo.prefix) undone(+id, event.target.checked);
+            else if (prefix === node.list.item.buttonEdit.prefix) editItemText(prefix, +id, event);
+        });
+        return listNode;
+    }
+
     const addItem = async (event) => {
         const inputField = document.getElementById(`${node.input.field.prefix}${node.idConcater}${node.input.field.id}`);
         // create id for the new item/document by checking the id from doc at tail of the list, if list empty start with 1
@@ -364,9 +393,11 @@ const controller = ((model, view, node, endPoint) => {
         return state.list;
     }
 
+    // function to fire up the initialization for grabbing data and DOM rendering, also applying event listeners
     const exec = async () => {
         await init();
         addItemListener();
+        listUpdateListener();
     }
 
     return {exec}
