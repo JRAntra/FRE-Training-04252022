@@ -1,4 +1,4 @@
-// 除了图标基本都实现了，但是我的策略很失误，我一次性加载所有JSON file到本地后，每修改一些内容都做成1个JSON file再上传，但是没有覆盖掉原来的JSON
+// 除了图标基本都实现了，但是我的策略很失误，我一次性加载所有JSON file到本地后，每修改一些内容都做成1个JSON file再上传，但是没有覆盖掉原来的JSON,应该需要删除什么就用DELETE,需要加一个ITEM 就用Post
 
 var copyPaste = "";
 var loaded = 0;
