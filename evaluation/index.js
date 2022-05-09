@@ -111,7 +111,7 @@ const node = {
                 className: "btn-edit",
                 prefix: "item_edit",
                 id: undefined,
-                text: "Edit"
+                text: "🖍"
             },
 
             buttonDelete: {
@@ -127,7 +127,7 @@ const node = {
                 className: "btn-done",
                 prefix: "item_done",
                 id: undefined,
-                text: "Done"
+                text: "✅"
             },
 
             buttonTodo: {
@@ -135,7 +135,7 @@ const node = {
                 className: "btn-todo",
                 prefix: "item_todo",
                 id: undefined,
-                text: "Todo"
+                text: "🔙"
             },
 
             text: {

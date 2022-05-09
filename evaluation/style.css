@@ -1,0 +1,123 @@
+:root {
+    --width-list-container: 80%;
+    --height-list-container: 90%;
+
+    --color-white: white;
+    --color-pink: pink;
+    --color-red-btn: red;
+    --color-hover: yellow;
+    --color-gray: gray;
+    --color-green: lightgreen;
+    --color-dark-green: darkgreen;
+    --color-almond: blanchedalmond;
+
+}
+
+/* reset browser css setting */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    user-select: none;
+    font-size: min(4rem, max(.875rem, 2vw))
+}
+
+html,
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+h1 {
+    margin: 1rem;
+    font-size: 1.5rem;
+}
+
+body {
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center
+}
+
+main {
+    height: 90%;
+    width: 80%;
+    background-color: var(--color-almond);
+    border-radius: var(--border-radius);
+    margin-top: .5rem;
+}
+
+.container__input {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem;
+    gap: .5rem;
+}
+
+.input__addItem {
+    width: 100%;
+    padding-left: .5rem;
+    border: none;
+    border-radius: .3rem;
+}
+
+input[type=checkbox] {
+    transform: scale(2)
+}
+
+#list-container {
+    display: flex;
+    align-items: center;
+    height: 80%;
+    overflow-y: scroll;
+    background-color: var(--color-almond);
+    padding: 1rem;
+}
+
+section.container__item {
+    display: flex;
+    gap: .6rem;
+    padding: .3rem;
+    align-items: center;
+    width: 80%;
+    border-bottom: 1px solid gray;
+}
+
+span.seq-no {
+    width: 1.5rem
+}
+
+button.btn-delete {
+    background-color: red;
+    color: white;
+    font-weight: bolder;
+    padding-left: .3rem;
+    padding-right: .3rem;
+    border: none
+}
+
+.item_text {
+    border: none;
+    background-color: transparent;
+    text-align: left;
+    width: 100%;
+}
+
+.btn__addItem,
+button.btn-edit,
+button.btn-todo,
+button.btn-done {
+    background-color: lightgray;
+    color: black;
+    padding: .3rem;
+    border: none;
+    border-radius: .3rem;
+}
+
+.container__item:hover,
+.btn__addItem:hover {
+    background-color: var(--color-green);
+    color: black;
+    font-weight: bold;
+}
