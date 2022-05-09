@@ -335,8 +335,14 @@ const controller = ((model, view, node, endPoint) => {
     const {Item, State} = model;
     const state = new State();
 
-    const editItemText = (prefix, id, event) => {
-        console.log("edit", id)
+    const editItemText = async (prefix, id, event) => {
+        const editBtn = document.getElementById(event.target.id);
+        const inputField = document.getElementById(`${node.list.item.text.prefix}${node.idConcater}${id}`);
+        const newText = inputField.value;
+        const result = await model.editOne(id, {content: newText});
+        if (result) state.list = await model.getAll(url, path);
+        else state.list = [...state.list];
+        return result;
     }
 
     const done = async (id) => {
@@ -364,6 +370,7 @@ const controller = ((model, view, node, endPoint) => {
     const listUpdateListener = () => {
         const listNode = document.getElementById(`${node.list.container.prefix}${node.idConcater}${node.list.container.id}`);
         listNode.addEventListener("click", (event) => {
+            console.log(event.target.id)
             const [prefix, id] = event.target.id.split(node.idConcater);
             if (prefix === node.list.item.buttonDelete.prefix) deleteItem(+id);
             else if (prefix === node.list.item.buttonDone.prefix) done(+id);
