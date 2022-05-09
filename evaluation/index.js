@@ -266,7 +266,6 @@ const api = ((endPoint) => {
         const result = await fetch(`${url}/${path}/${id}`, {
             method: 'DELETE',
         })
-        console.log(result.status)
         return result;
     };
 
@@ -295,7 +294,6 @@ const model = ((view, api, node) => {
         #list = [];
 
         get list() {
-            console.log("list", this.#list)
             return this.#list;
         }
 
@@ -305,7 +303,6 @@ const model = ((view, api, node) => {
             // create a parent node to stick all the child nodes in sublist todo
             const listNodeA = view.addOneNode(undefined, node.list.subcontainerA.tag, node.list.subcontainerA.className, node.list.subcontainerA.id, node.list.subcontainerA.prefix);
             const listA = this.#list.filter((item) => item.isCompleted === false);
-            console.log("todo", listA)
             // adding child nodes to listNode
             view.addTodoNodes(listNodeA, node.list.item.container.tag, node.list.item.container.className, node.list.item.container.prefix, listA);
 
@@ -314,7 +311,7 @@ const model = ((view, api, node) => {
             const listB = this.#list.filter((item) => item.isCompleted === true);
             // adding child nodes to listNode
             view.addDoneNodes(listNodeB, node.list.item.container.tag, node.list.item.container.className, node.list.item.container.prefix, listB);
-            console.log("done", listB)
+
             // grab container element to hook
             const listContainer = document.getElementById(`${node.list.container.prefix}${node.idConcater}${node.list.container.id}`);
             // render on client by sticking the listNode -parentNode- to mainNode
@@ -370,7 +367,6 @@ const controller = ((model, view, node, endPoint) => {
     const listUpdateListener = () => {
         const listNode = document.getElementById(`${node.list.container.prefix}${node.idConcater}${node.list.container.id}`);
         listNode.addEventListener("click", (event) => {
-            console.log(event.target.id)
             const [prefix, id] = event.target.id.split(node.idConcater);
             if (prefix === node.list.item.buttonDelete.prefix) deleteItem(+id);
             else if (prefix === node.list.item.buttonDone.prefix) done(+id);
