@@ -59,25 +59,32 @@
         main.appendChild(listField);
 
         function addElement(parentNode, childTag, text) {
-            if (!text.length) return;
-            const childNode = document.createElement(childTag);
+            if ((childTag === "input" || childTag === "textarea") && !text.length) return;
 
-            if (childTag === "input") childNode.value = text;
-            else childNode.innerText = text;
+            const childNode = document.createElement(childTag);
             parentNode.appendChild(childNode);
+
+            if (childTag === "input" || childTag === "textarea") return childNode.value = text;
+
+            if (text) {
+                childNode.innerText = text;
+                return;
+            }
             return childNode;
         }
 
         function addItem(e) {
             const timeStamp = Date.now();
 
-            const item = addElement(listField, "input", itemInput.value);
+            const itemDiv = addElement(listField, "div");
+
+            const item = addElement(itemDiv, "input", itemInput.value);
             item.className =  "list-item";
             item.id = `item-${timeStamp}`;
 
             todoList[item.id] = itemInput.value;
 
-            const x = addElement(item, "button", "X");
+            const x = addElement(itemDiv, "button", "X");
             x.className = "delete-btn";
             x.id = `delete-${timeStamp}`;
 
