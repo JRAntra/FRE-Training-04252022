@@ -22,7 +22,7 @@ function getToDos() {
     });
 }
 
-getToDos();
+// getToDos();
 
 // For Pending Tasks Div
 addevent.addEventListener('click', function () {
@@ -36,7 +36,12 @@ function addWaititem(content) {
   // Add ToDos
   var waitItem = document.createElement('div');
   waitItem.className = 'wait__item';
-  waitItem.innerHTML = `<div class="wait__item__text">${content}</div><div class="wait__item__icons"><div class="wait__item__icons__trash"><i class="fas fa-trash-alt"></i></div><div class="wait__item__icons__done"><i class="far fa-check-circle"></i></div></div>`;
+  waitItem.innerHTML = `
+  <div class="wait__item__text">${content}</div>
+  <div class="wait__item__icons">
+    <div class="wait__item__icons__trash"><i class="fas fa-trash-alt"></i></div>
+    <div class="wait__item__icons__done"><i class="far fa-check-circle"></i></div>
+  </div>`;
   wait.appendChild(waitItem);
 
   // Delete and Check ToDos
@@ -48,9 +53,7 @@ function addWaititem(content) {
     }
     // Check ToDos
     if (event.target.className === 'far fa-check-circle') {
-      addDoneItem(
-        event.target.parentNode.parentNode.parentNode.firstChild.innerHTML
-      );
+      addDoneItem(event.target.parentNode.parentNode.parentNode.innerText);
       event.target.parentNode.parentNode.parentNode.remove();
     }
   };
@@ -61,7 +64,14 @@ function addDoneItem(doneContent) {
   // Add ToDos
   var doneItem = document.createElement('div');
   doneItem.className = 'done__item';
-  doneItem.innerHTML = `<div class="done__item__text">${doneContent}</div><div class="done__item__icons"><div class="done__item__icons__trash"><i class="fas fa-trash-alt"></i></div><div class="done__item__icons__done"><i class="fas fa-check-circle"></i></div></div></div>`;
+  doneItem.innerHTML = `
+  <div class="done__item__icons">
+    <div class="done__item__icons__done"><i class="fas fa-check-circle"></i></div></div>
+  </div>
+  <div class="done__item__text">${doneContent}</div>
+  <div class="done__item__icons">
+    <div class="done__item__icons__trash"><i class="fas fa-trash-alt"></i></div>
+  </div>`;
   done.appendChild(doneItem);
 
   // Delete and Uncheck ToDos
@@ -73,10 +83,10 @@ function addDoneItem(doneContent) {
     }
     // Uncheck ToDos
     if (event.target.className === 'fas fa-check-circle') {
-      addWaititem(
-        event.target.parentNode.parentNode.parentNode.firstChild.innerHTML
-      );
+      addWaititem(event.target.parentNode.parentNode.parentNode.innerText);
       event.target.parentNode.parentNode.parentNode.remove();
     }
   };
 }
+
+// Still need to work on update the localStorage using JSON.stringify
