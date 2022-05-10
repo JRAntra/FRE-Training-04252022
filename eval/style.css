@@ -56,8 +56,10 @@ li {
     width: 25px;
     height: 20px;
     border: none;
+    text-align: center;
     border-color: #c94c4c;
     margin: 7px 3px;
+    color: white;
 }
 
 .green {
@@ -65,8 +67,29 @@ li {
     width: 25px;
     height: 20px;
     border: none;
+    text-align: center;
     border-color: #4caf50;
     margin: 7px 3px;
+    color: white;
+}
+
+.yellow {
+    background-color: darkorange;
+    width: 25px;
+    height: 20px;
+    border: none;
+    text-align: center;
+    border-color: darkorange;
+    margin: 7px 3px;
+    color: white;
+}
+
+.checked {
+    text-decoration: line-through;
+}
+
+.idHide {
+    display: none;
 }
 
 
