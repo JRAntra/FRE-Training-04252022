@@ -115,25 +115,34 @@ h2 {
 }
 
 .wait__item__icons__trash,
+.done__item__icons__trash {
+  margin: 2px 5px;
+  padding: 1px;
+  background-color: rgb(187, 83, 78);
+}
+
 .wait__item__icons__done,
-.done__item__icons__trash,
 .done__item__icons__done {
   margin: 2px 5px;
   padding: 1px;
+  background-color: rgb(142, 172, 86);
+  /* width: 2rem;
+  height: 2rem; */
 }
 
-.fa-trash-alt {
-  display: block;
-  font-size: 23px;
-  color: rgb(187, 83, 78);
-}
-
+.fa-trash-alt,
 .fa-check-circle {
   display: block;
-  font-size: 23px;
-  color: rgb(142, 172, 86);
+  /* font-size: 23px; */
+  color: white;
+  /* width: 1rem;
+  height: 1rem; */
 }
 
 i:hover {
-  opacity: 0.7;
+  opacity: 0.8;
+}
+
+i {
+  padding: 3px;
 }

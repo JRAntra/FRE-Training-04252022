@@ -22,7 +22,7 @@ function getToDos() {
     });
 }
 
-// getToDos();
+getToDos();
 
 // For Pending Tasks Div
 addevent.addEventListener('click', function () {
@@ -89,4 +89,4 @@ function addDoneItem(doneContent) {
   };
 }
 
-// Still need to work on update the localStorage using JSON.stringify
+// Still need to work on update the back-end storing to-do data using JSON.stringify
