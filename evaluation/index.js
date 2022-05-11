@@ -302,7 +302,10 @@ const model = ((view, api, node) => {
 
             // create a parent node to stick all the child nodes in sublist todo
             const listNodeA = view.addOneNode(undefined, node.list.subcontainerA.tag, node.list.subcontainerA.className, node.list.subcontainerA.id, node.list.subcontainerA.prefix);
-            const listA = this.#list.filter((item) => item.isCompleted === false);
+            let listA = this.#list.filter((item) => item.isCompleted === false)
+
+            listA = listA.sort((a, b) => a.content.localeCompare(b.content)).slice(0, 5);
+
             // adding child nodes to listNode
             view.addTodoNodes(listNodeA, node.list.item.container.tag, node.list.item.container.className, node.list.item.container.prefix, listA);
 

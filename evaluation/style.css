@@ -68,11 +68,18 @@ input[type=checkbox] {
 
 #list-container {
     display: flex;
+    justify-content: space-evently;
     align-items: center;
     height: 80%;
     overflow-y: scroll;
     background-color: var(--color-almond);
-    padding: 1rem;
+    padding: .3rem;
+}
+
+.container__sublist {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
 }
 
 section.container__item {
