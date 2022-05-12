@@ -1,0 +1,148 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  width: 700px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  color: #1f6866;
+  font-family: 'Courier Prime', monospace;
+  font-size: 40px;
+  text-align: center;
+  padding: 5px;
+}
+
+h2 {
+  padding: 5px;
+  font-size: 18px;
+  font-family: 'Courier Prime', monospace;
+  letter-spacing: 0em;
+}
+
+.pending__item__text,
+.compeleted__item__text {
+  font-family: 'Courier Prime', monospace;
+  font-size: 15px;
+  font-family: 'Courier Prime', monospace;
+  font-weight: 400;
+}
+
+.add {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  margin: 16px;
+  max-width: 20rem;
+}
+
+.add__input {
+  width: 640px;
+  border: 1px solid rgb(218, 218, 218);
+  padding: 5px 10px;
+  font-size: 18px;
+  border-radius: 3px;
+}
+
+.add__icon {
+  background-color: rgb(59, 140, 183);
+  color: white;
+  margin-left: 1rem;
+  width: 10rem;
+  height: 2rem;
+  border-style: none;
+  border-color: rgb(59, 140, 183);
+  border-radius: 3px;
+}
+
+.all_tasks {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.pending,
+.compeleted {
+  border: 2px solid rgb(233, 230, 219);
+  background-color: rgb(240, 240, 240);
+  border-radius: 10px;
+  padding: 5px;
+  margin: 20px;
+}
+
+.add__item,
+.pending__item,
+.compeleted__item {
+  padding: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(230, 226, 212);
+  border-radius: 5px;
+}
+
+.pending__item__text,
+.compeleted__item__text {
+  width: 80%;
+  padding-left: 10px;
+  font-size: 18px;
+}
+
+.pending__item__text__input {
+  width: 100%;
+  border: none;
+  background-color: inherit;
+  font-size: 18px;
+  border: 2px solid #edd29f;
+  padding: 2px;
+  margin-right: 3rem;
+}
+
+.pending__item__icons,
+.compeleted__item__icons {
+  display: flex;
+}
+
+.pending__item__icons__trash,
+.compeleted__item__icons__trash {
+  margin: 2px 5px;
+  padding: 1px;
+  background-color: rgb(187, 83, 78);
+}
+
+.pending__item__icons__compeleted,
+.compeleted__item__icons__compeleted {
+  margin: 2px 5px;
+  padding: 1px;
+  background-color: rgb(142, 172, 86);
+  /* width: 2rem;
+    height: 2rem; */
+}
+
+.fa-trash-alt,
+.fa-check-circle {
+  display: block;
+  /* font-size: 23px; */
+  color: white;
+  /* width: 1rem;
+    height: 1rem; */
+}
+
+i:hover {
+  opacity: 0.8;
+}
+
+i {
+  padding: 3px;
+}
