@@ -30,8 +30,8 @@ h2 {
   letter-spacing: 0em;
 }
 
-.wait__item__text,
-.done__item__text {
+.pending__item__text,
+.compeleted__item__text {
   font-family: 'Courier Prime', monospace;
   font-size: 15px;
   font-family: 'Courier Prime', monospace;
@@ -71,8 +71,8 @@ h2 {
   justify-content: space-evenly;
 }
 
-.wait,
-.done {
+.pending,
+.compeleted {
   border: 2px solid rgb(233, 230, 219);
   background-color: rgb(240, 240, 240);
   border-radius: 10px;
@@ -81,8 +81,8 @@ h2 {
 }
 
 .add__item,
-.wait__item,
-.done__item {
+.pending__item,
+.compeleted__item {
   padding: 5px;
   margin-bottom: 10px;
   display: flex;
@@ -92,14 +92,14 @@ h2 {
   border-radius: 5px;
 }
 
-.wait__item__text,
-.done__item__text {
+.pending__item__text,
+.compeleted__item__text {
   width: 80%;
   padding-left: 10px;
   font-size: 18px;
 }
 
-.wait__item__text__input {
+.pending__item__text__input {
   width: 100%;
   border: none;
   background-color: inherit;
@@ -109,25 +109,25 @@ h2 {
   margin-right: 3rem;
 }
 
-.wait__item__icons,
-.done__item__icons {
+.pending__item__icons,
+.compeleted__item__icons {
   display: flex;
 }
 
-.wait__item__icons__trash,
-.done__item__icons__trash {
+.pending__item__icons__trash,
+.compeleted__item__icons__trash {
   margin: 2px 5px;
   padding: 1px;
   background-color: rgb(187, 83, 78);
 }
 
-.wait__item__icons__done,
-.done__item__icons__done {
+.pending__item__icons__compeleted,
+.compeleted__item__icons__compeleted {
   margin: 2px 5px;
   padding: 1px;
   background-color: rgb(142, 172, 86);
   /* width: 2rem;
-  height: 2rem; */
+    height: 2rem; */
 }
 
 .fa-trash-alt,
@@ -136,7 +136,7 @@ h2 {
   /* font-size: 23px; */
   color: white;
   /* width: 1rem;
-  height: 1rem; */
+    height: 1rem; */
 }
 
 i:hover {
