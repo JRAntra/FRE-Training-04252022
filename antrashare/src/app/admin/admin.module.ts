@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminComponent } from './admin.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
-  declarations: [AdminComponent],
+  declarations: [
+    AdminComponent
+  ],
   imports: [CommonModule],
-  exports: [AdminComponent],
+  exports: [],
 })
 export class AdminModule {}
