@@ -3,10 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
-  declarations: [
-    RegisterComponent
-  ],
+  declarations: [RegisterComponent],
   imports: [CommonModule],
-  exports: [],
+  exports: [RegisterComponent],
 })
 export class RegisterModule {}

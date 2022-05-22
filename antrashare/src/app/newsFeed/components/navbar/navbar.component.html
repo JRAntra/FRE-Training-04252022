@@ -1,0 +1,19 @@
+<nav class="navbar">
+  <div class="dropdown">
+    <button class="dropbtn">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <div class="dropdown-content">
+      <a routerLink="/profile">My Profile</a>
+      <a routerLink="/newsfeed">News Feed</a>
+      <a routerLink="/setting">Settings</a>
+    </div>
+  </div>
+  <div>
+    <button class="likelist" (click)="triggerLikeList()">Like List</button>
+    <div *ngIf="showLikeList" class="likelist-content" style="right: 0">
+      <app-like-list></app-like-list>
+    </div>
+  </div>
+</nav>
