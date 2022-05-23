@@ -1,0 +1,63 @@
+$font-size: min(4rem, max(.875rem, 2vw))
+$font-stack: Helvetica, sans-serif
+$body-bg: lightgray
+$main-bg: white
+
+*,
+*::before,
+*::after
+    margin: 0
+    padding: 0
+    box-sizing: inherit
+
+body
+    font: $font-size $font-stack
+    background-color: $body-bg
+
+main
+    background-color: $main-bg
+    width: 60%
+    margin: auto
+    height: 70%
+
+nav
+    display: flex
+    justify-content: space-between
+
+button
+    width: 100%
+    margin: .5rem
+    padding: .3rem
+
+.div__main
+    background-color: $main-bg
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    align-items: center
+
+fieldset
+    display: flex
+    flex-direction: column
+    padding: 1rem
+    gap: 1rem
+    margin: 1rem
+    border: none
+
+.row
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    gap: 1rem
+
+
+.nav-top
+    background-color: lightskyblue
+    justify-content: end
+
+a
+    margin: .5rem
+
+#btn-logout
+    text-align: center
+    width: 80%

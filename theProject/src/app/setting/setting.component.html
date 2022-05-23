@@ -1,46 +1,24 @@
-<style>
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: inherit;
-    }
-    main {
-      width: 60%;
-      margin: auto;
-      height: 70%;
+<main>
+  <nav class="nav-top">
+    <a id="like-list">Like List</a>
+  </nav>
 
-    }
-    nav {
-      background-color: pink;
-    }
-    div {
-      background-color: lightgray;
-      display: flex;
-      justify-content: center;
-    }
-  </style>
+  <div class="div__main">
 
-  <main>
-      <nav>
-          <a>Like List</a>
-      </nav>
+    <fieldset>
+      Setting Panel
+    </fieldset>
 
-      <div>
-        Setting Panel
-      </div>
+    <button class="btn" id="btn-logout">
+      Logout
+    </button>
 
-      <div>
-        <button>
-          Logout button
-        </button>
-      </div>
+  </div>
 
-      <nav>
-        <button>My Profile</button>
-        <button>News Feed</button>
-        <button>Settings</button>
-      </nav>
+  <nav class="nav-bottom">
+    <button class="btn" id="btn-profile">My Profile</button>
+    <button class="btn" id="btn-feed">News Feed</button>
+    <button class="btn" id="btn-setting">Settings</button>
+  </nav>
 
-  </main>
+</main>
