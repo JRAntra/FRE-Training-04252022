@@ -1,73 +1,46 @@
-<style>
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: inherit;
-    }
-    main {
-      width: 60%;
-      margin: auto;
-      height: 70%;
-    }
-    nav {
-      background-color: pink;
-    }
-    div {
-      background-color: lightgray;
-      display: flex;
-      justify-content: center;
-    }
-    ul {
-      list-style: none;
-    }
+<main>
+  <nav class="nav justify-content-end nav-top">
+    <button class="btn" id="btn-admin">Admin</button>
+  </nav>
 
-  </style>
+  <div class="div__main">
 
-  <main>
-    <nav>
-      <button>Admin</button>
+    <nav class="nav-left">
+      <ul>
+        <li>
+          <p>User Tag 1</p>
+          <button class="btn btn-warning btn-delete">Delete</button>
+        </li>
+        <li>
+          User Tag 2
+          <button class="btn btn-warning btn-delete">Delete</button>
+        </li>
+        <li>
+          User Tag 3
+          <button class="btn btn-warning btn-delete">Delete</button>
+        </li>
+      </ul>
+
+      <button class="btn btn-success btn-addUser">Add User Button</button>
     </nav>
 
-    <div>
-
-      <nav>
-        <ul>
-          <li>
-            User Tag 1
-            <button>Delete</button>
-          </li>
-          <li>
-            User Tag 2
-            <button>Delete</button>
-          </li>
-          <li>
-            User Tag 3
-            <button>Delete</button>
-          </li>
+    <div class="detail">
+        <ul>User Detailed Info Panel
+          <li>UserName: Name</li>
+          <li>Password: password</li>
+          <li>UserEmail: Email</li>
+          <li>Gender: gender</li>
+          <li>Age: age</li>
         </ul>
-
-        <button>Add User Button</button>
-      </nav>
-
-      <div>
-          <ul>User Detailed Info Panel
-            <li>UserName: Name</li>
-            <li>Password: password</li>
-            <li>UserEmail: Email</li>
-            <li>Gender: gender</li>
-            <li>Age: age</li>
-          </ul>
-
-      </div>
 
     </div>
 
-    <nav>
-      <button>My Profile</button>
-      <button>News Feed</button>
-      <button>Settings</button>
-    </nav>
+  </div>
 
-  </main>
+  <nav class="nav justify-content-center nav-bottom">
+    <button class="btn" id="btn-profile">My Profile</button>
+    <button class="btn" id="btn-feed">News Feed</button>
+    <button class="btn" id="btn-setting">Settings</button>
+  </nav>
+
+</main>
