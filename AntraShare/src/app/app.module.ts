@@ -8,6 +8,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //Import UI Component libraries
 import {MatButtonModule} from '@angular/material/button';
+
+//Import all modules
+import { AdminModule } from './admin/admin.module';
+import { LoginModule } from './login/login.module';
+import { NewsFeedModule } from './news-feed/news-feed.module';
+import { ProfileModule } from './profile/profile.module';
+import { SettingModule } from './setting/setting.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -15,6 +22,11 @@ import {MatButtonModule} from '@angular/material/button';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AdminModule,
+    LoginModule,
+    NewsFeedModule,
+    ProfileModule,
+    SettingModule,
     BrowserAnimationsModule,
     MatButtonModule
   ],
