@@ -1,1 +1,63 @@
-<p>profile works!</p>
+<div class="profile-page">
+  <div class="header">
+    <h1>My Profile Page</h1>
+  </div>
+  <mat-card class="card-profile">
+    <mat-card-header>
+      <div mat-card-avatar class="header-image"></div>
+      <mat-card-title>Shiba Inu</mat-card-title>
+      <mat-card-subtitle>ShibaInu@gmail.com</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="form-profile">
+        <mat-form-field class="form-field-profile">
+          <input matInput placeholder="Username" disabled value="Shiba Inu" />
+        </mat-form-field>
+        <mat-form-field class="form-field-profile">
+          <input
+            matInput
+            placeholder="User email"
+            disabled
+            value="ShibaInu@gmail.com"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field-profile">
+          <input matInput placeholder="Age" disabled value="23" />
+        </mat-form-field>
+        <mat-form-field class="form-field-profile">
+          <input matInput placeholder="Gender" disabled value="male" />
+        </mat-form-field>
+        <mat-form-field class="form-field-profile">
+          <input
+            matInput
+            placeholder="Password"
+            [type]="hide ? 'password' : 'text'"
+            disabled
+            value="password23"
+          />
+          <mat-icon matSuffix (click)="hide = !hide">{{
+            hide ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        </mat-form-field>
+      </form>
+      <p>Biography</p>
+      <p>
+        The Shiba Inu is the smallest of the six original and distinct spitz
+        breeds of dog from Japan. A small, agile dog that copes very well with
+        mountainous terrain, the Shiba Inu was originally bred for hunting.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="icons">
+        <mat-icon>chat</mat-icon>
+        <span>57 posts</span>
+      </div>
+      <div class="icons">
+        <mat-icon>thumb_up_alt</mat-icon>
+        <span>123 likes</span>
+      </div>
+      <!-- <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button> -->
+    </mat-card-actions>
+  </mat-card>
+</div>

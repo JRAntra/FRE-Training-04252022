@@ -1,1 +1,36 @@
-<p>login works!</p>
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <img [src]="imageUrl" alt="antrashare" />
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>User Name:</mat-label>
+      <input matInput placeholder="User Name" formControlName="userName" />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Password:</mat-label>
+      <input
+        matInput
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+      />
+    </mat-form-field>
+  </div>
+  <div id="form-footer">
+    <div>
+      <mat-checkbox formControlName="agreement">Agreement</mat-checkbox>
+    </div>
+
+    <div><a>Need Help?</a></div>
+  </div>
+  <div>
+    <button mat-raised-button color="primary" type="submit">Log In</button>
+  </div>
+
+  <div id="linkToRegister">
+    <a routerLink="/register">No Account? Register Now!</a>
+  </div>
+</form>

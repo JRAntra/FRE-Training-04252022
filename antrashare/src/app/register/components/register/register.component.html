@@ -1,1 +1,57 @@
-<p>register works!</p>
+<div class="register-page">
+  <div class="header"><h1>Register Page</h1></div>
+  <div class="form-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter Username</mat-label>
+      <input
+        matInput
+        placeholder="username"
+        [formControl]="username"
+        required
+      />
+      <mat-error *ngIf="username.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <input
+        matInput
+        placeholder="ShibaInu@example.com"
+        [formControl]="email"
+        required
+      />
+      <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input
+        matInput
+        placeholder="password"
+        [type]="hide ? 'password' : 'text'"
+        [formControl]="password"
+        required
+      />
+      <mat-icon matSuffix (click)="hide = !hide">{{
+        hide ? "visibility_off" : "visibility"
+      }}</mat-icon>
+      <mat-error *ngIf="password.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Confirm password</mat-label>
+      <input
+        matInput
+        placeholder="confirmm password"
+        [type]="hide ? 'password' : 'text'"
+        [formControl]="passwordConfirmation"
+        required
+      />
+      <mat-icon matSuffix (click)="hide = !hide">{{
+        hide ? "visibility_off" : "visibility"
+      }}</mat-icon>
+      <mat-error *ngIf="passwordConfirmation.invalid">{{
+        getErrorMessage()
+      }}</mat-error>
+    </mat-form-field>
+
+    <button mat-button color="primary">Register</button>
+  </div>
+</div>
