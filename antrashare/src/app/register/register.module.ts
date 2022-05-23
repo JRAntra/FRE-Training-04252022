@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [RegisterComponent],
+
   imports: [
     CommonModule,
     FormsModule,
@@ -21,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatIconModule,
   ],
+
   exports: [RegisterComponent],
 })
 export class RegisterModule {}

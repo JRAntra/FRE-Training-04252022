@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-news-feed',
-  templateUrl: './news-feed.component.html',
-  styleUrls: ['./news-feed.component.sass'],
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.sass'],
 })
-export class NewsFeedComponent implements OnInit {
+export class NavbarComponent implements OnInit {
   showLikeList = false;
 
   constructor() {}

@@ -7,6 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RegisterModule } from './register/register.module';
 import { SettingsModule } from './settings/settings.module';
+import { LoginModule } from './login/login.module';
+import { NewsFeedModule } from './newsFeed/news-feed.module';
+import { AdminModule } from './admin/admin.module';
+
 import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
@@ -15,8 +19,14 @@ import { ProfileModule } from './profile/profile.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+
     RegisterModule,
     SettingsModule,
+
+    LoginModule,
+    NewsFeedModule,
+    AdminModule,
+
     ProfileModule,
   ],
   providers: [],
