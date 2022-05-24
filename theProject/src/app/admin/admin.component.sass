@@ -1,80 +1,59 @@
-/* You can add global styles to this file, and also import other style files */
+#admin
+  flex-direction: row
+  flex-wrap: wrap
 
-$font-size: min(4rem, max(.875rem, 2vw))
-$font-stack: Helvetica, sans-serif
-$body-bg: lightgray
-$main-bg: white
+#userList
+  background-color: grey
+  min-height: 600px
+  width: 40%
+  border-radius: 10px
+  position: relative
 
-*,
-*::before,
-*::after
-    margin: 0
-    padding: 0
-    box-sizing: inherit
-
-body
-    font: $font-size $font-stack
-    background-color: $body-bg
-
-main
-    background-color: $main-bg
-    width: 60%
-    margin: auto
-    height: 70%
-
-nav
-    display: flex
-    justify-content: space-between
-
-button
-    width: 100%
-    margin: .5rem
-    padding: .3rem
-
-.div__main
-    background-color: $main-bg
-    display: flex
-    flex-direction: column
-    justify-content: space-around
-    align-items: center
-
-fieldset
-    display: flex
-    flex-direction: column
-    padding: 1rem
-    gap: 1rem
-    margin: 1rem
-    border: none
-
-.row
-    display: flex
-    flex-direction: row
-    justify-content: space-between
-    gap: 1rem
-
-.nav-top
-    background-color: lightskyblue
-    justify-content: end
-
-a
-    margin: .5rem
+#infoButton
+  width: 90%
+  position: absolute
+  left: 5%
+  bottom: 3%
 
 ul
-    list-style: none
+  padding-left: 0
 
-.nav-left
-    display: flex
-    flex-direction: column
+li
+  width: 90%
+  margin: 10px auto
+  border-radius: 5px
+  height: auto
+  background-color: black
+  color: white
+  list-style-type: none
+  text-align: left
+  position: relative
 
-.nav-left li
-    display: flex
-    justify-content: space-between
-    min-width: 11.5rem
+li span
+  font-size: 2.5rem
+  padding: 20px
 
-.div__main
-    flex-direction: row
-    gap: .5rem
+li button
+  position: absolute
+  right: 10px
 
-#btn-admin,
-.btn-delete
-    max-width: 2.5rem
+#detail
+  width:60%
+  position: relative
+
+table
+  margin: auto
+  position: absolute
+  top: 20%
+  left: 20%
+
+p
+  font-size: 2rem
+  text-align: left
+
+td
+  padding: 10px
+
+  
+
+
