@@ -7,23 +7,13 @@ import { RegisterModule } from './register/register.module';
 import { SettingModule } from './setting/setting.module';
 import { ProfileModule } from './profile/profile.module';
 import { AdminModule } from './admin/admin.module';
+import { FeedModule } from './feed/feed.module';
 
 import { AppComponent } from './app.component';
-import { FeedComponent } from './feed/feed.component';
-import { StoryComponent } from './feed/story-list/story/story.component';
-import { PostComponent } from './feed/post/post.component';
-import { CommentComponent } from './feed/story-list/story/comment/comment.component';
-import { StoryListComponent } from './feed/story-list/story-list.component';
-
 
 @NgModule({
   declarations: [
-    AppComponent,
-    FeedComponent,
-    StoryComponent,
-    PostComponent,
-    CommentComponent,
-    StoryListComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +22,8 @@ import { StoryListComponent } from './feed/story-list/story-list.component';
     RegisterModule,
     SettingModule,
     ProfileModule,
-    AdminModule
+    AdminModule,
+    FeedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
