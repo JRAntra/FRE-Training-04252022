@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { SettingsRoutingModule } from './settings-routing.module';
 
 @NgModule({
   declarations: [SettingsComponent],
@@ -20,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
+    SettingsRoutingModule,
   ],
   exports: [SettingsComponent],
 })
