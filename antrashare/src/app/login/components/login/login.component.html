@@ -6,6 +6,7 @@
     <mat-form-field appearance="fill">
       <mat-label>User Name:</mat-label>
       <input matInput placeholder="User Name" formControlName="userName" />
+      <mat-error>userName is required</mat-error>
     </mat-form-field>
   </div>
   <div>
@@ -17,6 +18,7 @@
         placeholder="Password"
         formControlName="password"
       />
+      <mat-error>Password is required</mat-error>
     </mat-form-field>
   </div>
   <div id="form-footer">

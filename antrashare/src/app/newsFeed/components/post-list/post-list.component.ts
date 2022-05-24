@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post-list.component.sass'],
 })
 export class PostListComponent implements OnInit {
-  avatarUrl = '../assets/antrashare.png';
+  avatarUrl = '../assets/bro-logo.png';
   constructor() {}
 
   ngOnInit(): void {}
