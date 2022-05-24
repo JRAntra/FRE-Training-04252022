@@ -6,10 +6,10 @@ import { LoginModule } from './login/login.module';
 import { RegisterModule } from './register/register.module';
 import { SettingModule } from './setting/setting.module';
 import { ProfileModule } from './profile/profile.module';
+import { AdminModule } from './admin/admin.module';
 
 import { AppComponent } from './app.component';
 import { FeedComponent } from './feed/feed.component';
-import { AdminComponent } from './admin/admin.component';
 import { StoryComponent } from './feed/story-list/story/story.component';
 import { PostComponent } from './feed/post/post.component';
 import { CommentComponent } from './feed/story-list/story/comment/comment.component';
@@ -20,7 +20,6 @@ import { StoryListComponent } from './feed/story-list/story-list.component';
   declarations: [
     AppComponent,
     FeedComponent,
-    AdminComponent,
     StoryComponent,
     PostComponent,
     CommentComponent,
@@ -32,7 +31,8 @@ import { StoryListComponent } from './feed/story-list/story-list.component';
     LoginModule,
     RegisterModule,
     SettingModule,
-    ProfileModule
+    ProfileModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
