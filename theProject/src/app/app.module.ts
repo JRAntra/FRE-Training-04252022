@@ -5,9 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login/login.module';
 import { RegisterModule } from './register/register.module';
 import { SettingModule } from './setting/setting.module';
+import { ProfileModule } from './profile/profile.module';
 
 import { AppComponent } from './app.component';
-import { ProfileComponent } from './profile/profile.component';
 import { FeedComponent } from './feed/feed.component';
 import { AdminComponent } from './admin/admin.component';
 import { StoryComponent } from './feed/story-list/story/story.component';
@@ -19,7 +19,6 @@ import { StoryListComponent } from './feed/story-list/story-list.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileComponent,
     FeedComponent,
     AdminComponent,
     StoryComponent,
@@ -32,7 +31,8 @@ import { StoryListComponent } from './feed/story-list/story-list.component';
     AppRoutingModule,
     LoginModule,
     RegisterModule,
-    SettingModule
+    SettingModule,
+    ProfileModule
   ],
   providers: [],
   bootstrap: [AppComponent]
