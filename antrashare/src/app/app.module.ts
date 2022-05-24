@@ -12,6 +12,9 @@ import { NewsFeedModule } from './newsFeed/news-feed.module';
 import { AdminModule } from './admin/admin.module';
 
 import { ProfileModule } from './profile/profile.module';
+import { ProfileRoutingModule } from './profile/profile-routing.module';
+import { RegisterRoutingModule } from './register/register-routing.module';
+import { SettingsRoutingModule } from './settings/settings-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,15 +22,15 @@ import { ProfileModule } from './profile/profile.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-
     RegisterModule,
     SettingsModule,
-
     LoginModule,
     NewsFeedModule,
     AdminModule,
-
     ProfileModule,
+    ProfileRoutingModule,
+    RegisterRoutingModule,
+    SettingsRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
