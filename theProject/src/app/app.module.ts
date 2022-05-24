@@ -3,11 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login/login.module';
+import { RegisterModule } from './register/register.module';
 
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { FeedComponent } from './feed/feed.component';
 import { AdminComponent } from './admin/admin.component';
 import { SettingComponent } from './setting/setting.component';
@@ -21,11 +20,9 @@ import { StoryListComponent } from './feed/story-list/story-list.component';
   declarations: [
     AppComponent,
     ProfileComponent,
-    // LoginComponent,
     FeedComponent,
     AdminComponent,
     SettingComponent,
-    RegisterComponent,
     StoryComponent,
     PostComponent,
     CommentComponent,
@@ -34,7 +31,8 @@ import { StoryListComponent } from './feed/story-list/story-list.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LoginModule
+    LoginModule,
+    RegisterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
