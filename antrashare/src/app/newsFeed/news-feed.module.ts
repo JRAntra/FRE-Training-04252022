@@ -14,7 +14,6 @@ import { BottomNavComponent } from './components/bottom-nav/bottom-nav.component
 import { AppRoutingModule } from '../app-routing.module';
 import { CommentComponent } from './components/comment/comment.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NewsfeedRoutingModule } from './newsfeed-routing.modules';
 
 @NgModule({
   declarations: [
@@ -35,8 +34,7 @@ import { NewsfeedRoutingModule } from './newsfeed-routing.modules';
     MatInputModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NewsfeedRoutingModule,
   ],
-  exports: [NavbarComponent],
+  exports: [],
 })
 export class NewsFeedModule {}
