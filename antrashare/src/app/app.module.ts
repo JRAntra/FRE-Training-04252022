@@ -10,8 +10,8 @@ import { SettingsModule } from './settings/settings.module';
 import { LoginModule } from './login/login.module';
 import { NewsFeedModule } from './newsFeed/news-feed.module';
 import { AdminModule } from './admin/admin.module';
-
 import { ProfileModule } from './profile/profile.module';
+
 import { ProfileRoutingModule } from './profile/profile-routing.module';
 import { RegisterRoutingModule } from './register/register-routing.module';
 import { SettingsRoutingModule } from './settings/settings-routing.module';
