@@ -1,46 +1,127 @@
-<main>
+<div id="admin" class="section">
+  <div id="userList">
+    <ul>
+      <li><span>AngularSis <button class="btn btn-sm btn-black">delete</button></span> </li>
+      <li><span>AngularBro <button class="btn btn-sm btn-black">delete</button></span> </li>
+      <li><span>AngularTran <button class="btn btn-sm btn-black">delete</button></span></li>
+    </ul>
+    <button id="infoButton" class="btn btn-lg btn-black">Add User</button>
+  </div>
+  <div id="detail">
+    <table>
+      <tr>
+        <td><p><b>Username:</b></p></td>
+        <td><p>AngularSis</p></td>
+      </tr>
+      <tr>
+        <td><p><b>Email:</b></p></td>
+        <td><p>AngularSis@gmail.com</p></td>
+      </tr>
+      <tr>
+        <td><p><b>Age:</b></p></td>
+        <td><p>18</p></td>
+      </tr>
+      <tr>
+        <td><p><b>Gender:</b></p></td>
+        <td><p>unknown</p></td>
+      </tr>
+      <tr>
+        <td><p><b>Password:</b></p></td>
+        <td><p>1234567890AB</p></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+<!--
   <nav class="nav justify-content-end nav-top">
     <button class="btn" id="btn-admin">Admin</button>
   </nav>
-
-  <div class="div__main">
-
-    <nav class="nav-left">
-      <ul>
-        <li>
-          <p>User Tag 1</p>
-          <button class="btn btn-warning btn-delete">Delete</button>
-        </li>
-        <li>
-          User Tag 2
-          <button class="btn btn-warning btn-delete">Delete</button>
-        </li>
-        <li>
-          User Tag 3
-          <button class="btn btn-warning btn-delete">Delete</button>
-        </li>
-      </ul>
-
-      <button class="btn btn-success btn-addUser">Add User Button</button>
-    </nav>
-
-    <div class="detail">
-        <ul>User Detailed Info Panel
-          <li>UserName: Name</li>
-          <li>Password: password</li>
-          <li>UserEmail: Email</li>
-          <li>Gender: gender</li>
-          <li>Age: age</li>
-        </ul>
-
-    </div>
-
-  </div>
-
   <nav class="nav justify-content-center nav-bottom">
     <button class="btn" id="btn-profile">My Profile</button>
     <button class="btn" id="btn-feed">News Feed</button>
     <button class="btn" id="btn-setting">Settings</button>
   </nav>
 
-</main>
+
+  /*
+$font-size: min(4rem, max(.875rem, 2vw))
+$font-stack: Helvetica, sans-serif
+$body-bg: lightgray
+$main-bg: white
+
+*,
+*::before,
+*::after
+    margin: 0
+    padding: 0
+    box-sizing: inherit
+
+body
+    font: $font-size $font-stack
+    background-color: $body-bg
+
+main
+    background-color: $main-bg
+    width: 60%
+    margin: auto
+    height: 70%
+
+nav
+    display: flex
+    justify-content: space-between
+
+button
+    width: 100%
+    margin: .5rem
+    padding: .3rem
+
+.div__main
+    background-color: $main-bg
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    align-items: center
+
+fieldset
+    display: flex
+    flex-direction: column
+    padding: 1rem
+    gap: 1rem
+    margin: 1rem
+    border: none
+
+.row
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    gap: 1rem
+
+.nav-top
+    background-color: lightskyblue
+    justify-content: end
+
+a
+    margin: .5rem
+
+ul
+    list-style: none
+
+.nav-left
+    display: flex
+    flex-direction: column
+
+.nav-left li
+    display: flex
+    justify-content: space-between
+    min-width: 11.5rem
+
+.div__main
+    flex-direction: row
+    gap: .5rem
+
+#btn-admin,
+.btn-delete
+    max-width: 2.5rem */
+-->
