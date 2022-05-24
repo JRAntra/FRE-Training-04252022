@@ -1,9 +1,9 @@
 .displayPostsField
-  width: 85%
-  background-color: lightgrey
-  margin: 1rem auto
-  display: flex
-  flex-direction: column
+    width: 85%
+    background-color: cornflowerblue
+    margin: 1rem auto
+    display: flex
+    flex-direction: column
 
 .displayPostsField
     ul 
@@ -12,7 +12,7 @@
         
 .postlist 
     width: 100% 
-    background-color: darkgrey 
+    
 
 .postHeader
     width: 100%
@@ -28,20 +28,25 @@
 .postContent
     width: 100%
     height: 15rem
-    border: 0.1rem black solid
+    border: 0.1rem white solid
 
 .postFooter
     display: flex  
 
     @mixin postlist_footer 
-        width: 33%
+        width: 33.33%
         padding: 0.5rem
-        border: 0.1rem black solid
-        text-align: center
+        color: white
 
     .commentIcon
-        @include postlist_footer   
+        @include postlist_footer
+        button
+            background-color: cornflowerblue
+            border: 0.1rem white solid   
     .empty
         @include postlist_footer           
     .likeIcon
-        @include postlist_footer     
+        @include postlist_footer 
+        button
+            background-color: cornflowerblue
+            border: 0.1rem white solid      

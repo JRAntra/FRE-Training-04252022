@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
     password: [null, Validators.required],
     agreement: false,
   });
-  imageUrl = '../assets/antrashare.png';
+  imageUrl = '../assets/BroCode.jpeg';
 
   constructor(private router: Router, private fb: FormBuilder) {}
 
