@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
   showLikeList = false;
 
-  constructor() {}
+  constructor(private router: Router) {}
   triggerLikeList() {
     this.showLikeList = !this.showLikeList;
     console.log(this.showLikeList);
