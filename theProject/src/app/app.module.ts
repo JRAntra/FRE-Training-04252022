@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { LoginModule } from './login/login.module';
+
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
@@ -19,7 +21,7 @@ import { StoryListComponent } from './feed/story-list/story-list.component';
   declarations: [
     AppComponent,
     ProfileComponent,
-    LoginComponent,
+    // LoginComponent,
     FeedComponent,
     AdminComponent,
     SettingComponent,
@@ -31,7 +33,8 @@ import { StoryListComponent } from './feed/story-list/story-list.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
