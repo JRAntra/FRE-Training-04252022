@@ -10,22 +10,21 @@ import { AdminModule } from './admin/admin.module';
 import { FeedModule } from './feed/feed.module';
 
 import { AppComponent } from './app.component';
+import { NotfoundPageComponent } from './Shared/notfound-page/notfound-page.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent, NotfoundPageComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     LoginModule,
+    FeedModule,
     RegisterModule,
     SettingModule,
     ProfileModule,
     AdminModule,
-    FeedModule
+    AppRoutingModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
