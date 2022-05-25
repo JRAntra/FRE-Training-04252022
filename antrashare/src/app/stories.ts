@@ -55,7 +55,26 @@ export const stories = [
         content: {
             text: 'Hola chiquita bonita!'
         },
-        comments: [],
+        comments: [
+            {
+                id: 2,
+                avatar: 'jchang.png',
+                publisherName: 'jchang',
+                publishedTime: Date.now(),
+                content: {
+                    text: 'Hola! Hola! Que tal?'
+                }
+            },
+            {
+                id: 3,
+                avatar: 'rwhite.heic',
+                publisherName: 'rwhite',
+                publishedTime: Date.now(),
+                content: {
+                text: 'Yo quiero comprar une sombrero muy elegante!'
+                }
+            }
+        ],
         likedIdList: []
     },
     {
@@ -66,7 +85,26 @@ export const stories = [
         content: {
             image: 'can_i_go_home_now.mp4'
         },
-        comments: [],
+        comments: [
+            {
+                id: 2,
+                avatar: 'jchang.png',
+                publisherName: 'jchang',
+                publishedTime: Date.now(),
+                content: {
+                    text: 'I love this video clips! What a memory lane'
+                }
+            },
+            {
+                id: 1,
+                avatar: 'lbrown.jpg',
+                publisherName: 'lBrown',
+                publishedTime: Date.now(),
+                content: {
+                    text: 'I am having a crush on the singer!'
+                }
+            }
+        ],
         likedIdList: []
     }
 ]
