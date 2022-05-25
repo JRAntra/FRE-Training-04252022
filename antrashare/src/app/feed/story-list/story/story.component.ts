@@ -13,6 +13,7 @@ export class StoryComponent implements OnInit {
   // Input decorator, taking in story from parent: story-list.component
   @Input() story? : Story;
 
+  avatarPath = "../../../../assets/"
   ngOnInit(): void {
       // console.log(16, this.story)
   }
