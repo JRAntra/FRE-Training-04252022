@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { StoryContent } from '../news-feed.component';
 
 @Component({
   selector: 'app-post-list',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post-list.component.sass'],
 })
 export class PostListComponent implements OnInit {
+  @Input() storyList?: StoryContent[];
   avatarUrl = '../assets/bro-logo.png';
+
   constructor() {}
 
   ngOnInit(): void {}

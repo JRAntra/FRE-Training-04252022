@@ -7,12 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsFeedComponent implements OnInit {
   showLikeList = false;
-
+  public storyList: StoryContent[] = [
+    { content: 'first post', storyId: 1 },
+    { content: 'second post', storyId: 2 },
+    { content: 'third post', storyId: 3 },
+  ];
   constructor() {}
-  triggerLikeList() {
-    this.showLikeList = !this.showLikeList;
-    console.log(this.showLikeList);
-  }
 
   ngOnInit(): void {}
+}
+export interface StoryContent {
+  content: string;
+  storyId: number;
 }

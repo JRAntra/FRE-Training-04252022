@@ -27,6 +27,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     console.log(this.form.value);
-    this.router.navigate(['/newsfeed']);
+    this.router.navigate(['newsfeed']);
   }
 }
