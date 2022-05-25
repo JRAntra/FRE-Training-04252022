@@ -5,6 +5,7 @@
     class="form-container"
     [formGroup]="options"
     [style.fontSize.px]="getFontSize()"
+    (ngSubmit)="onSubmit()"
   >
     <mat-form-field [color]="options.value.color">
       <mat-select placeholder="Theme color" formControlName="color">

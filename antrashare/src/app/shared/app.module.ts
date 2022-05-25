@@ -11,9 +11,10 @@ import { NewsFeedModule } from '../features/newsFeed/news-feed.module';
 import { AdminModule } from '../features/admin/admin.module';
 import { ProfileModule } from '../features/profile/profile.module';
 import { NavbarModule } from './navbar/navbar.module';
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NotFoundPageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit {
 
   hide = true;
 
-  constructor() {}
+  constructor(private router: Router, private fb: FormBuilder) {}
 
   getErrorMessage() {
     if (this.username.hasError('required')) return 'You must enter a value';
@@ -28,4 +29,9 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  onSubmit() {
+    // console.log(this.form.value);
+    this.router.navigate(['/login']);
+  }
 }
