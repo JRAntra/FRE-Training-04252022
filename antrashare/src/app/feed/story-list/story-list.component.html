@@ -1,7 +1,8 @@
 <div id="list" class="section">
   <h4>What's happen today? </h4>
-  <app-story></app-story>
-  <app-story></app-story>
-  <app-story></app-story>
+  <div *ngFor="let story of storyList">
+    <!--<div class="story_container">{{story}}</div>-->
+    <app-story></app-story>
+  </div>
 </div>
 

@@ -21,6 +21,10 @@ import { FeedComponent } from './feed.component';
     imports: [
         CommonModule,
         FeedRoutingModule
+    ],
+    exports: [
+      PostComponent,
+      StoryListComponent
     ]
 })
 

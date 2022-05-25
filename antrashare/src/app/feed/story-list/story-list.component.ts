@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-story-list',
@@ -9,7 +9,10 @@ export class StoryListComponent implements OnInit {
 
   constructor() { }
 
+  @Input() storyList? : any[] = []
+
   ngOnInit(): void {
+    console.log(this.storyList)
   }
 
 }
