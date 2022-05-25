@@ -1,0 +1,22 @@
+<div *ngIf="story" id="story">
+  <div id="poster">
+    <div id="avatar" class="avatar" >
+      <img src="../../../../assets/story.avatar"/>
+    </div>
+    <h4>{{story.publisherName}}</h4>
+  </div>
+  <p id="content">
+    {{story.content.text ? story.content.text :
+      story.content.image ? story.content.image :
+      story.content.video }}
+    </p>
+  <div *ngIf="story.comments.length" id="other">
+    <div *ngFor="let comment of story.comments" >
+      <app-comment [comment]="comment"></app-comment>
+    </div>
+  </div>
+  <div id="feedback">
+    <input id="comment1" type="text" />
+    <button id="comment2" class="btn-black btn btn-sm">comment</button>
+  </div>
+</div>

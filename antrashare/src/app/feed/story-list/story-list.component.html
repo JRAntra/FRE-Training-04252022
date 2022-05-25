@@ -1,0 +1,7 @@
+<div
+  *ngFor="let story of stories"
+  id="list"
+  class="section">
+  <h4>What's happen today? </h4>
+  <app-story [story]="story"></app-story>
+</div>
