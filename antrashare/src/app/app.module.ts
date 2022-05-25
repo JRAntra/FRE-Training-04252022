@@ -7,15 +7,18 @@ import { SettingModule } from './setting/setting.module';
 import { ProfileModule } from './profile/profile.module';
 import { AdminModule } from './admin/admin.module';
 import { FeedModule } from './feed/feed.module';
-import { NavigationComponent } from './navigation/navigation.component';
+import { NavigationComponent } from './shared/navigation/navigation.component';
 import { AppComponent } from './app.component';
+import { ErrorComponent } from './shared/error/error.component';
 
 @NgModule({
   declarations: [
     NavigationComponent,
-    AppComponent
+    AppComponent,
+    ErrorComponent
   ],
   imports: [
+    BrowserModule,
     LoginModule,
     RegisterModule,
     SettingModule,
@@ -23,7 +26,7 @@ import { AppComponent } from './app.component';
     AdminModule,
     FeedModule,
     AppRoutingModule,
-    BrowserModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
