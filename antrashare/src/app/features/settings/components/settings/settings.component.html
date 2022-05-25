@@ -1,0 +1,33 @@
+<!-- <app-navbar></app-navbar> -->
+<div class="settings-page">
+  <div class="header"><h1>Settings Page</h1></div>
+  <form
+    class="form-container"
+    [formGroup]="options"
+    [style.fontSize.px]="getFontSize()"
+    (ngSubmit)="onSubmit()"
+  >
+    <mat-form-field [color]="options.value.color">
+      <mat-select placeholder="Theme color" formControlName="color">
+        <mat-option value="primary">Primary</mat-option>
+        <mat-option value="accent">Accent</mat-option>
+        <mat-option value="warn">Warn</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field [color]="options.value.color">
+      <input
+        matInput
+        type="number"
+        placeholder="Font size (px)"
+        formControlName="fontSize"
+        min="10"
+      />
+      <mat-error *ngIf="options.get('fontSize')?.invalid"
+        >Min size: 10px</mat-error
+      >
+    </mat-form-field>
+
+    <button mat-button color="primary">Log out</button>
+  </form>
+</div>
