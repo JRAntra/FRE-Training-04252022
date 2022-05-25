@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { StoryContent } from '../news-feed.component';
+import { storyModel } from '../news-feed.component';
 
 @Component({
   selector: 'app-post-list',
@@ -7,7 +7,7 @@ import { StoryContent } from '../news-feed.component';
   styleUrls: ['./post-list.component.sass'],
 })
 export class PostListComponent implements OnInit {
-  @Input() storyList?: StoryContent[];
+  @Input() storyList?: storyModel[];
   avatarUrl = '../assets/bro-logo.png';
 
   constructor() {}

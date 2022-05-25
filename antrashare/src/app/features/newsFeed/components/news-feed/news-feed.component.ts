@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsFeedComponent implements OnInit {
   showLikeList = false;
-  public storyList: StoryContent[] = [
+  public storyList: storyModel[] = [
     { content: 'first post', storyId: 1 },
     { content: 'second post', storyId: 2 },
     { content: 'third post', storyId: 3 },
@@ -15,8 +15,12 @@ export class NewsFeedComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  onPost(event: string) {
+    this.storyList.push({ content: event, storyId: this.storyList.length + 1 });
+  }
 }
-export interface StoryContent {
+export interface storyModel {
   content: string;
   storyId: number;
 }
