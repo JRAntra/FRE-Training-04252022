@@ -11,9 +11,10 @@ import { FeedModule } from './feed/feed.module';
 
 import { AppComponent } from './app.component';
 import { NotfoundPageComponent } from './Shared/notfound-page/notfound-page.component';
+import { NavigtebarComponent } from './Shared/navigtebar/navigtebar.component';
 
 @NgModule({
-  declarations: [AppComponent, NotfoundPageComponent],
+  declarations: [AppComponent, NotfoundPageComponent, NavigtebarComponent],
   imports: [
     BrowserModule,
     LoginModule,
