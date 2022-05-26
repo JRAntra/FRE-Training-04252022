@@ -9,10 +9,10 @@ import { Story } from '../../stories';
 })
 export class PostComponent implements OnInit {
 
-  @Output() eventEmitter = new EventEmitter();
+  @Output() newStoryEmitter = new EventEmitter();
 
-  handleClick(content: string) {
-    this.eventEmitter.emit(content);
+  postNewStory(content: string) {
+    this.newStoryEmitter.emit(content);
   }
 
   handleReset() {

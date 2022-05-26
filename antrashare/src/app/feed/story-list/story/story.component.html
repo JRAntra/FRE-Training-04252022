@@ -15,8 +15,21 @@
       <app-comment [comment]="comment"></app-comment>
     </div>
   </div>
+
   <div id="feedback">
-    <input id="comment1" type="text" />
-    <button id="comment2" class="btn-black btn btn-sm">comment</button>
+
+    <input
+      #commentInput
+      id="comment1"
+      type="text" />
+
+    <button
+      (click)="postNewComment(commentInput.value)"
+      id="comment2"
+      class="btn-black btn btn-sm">
+      comment
+    </button>
+
   </div>
+
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 
 import { Story } from '../../../stories';
 @Component({
@@ -13,9 +13,19 @@ export class StoryComponent implements OnInit {
   // Input decorator, taking in story from parent: story-list.component
   @Input() story? : Story;
 
-  avatarPath = "../../../../assets/"
-  ngOnInit(): void {
-      // console.log(16, this.story)
+  postNewComment(content: string) {
+    const newComment = {
+      id: 2,
+      avatar: 'jchang.png',
+      publisherName: 'jchang',
+      publishedTime: "whatever",
+      content: {
+          text: content
+      }
+    };
+    this.story?.comments.push(newComment);
   }
+
+  ngOnInit(): void { }
 
 }

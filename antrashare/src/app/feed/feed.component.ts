@@ -1,6 +1,5 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { Story, stories } from '../stories';
-import { StoryComponent } from './story-list/story/story.component';
 
 @Component({
   selector: 'app-feed',
@@ -24,7 +23,15 @@ export class FeedComponent {
           comments: [],
           likedIdList: []
       });
+      window.alert(`New story -should- have been posted and pushed to backend, with content: ${content}`);
     }
   }
 
+  onPostComment(content: any) {
+    console.log(32, content)
+    if (content.length) {
+      // todo, push into comments array in the corresponding story doc.
+      window.alert(`New comment -should- have been posted and pushed to backend, with content: ${content}`);
+    }
+  }
 }

@@ -1,2 +1,2 @@
-<app-post (eventEmitter)="onPostStory($event)"></app-post>
-<app-story-list [stories]="stories"></app-story-list>
+<app-post (newStoryEmitter)="onPostStory($event)"></app-post>
+<app-story-list (newCommentEmitter)="onPostComment('x')" [stories]="stories"></app-story-list>
