@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
-import { stories } from '../stories';
+import { Story, stories } from '../stories';
+import { StoryComponent } from './story-list/story/story.component';
 
 @Component({
   selector: 'app-feed',
@@ -10,8 +11,20 @@ export class FeedComponent {
 
   public stories = stories;
 
-  // onPost() {
-  //   window.alert('You have posted something')
-  // }
+  onPostStory(content: any) {
+    if (content.length) {
+      stories.push({
+          id: stories.length,
+          avatar: "string",
+          publisherName: "string",
+          publishedTime: "whatever",
+          content: {
+            text: content
+          },
+          comments: [],
+          likedIdList: []
+      });
+    }
+  }
 
 }

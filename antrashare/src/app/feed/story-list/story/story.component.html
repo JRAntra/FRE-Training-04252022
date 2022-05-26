@@ -6,9 +6,9 @@
     <h4>{{story.publisherName}}</h4>
   </div>
   <p id="content">
-    {{story.content.text ? story.content.text :
-      story.content.image ? story.content.image :
-      story.content.video }}
+    {{story.content.text !== "" ? story.content.text :
+      story.content.image !== "" ? story.content.image :
+      story.content.video !== "" ? story.content.video : "" }}
     </p>
   <div *ngIf="story.comments.length" id="other">
     <div *ngFor="let comment of story.comments" >
