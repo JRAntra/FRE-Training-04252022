@@ -34,6 +34,6 @@ export class LoginComponent implements OnInit {
         console.log(res);
       });
     console.log(this.form.value);
-    // this.router.navigate(['newsfeed']);
+    this.router.navigate(['newsfeed']);
   }
 }
