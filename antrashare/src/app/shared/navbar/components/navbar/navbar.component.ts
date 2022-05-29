@@ -1,5 +1,6 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,11 +9,21 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   showLikeList = false;
+  likeListBtn?: boolean;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private location: Location
+  ) {
+    location.onUrlChange((val) => {
+      console.log(val);
+      this.likeListBtn = val === '/newsfeed';
+    });
+  }
+
   triggerLikeList() {
     this.showLikeList = !this.showLikeList;
-    console.log(this.showLikeList);
   }
 
   ngOnInit(): void {}

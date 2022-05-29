@@ -4,9 +4,9 @@
   </div>
   <div>
     <mat-form-field appearance="fill">
-      <mat-label>User Name:</mat-label>
-      <input matInput placeholder="User Name" formControlName="userName" />
-      <mat-error>userName is required</mat-error>
+      <mat-label>User Email:</mat-label>
+      <input matInput placeholder="User Name" formControlName="userEmail" />
+      <mat-error>userEmail is required</mat-error>
     </mat-form-field>
   </div>
   <div>
@@ -29,7 +29,14 @@
     <div><a>Need Help?</a></div>
   </div>
   <div>
-    <button mat-raised-button color="primary" type="submit">Log In</button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!form.value.agreement"
+    >
+      Log In
+    </button>
   </div>
 
   <div id="linkToRegister">

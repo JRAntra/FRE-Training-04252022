@@ -9,7 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { PostListComponent } from './components/news-feed/post-list/post-list.component';
 import { MatInputModule } from '@angular/material/input';
 import { CommentComponent } from './components/news-feed/post-list/comment/comment.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewsfeedRoutingModule } from './newsfeed-routing.modules';
 
 @NgModule({
@@ -28,6 +28,7 @@ import { NewsfeedRoutingModule } from './newsfeed-routing.modules';
     MatInputModule,
     ReactiveFormsModule,
     NewsfeedRoutingModule,
+    FormsModule,
   ],
   exports: [],
 })
