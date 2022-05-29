@@ -1,18 +1,24 @@
 <section class="displayPostsField">
   <ul>
-    <li class="postlist">
+    <li class="postlist" *ngFor="let story of storyList">
       <div class="postHeader">
         <img [src]="avatarUrl" alt="avatar" />
-        <div>user name</div>
+        <div [ngStyle]="{ fontSize: '2rem', color: 'green' }">user name</div>
       </div>
-      <div class="postContent"></div>
+      <div class="postContent">{{ story.content }}</div>
       <div class="postFooter">
         <div class="commentIcon">
-          <button>
+          <button
+            (click)="
+              comments.style.display === 'block'
+                ? (comments.style.display = 'none')
+                : (comments.style.display = 'block')
+            "
+          >
             <mat-icon aria-hidden="false" color="accent"
               >comment</mat-icon
             ></button
-          ><span>Comment Number</span>
+          ><span>Number</span>
         </div>
         <div class="empty"></div>
         <div class="likeIcon">
@@ -20,33 +26,11 @@
             <mat-icon aria-hidden="false" color="warn"
               >favorite</mat-icon
             ></button
-          ><span>Like Number</span>
+          ><span>Like Number{{ likenumber }}</span>
         </div>
       </div>
-    </li>
-
-    <li class="postlist">
-      <div class="postHeader">
-        <img [src]="avatarUrl" alt="avatar" />
-        <div>user name <span>Publish time</span></div>
-      </div>
-      <div class="postContent"></div>
-      <div class="postFooter">
-        <div class="commentIcon">
-          <button>
-            <mat-icon aria-hidden="false" color="accent"
-              >comment</mat-icon
-            ></button
-          ><span>Comment Number</span>
-        </div>
-        <div class="empty"></div>
-        <div class="likeIcon">
-          <button>
-            <mat-icon aria-hidden="false" color="warn"
-              >favorite</mat-icon
-            ></button
-          ><span>Like Number</span>
-        </div>
+      <div #comments style="display: none">
+        <app-comment> </app-comment>
       </div>
     </li>
   </ul>

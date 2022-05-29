@@ -11,6 +11,7 @@ import { AdminModule } from './features/admin/admin.module';
 import { ProfileModule } from './features/profile/profile.module';
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarModule } from './shared/navbar/navbar.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { NavbarModule } from './shared/navbar/navbar.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     NavbarModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

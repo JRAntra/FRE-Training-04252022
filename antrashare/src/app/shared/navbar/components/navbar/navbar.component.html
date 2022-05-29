@@ -5,7 +5,7 @@
     </button>
 
     <div class="dropdown-content">
-      <a routerLink="profile">Profile</a>
+      <a routerLink="/profile">Profile</a>
       <a routerLink="/newsfeed">News Feed</a>
       <a routerLink="/settings">Settings</a>
       <a routerLink="/login">Login</a>
@@ -14,7 +14,9 @@
     </div>
   </div>
   <div>
-    <button class="likelist" (click)="triggerLikeList()">Like List</button>
+    <button *ngIf="likeListBtn" class="likelist" (click)="triggerLikeList()">
+      Like List
+    </button>
     <div *ngIf="showLikeList" class="likelist-content" style="right: 0">
       <app-like-list></app-like-list>
     </div>

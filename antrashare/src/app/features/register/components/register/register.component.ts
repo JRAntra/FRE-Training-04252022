@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/core/services/api.service';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,7 @@ export class RegisterComponent implements OnInit {
 
   hide = true;
 
-  constructor(private router: Router, private fb: FormBuilder) {}
+  constructor(private router: Router, private apiService: ApiService) {}
 
   getErrorMessage() {
     if (this.username.hasError('required')) return 'You must enter a value';
@@ -31,7 +32,16 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    // console.log(this.form.value);
-    this.router.navigate(['/login']);
+    const user = {
+      userName: this.username.value,
+      userEmail: this.email.value,
+      password: this.password.value,
+    };
+    this.apiService.registerUser(user).subscribe((res) => {
+      console.log(res);
+      localStorage.setItem('userInfo', JSON.stringify(res));
+      this.router.navigate(['newsfeed']);
+    });
+    // this.router.navigate(['/login']);
   }
 }
