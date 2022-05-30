@@ -40,6 +40,7 @@ export class RegisterComponent implements OnInit {
     this.apiService.registerUser(user).subscribe((res) => {
       console.log(res);
       localStorage.setItem('userInfo', JSON.stringify(res));
+      this.router.navigate(['newsfeed']);
     });
     // this.router.navigate(['/login']);
   }
