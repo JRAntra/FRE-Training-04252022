@@ -2,16 +2,16 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="legacy" class="inputField">
       <mat-label>Textarea</mat-label>
-      <textarea
-        matInput
-        formControlName="news"
-        #myInput
-        [value]="textareaValue"
-      ></textarea>
+      <textarea matInput formControlName="news"></textarea>
       <mat-hint></mat-hint>
-      <mat-error>Name is required</mat-error>
+      <mat-error></mat-error>
       <div class="submitBtn">
-        <button mat-raised-button color="primary" class="fw" type="submit">
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn btn-fullWidth"
+          type="submit"
+        >
           Post
         </button>
       </div>

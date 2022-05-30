@@ -1,36 +1,48 @@
 <section class="displayPostsField">
   <ul>
     <li class="postlist" *ngFor="let story of storyList">
-      <div class="postHeader">
-        <img [src]="avatarUrl" alt="avatar" />
-        <div [ngStyle]="{ fontSize: '2rem', color: 'green' }">user name</div>
-      </div>
-      <div class="postContent">{{ story.content }}</div>
-      <div class="postFooter">
-        <div class="commentIcon">
-          <button
-            (click)="
-              comments.style.display === 'block'
-                ? (comments.style.display = 'none')
-                : (comments.style.display = 'block')
-            "
-          >
-            <mat-icon aria-hidden="false" color="accent"
-              >comment</mat-icon
-            ></button
-          ><span>Number</span>
-        </div>
-        <div class="empty"></div>
-        <div class="likeIcon">
-          <button>
-            <mat-icon aria-hidden="false" color="warn"
-              >favorite</mat-icon
-            ></button
-          ><span>Like Number{{ likenumber }}</span>
-        </div>
-      </div>
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="avatar"></div>
+          <mat-card-title>{{ story.publisherName }}</mat-card-title>
+          <mat-card-subtitle>{{
+            story.publishedTime | date: "longDate"
+          }}</mat-card-subtitle>
+        </mat-card-header>
+        <img
+          *ngIf="story.content"
+          mat-card-image
+          [src]="story.content.image"
+          [alt]=""
+        />
+        <mat-card-content>
+          <p *ngIf="story.content">
+            {{ story.content.text }}
+          </p>
+        </mat-card-content>
+        <mat-card-actions
+          [ngStyle]="{ display: 'flex', 'justify-content': 'space-between' }"
+        >
+          <div>
+            <button
+              mat-button
+              (click)="
+                comments.style.display === 'block'
+                  ? (comments.style.display = 'none')
+                  : (comments.style.display = 'block')
+              "
+            >
+              Comment</button
+            ><span>{{ story.comment?.length }}</span>
+          </div>
+          <div>
+            <button mat-button>LIKE</button
+            ><span>{{ story.likedIdList?.length }}</span>
+          </div>
+        </mat-card-actions>
+      </mat-card>
       <div #comments style="display: none">
-        <app-comment> </app-comment>
+        <app-comment [story]="story"> </app-comment>
       </div>
     </li>
   </ul>
