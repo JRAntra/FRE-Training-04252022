@@ -1,0 +1,17 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="legacy" class="inputField">
+    <mat-label>Comment</mat-label>
+    <input matInput formControlName="comment" #input />
+    <div class="submitBtn">
+      <button
+        mat-button
+        color="primary"
+        class="btn"
+        type="submit"
+        [disabled]="!input.value"
+      >
+        Add Comment
+      </button>
+    </div>
+  </mat-form-field>
+</form>

@@ -1,19 +1,21 @@
 <section class="commentsField">
+  <app-comment-form (postComment)="postComment($event)"></app-comment-form>
   <ul>
-    <li class="commentlist">
-      <div class="commentHeader">
-        <img [src]="avatarUrl" alt="avatar" />
-        <div>user name</div>
-      </div>
-      <div class="commentContent">Comment</div>
-    </li>
-
-    <li class="commentlist">
-      <div class="commentHeader">
-        <img [src]="avatarUrl" alt="avatar" />
-        <div>user name</div>
-      </div>
-      <div class="commentContent">Comment</div>
+    <li class="commentlist" *ngFor="let comment of story?.comment">
+      <mat-card class="comment-card">
+        <mat-card-header>
+          <div mat-card-avatar class="avatar"></div>
+          <mat-card-title>{{ comment.publisherName }}</mat-card-title>
+          <mat-card-subtitle>{{
+            comment.publishedTime | date: "longDate"
+          }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{ comment.content.text }}
+          </p>
+        </mat-card-content>
+      </mat-card>
     </li>
   </ul>
 </section>

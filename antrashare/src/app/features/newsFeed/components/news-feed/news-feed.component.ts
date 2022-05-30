@@ -1,72 +1,56 @@
-import {
-  AfterContentChecked,
-  AfterContentInit,
-  AfterViewChecked,
-  AfterViewInit,
-  Component,
-  DoCheck,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/core/services/api.service';
 
 @Component({
   selector: 'app-news-feed',
   templateUrl: './news-feed.component.html',
   styleUrls: ['./news-feed.component.sass'],
 })
-export class NewsFeedComponent
-  implements
-    OnInit,
-    OnChanges,
-    DoCheck,
-    AfterContentInit,
-    AfterContentChecked,
-    AfterViewInit,
-    AfterViewChecked,
-    OnDestroy
-{
-  showLikeList = false;
-  public storyList: storyModel[] = [
-    { content: 'first post', storyId: 1 },
-    { content: 'second post', storyId: 2 },
-    { content: 'third post', storyId: 3 },
-  ];
+export class NewsFeedComponent implements OnInit {
+  newsList?: News[];
+  userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
 
-  constructor() {}
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('newsfeed onchanges');
-  }
+  constructor(private apiSevice: ApiService) {}
+
   ngOnInit(): void {
-    console.log('newsfeed init');
-  }
-
-  ngDoCheck(): void {
-    console.log('newsfeed docheck');
-  }
-
-  ngAfterContentInit(): void {
-    console.log('aftercontentinit');
-  }
-  ngAfterContentChecked(): void {
-    console.log('after content checked');
-  }
-  ngAfterViewInit(): void {
-    console.log('after view init');
-  }
-  ngAfterViewChecked(): void {
-    console.log('after view checked');
-  }
-  ngOnDestroy(): void {
-    console.log('no destroy');
+    this.apiSevice.getNews().subscribe((res) => {
+      this.newsList = res;
+    });
   }
 
   onPost(event: string) {
-    this.storyList.push({ content: event, storyId: this.storyList.length + 1 });
+    const news: News = {
+      publisherName: this.userInfo.userName,
+      publishedTime: new Date(),
+      content: { text: event },
+    };
+    console.log(news);
+    // this.newsList?.push(news);
+    this.apiSevice.postNews(news).subscribe((res) => {
+      console.log(res);
+      this.newsList?.push(res);
+    });
   }
 }
-export interface storyModel {
-  content: string;
-  storyId: number;
+export interface News {
+  _id?: string;
+  publisherName: string;
+  publishedTime?: Date;
+  content: {
+    image?: string;
+    video?: string;
+    text?: string;
+  };
+  comment?: [
+    {
+      publisherName: string;
+      publishedTime: Date;
+      content: {
+        image?: string;
+        video?: string;
+        text?: string;
+      };
+    }
+  ];
+  likedIdList?: [{ userId: string }];
 }

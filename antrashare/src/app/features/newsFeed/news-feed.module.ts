@@ -11,6 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { CommentComponent } from './components/news-feed/post-list/comment/comment.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewsfeedRoutingModule } from './newsfeed-routing.modules';
+import { MatCardModule } from '@angular/material/card';
+import { CommentFormComponent } from './components/news-feed/post-list/comment/comment-form/comment-form.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { NewsfeedRoutingModule } from './newsfeed-routing.modules';
     NewsFeedFormComponent,
     PostListComponent,
     CommentComponent,
+    CommentFormComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +32,7 @@ import { NewsfeedRoutingModule } from './newsfeed-routing.modules';
     ReactiveFormsModule,
     NewsfeedRoutingModule,
     FormsModule,
+    MatCardModule,
   ],
   exports: [],
 })

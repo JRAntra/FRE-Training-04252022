@@ -32,8 +32,9 @@ export class LoginComponent implements OnInit {
       })
       .subscribe((res) => {
         console.log(res);
+        localStorage.setItem('userInfo', JSON.stringify(res));
       });
-    console.log(this.form.value);
+
     this.router.navigate(['newsfeed']);
   }
 }
