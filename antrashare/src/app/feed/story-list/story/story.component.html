@@ -2,22 +2,22 @@
 
   <div id="poster">
     <div id="avatar" class="avatar"></div>
-    <h4>{{story.publisherName}}</h4>
+    <h4 *ngIf="story.publisherName && story.publisherName.length">{{story.publisherName || "- No publisherName -"}}</h4>
   </div>
 
   <p *ngIf="story.content" id="content">
-    <p *ngIf="story.content.image && story.content.image.length">
-      Image: {{ story.content.image }}
+    <p>
+      Image: {{story.content.image ? story.content.image : "- No image -"}}
     </p>
-    <p *ngIf="story.content.video && story.content.video.length">
-      Video: {{ story.content.video }}
+    <p>
+      Text: {{story.content.text ? story.content.text : "- No text -"}}
     </p>
-    <p *ngIf="story.content.text && story.content.text.length">
-      Text: {{ story.content.text }}
+    <p>
+      Video: {{story.content.video ? story.content.video : "- No video -"}}
     </p>
 
-  <div id="other">
-    <app-comment></app-comment>
+  <div *ngIf="story.comment && story.comment.length" id="other">
+    <app-comment [comments]="story.comment"></app-comment>
   </div>
 
   <div id="feedback">
