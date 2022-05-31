@@ -1,17 +1,42 @@
-<div id="login" class="section">
-
-  <img id="logo" src="../../assets/logo.png" alt="antra" width="200" height="200">
-
-  <div class="form-group">
-    <label for="username">Username:</label>
-    <input type="text" class="form-control" id="username">
-  </div>
-
-  <div class="form-group">
-    <label for="password">Password:</label>
-    <input type="password" class="form-control" id="password">
-  </div>
-
-  <button type="button" class="btn btn-lg btn-black" routerLink="/feed">Login</button>
-  <button type="button" class="btn btn-lg btn-black" routerLink="/register">Sign Up</button>
-</div>
+<main>
+  <form class="div__main" [formGroup]="form">
+    <fieldset>
+      <img class="logo" src="#" />
+      <div class="row">
+        <label for="useremail" id="label-useremail">Useremail</label>
+        <input
+          #useremail
+          type="text"
+          id="useremail"
+          formControlName="useremail"
+        />
+      </div>
+      <div class="row">
+        <label for="password" id="label-username">Password</label>
+        <input
+          #password
+          type="password"
+          id="password"
+          formControlName="password"
+        />
+      </div>
+      <button
+        mat-raised-button
+        (click)="onLogin()"
+        class="btn btn-login btn-green"
+      >
+        Login
+      </button>
+      <div class="row">
+        <a (click)="onRegister()" target="_blank">
+          No Account? Register Now!
+        </a>
+      </div>
+      <div class="row">
+        <input type="checkbox" id="agreement" />
+        <label for="agreement">Agreement</label>
+        <a href="#" target="_blank">Need Help?</a>
+      </div>
+    </fieldset>
+  </form>
+</main>
