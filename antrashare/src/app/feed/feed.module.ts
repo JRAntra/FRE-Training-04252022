@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { FeedRoutingModule } from './feed-routing.module';
 import { StoryComponent } from './story-list/story/story.component' //'./feed/story-list/story/story.component';
 import { PostComponent } from './post/post.component';
@@ -17,10 +17,12 @@ import { FeedComponent } from './feed.component';
         PostComponent,
         CommentComponent,
         StoryListComponent
+    
     ],
     imports: [
         CommonModule,
-        FeedRoutingModule
+        FeedRoutingModule,
+        ReactiveFormsModule
     ]
 })
 

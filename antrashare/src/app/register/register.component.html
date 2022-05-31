@@ -1,24 +1,26 @@
 <div id="register" class="section">
   <h1> Welcome to Antra </h1>
-  <div class="form-group">
-    <label for="username">Username:</label>
-    <input type="text" class="form-control" id="username">
-  </div>
+  <form [formGroup]="registerForm" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" class="form-control" id="username" formControlName="username">
+    </div>
 
-  <div class="form-group">
-    <label for="email">Email:</label>
-    <input type="text" class="form-control" id="email">
-  </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" class="form-control" id="email" formControlName="email">
+    </div>
 
-  <div class="form-group">
-    <label for="password">Password:</label>
-    <input type="password" class="form-control" id="password">
-  </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" id="password" formControlName="password">
+    </div>
 
-  <div class="form-group">
-    <label for="comfirm">Password Comfirm:</label>
-    <input type="password" class="form-control" id="comfirm">
-  </div>
-
-  <button type="button" class="btn btn-lg btn-black" routerLink="/feed">Register</button>
+    <div class="form-group">
+      <label for="comfirm">Password Comfirm:</label>
+      <input type="password" class="form-control" id="comfirm" formControlName="cPassword">
+    </div>
+    <p>{{error}}</p>
+    <button class="btn btn-lg btn-black">Register</button>
+  </form>
 </div>
