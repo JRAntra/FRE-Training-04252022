@@ -1,7 +1,7 @@
 <section class="displayPostsField">
   <ul>
     <li class="postlist" *ngFor="let story of storyList">
-      <mat-card class="example-card">
+      <mat-card class="postlist-card">
         <mat-card-header>
           <div mat-card-avatar class="avatar"></div>
           <mat-card-title>{{ story.publisherName }}</mat-card-title>
@@ -10,17 +10,19 @@
           }}</mat-card-subtitle>
         </mat-card-header>
         <img
+          class="postlist-img"
           *ngIf="story.content"
           mat-card-image
           [src]="story.content.image"
           [alt]=""
         />
         <mat-card-content>
-          <p *ngIf="story.content">
+          <p class="card-content" *ngIf="story.content">
             {{ story.content.text }}
           </p>
         </mat-card-content>
         <mat-card-actions
+          class="card-actions"
           [ngStyle]="{ display: 'flex', 'justify-content': 'space-between' }"
         >
           <div>

@@ -1,45 +1,50 @@
-<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div>
-    <img [src]="imageUrl" alt="antrashare" />
+<section class="login-page">
+  <div class="header">
+    <h1>Log In</h1>
   </div>
-  <div>
-    <mat-form-field appearance="fill">
-      <mat-label>User Email:</mat-label>
-      <input matInput placeholder="User Name" formControlName="userEmail" />
-      <mat-error>userEmail is required</mat-error>
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field appearance="fill">
-      <mat-label>Password:</mat-label>
-      <input
-        matInput
-        type="password"
-        placeholder="Password"
-        formControlName="password"
-      />
-      <mat-error>Password is required</mat-error>
-    </mat-form-field>
-  </div>
-  <div id="form-footer">
+  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div>
-      <mat-checkbox formControlName="agreement">Agreement</mat-checkbox>
+      <img [src]="imageUrl" alt="antrashare" />
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>User Email:</mat-label>
+        <input matInput placeholder="User Name" formControlName="userEmail" />
+        <mat-error>userEmail is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Password:</mat-label>
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+        <mat-error>Password is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div id="form-footer">
+      <div>
+        <mat-checkbox formControlName="agreement">Agreement</mat-checkbox>
+      </div>
+
+      <div><a>Need Help?</a></div>
+    </div>
+    <div>
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit"
+        [disabled]="!form.value.agreement"
+      >
+        Log In
+      </button>
     </div>
 
-    <div><a>Need Help?</a></div>
-  </div>
-  <div>
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      [disabled]="!form.value.agreement"
-    >
-      Log In
-    </button>
-  </div>
-
-  <div id="linkToRegister">
-    <a routerLink="/register">No Account? Register Now!</a>
-  </div>
-</form>
+    <div id="linkToRegister">
+      <a routerLink="/register">No Account? Register Now!</a>
+    </div>
+  </form>
+</section>
