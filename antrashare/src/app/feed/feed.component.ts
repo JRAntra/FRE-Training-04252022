@@ -17,4 +17,30 @@ export class FeedComponent implements OnInit, OnDestroy {
 
   constructor(private storiesService: StoriesService) { }
 
+  // method grabbing stories from backend
+  displayStories() {
+    this.subscriptions.push(
+      this.storiesService.getStories().subscribe(
+        (response: News[]) => {
+          this.stories = response;
+          console.log('Response received: ', response, 'this.stories: ', this.stories);
+        },
+        (error: any) => {
+          console.log('Request failed with error.');
+        },
+        () => {
+          console.log('Request for stories completed.');
+        }
+      )
+    )
+  };
+
+  ngOnInit(): void {
+    this.displayStories();
+  };
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
 }
