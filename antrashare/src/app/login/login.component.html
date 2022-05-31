@@ -1,17 +1,19 @@
 <div id="login" class="section">
 
   <img id="logo" src="../../assets/logo.png" alt="antra" width="200" height="200">
+  <form [formGroup]="loginForm" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" formControlName="email">
+    </div>
 
-  <div class="form-group">
-    <label for="username">Username:</label>
-    <input type="text" class="form-control" id="username">
-  </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" id="password" formControlName="password">
+    </div>
+    <p>{{error}}</p>
+    <button class="btn btn-lg btn-black button">Login</button>
+  </form>
+  <button type="button" class="btn btn-lg btn-black button" routerLink="/register">Sign Up</button>
 
-  <div class="form-group">
-    <label for="password">Password:</label>
-    <input type="password" class="form-control" id="password">
-  </div>
-
-  <button type="button" class="btn btn-lg btn-black" routerLink="/feed">Login</button>
-  <button type="button" class="btn btn-lg btn-black" routerLink="/register">Sign Up</button>
 </div>
