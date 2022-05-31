@@ -2,10 +2,13 @@
 
   <div id="poster">
     <div id="avatar" class="avatar"></div>
-    <h4 *ngIf="story.publisherName && story.publisherName.length">{{story.publisherName || "- No publisherName -"}}</h4>
+    <h4>{{story.publisherName ? story.publisherName : "- No publisherName -"}}</h4>
   </div>
 
-  <p *ngIf="story.content" id="content">
+  <p id="content">
+    <p>
+      Time: {{ story.publishedTime ? story.publishedTime : "1"}}
+    </p>
     <p>
       Image: {{story.content.image ? story.content.image : "- No image -"}}
     </p>
