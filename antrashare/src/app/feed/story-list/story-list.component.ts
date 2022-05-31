@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { News } from '../../shared/models/News';
 
 @Component({
   selector: 'app-story-list',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./story-list.component.sass']
 })
 export class StoryListComponent implements OnInit {
+
+  @Input() stories: News[] = [];
 
   constructor() { }
 
