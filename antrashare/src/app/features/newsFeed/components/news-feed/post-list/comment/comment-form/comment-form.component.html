@@ -1,11 +1,11 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="legacy" class="inputField">
+<form class="center-items" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="legacy" class="center-items">
     <mat-label>Comment</mat-label>
-    <input matInput formControlName="comment" #input />
+    <input matInput formControlName="comment" #input class="comment-input" />
     <div class="submitBtn">
       <button
         mat-button
-        color="primary"
+        color="accent"
         class="btn"
         type="submit"
         [disabled]="!input.value"

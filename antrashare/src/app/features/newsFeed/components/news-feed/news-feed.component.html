@@ -1,8 +1,11 @@
-<div class="postContainer">
+<section class="postContainer">
+  <div class="header">
+    <h1>My Newsfeed</h1>
+  </div>
   <div class="postForm">
     <app-news-feed-form (postNewStory)="onPost($event)"></app-news-feed-form>
   </div>
   <div class="postList">
     <app-post-list [storyList]="newsList"></app-post-list>
   </div>
-</div>
+</section>
