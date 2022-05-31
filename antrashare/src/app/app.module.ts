@@ -1,7 +1,7 @@
 // ANGULAR MODULES
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from 'angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 // LOCAL MODULES
 import { AppRoutingModule } from './app-routing.module';
