@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/core/services/api.service';
+import { NewsfeedService } from '../../newsfeed.service';
 
 @Component({
   selector: 'app-news-feed',
@@ -10,10 +10,10 @@ export class NewsFeedComponent implements OnInit {
   newsList?: News[];
   userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
 
-  constructor(private apiSevice: ApiService) {}
+  constructor(private newsfeedService: NewsfeedService) {}
 
   ngOnInit(): void {
-    this.apiSevice.getNews().subscribe((res) => {
+    this.newsfeedService.getNews().subscribe((res) => {
       this.newsList = res;
     });
   }
@@ -26,7 +26,7 @@ export class NewsFeedComponent implements OnInit {
     };
     console.log(news);
     // this.newsList?.push(news);
-    this.apiSevice.postNews(news).subscribe((res) => {
+    this.newsfeedService.postNews(news).subscribe((res) => {
       console.log(res);
       this.newsList?.push(res);
     });

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/core/services/api.service';
+import { RegisterService } from '../../register.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +16,10 @@ export class RegisterComponent implements OnInit {
 
   hide = true;
 
-  constructor(private router: Router, private apiService: ApiService) {}
+  constructor(
+    private router: Router,
+    private registerService: RegisterService
+  ) {}
 
   getErrorMessage() {
     if (this.username.hasError('required')) return 'You must enter a value';
@@ -37,7 +39,7 @@ export class RegisterComponent implements OnInit {
       userEmail: this.email.value,
       password: this.password.value,
     };
-    this.apiService.registerUser(user).subscribe((res) => {
+    this.registerService.registerUser(user).subscribe((res) => {
       console.log(res);
       localStorage.setItem('userInfo', JSON.stringify(res));
       this.router.navigate(['newsfeed']);
