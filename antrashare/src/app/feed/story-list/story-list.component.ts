@@ -22,7 +22,7 @@ export class StoryListComponent implements OnInit, OnDestroy, OnChanges {
       this.storiesService.getNews().subscribe(
         (response: News[]) => {
           this.newsList = response;
-          console.log('Response received: ', response, 'this.newsList: ', this.newsList);
+          // console.log('Response received: ', response, 'this.newsList: ', this.newsList);
         },
         (error: any) => console.log('Request failed with error: ', error),
         // () => console.log('Request for newsList completed.')
