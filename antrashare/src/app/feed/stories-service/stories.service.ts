@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { News } from '../../shared/models/News';
 
@@ -8,15 +9,22 @@ import { News } from '../../shared/models/News';
 })
 export class StoriesService {
 
+  baseURL: string = 'http://localhost:3000/';
+
   constructor(private http: HttpClient) { }
 
   // Method to grab an array of stories from backend. Returns Observable
-  getStories() {
-    return this.http.get<News[]>('http://localhost:4231/api/news');
-  }
-
-  // Method to insert a new story into the backend. Returns Observable
-  postNews(doc: News) {
-    return this.http.post<News>('http://localhost:4231/api/news', doc);
+  getNews(): Observable<News[]> {
+    const headers = { 'content-type': 'application/json' };
+    return this.http.get<News[]>(this.baseURL + 'api/news', { headers });
   }
 }
+/*
+  postNews(news: any) {
+    const headers = { 'content-type': 'application/json' };
+    const body = JSON.stringify(news);
+    return this.http.post(this.baseURL + 'api/news', body, {headers: headers});
+  }
+}
+
+*/
