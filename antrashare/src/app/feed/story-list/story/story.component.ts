@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { News, dummyNews } from 'src/app/shared/models/News';
 
 @Component({
   selector: 'app-story',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoryComponent implements OnInit {
 
+  @Input() news: News | undefined;
+  showComment: boolean = false;
+
   constructor() { }
 
-  ngOnInit(): void {
+  showHideComments() {
+    this.showComment = !this.showComment;
   }
+
+  ngOnInit(): void { }
 
 }

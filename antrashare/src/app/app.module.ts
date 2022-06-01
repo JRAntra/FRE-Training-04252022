@@ -18,7 +18,7 @@ import { AppComponent } from './app.component';
 import { ErrorComponent } from './shared/error/error.component';
 
 // SERVICES
-import { StoriesService } from '../app/feed/stories-service/stories.service';
+import { StoriesService } from './feed/story-list/stories-service/stories.service';
 @NgModule({
   declarations: [
     NavigationComponent,

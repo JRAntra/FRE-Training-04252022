@@ -1,17 +1,22 @@
-<div id="story">
+<div *ngIf="news" id="story">
   <div id="poster">
     <div id="avatar" class="avatar">
     </div>
-    <h4>Person name</h4>
+    <h4>{{ news.publisherName? news.publisherName : "- No publisherName. TODO: add validation to ensure publisherName exist on POST to backend. -" }}:</h4>
   </div>
-  <p id="content">I am doing something today I am doing something today I am doing something today I am doing something today I am doing something today I am doing something today I am doing something today</p>
-  <div id="other">
-    <app-comment></app-comment>
-    <app-comment></app-comment>
-    <app-comment></app-comment>
+  <p *ngIf="!news.content">news.content is not exist
+
+  <p *ngIf="news.content" id="content">
+    <img *ngIf="news.content.image" src={{news.content.image}} />
+    <p *ngIf="news.content.text">news.content.text: {{news.content.text}}
+    <p *ngIf="news.content.video">news.content.video: {{news.content.video}}
+  </p>
+
+  <div [style.visibility]=" showComment ? 'visible' : 'hidden' " *ngIf="news.comment && news.comment.length" id="other">
+    <app-comment [comments]="news.comment"></app-comment>
   </div>
   <div id="feedback">
     <input id="comment1" type="text" />
-    <button id="comment2" class="btn-black btn btn-sm">comment</button>
+    <button (click)="showHideComments()" id="comment2" class="btn-black btn btn-sm">{{ showComment ? "Hide Comment" : "See Comment"}}</button>
   </div>
 </div>
