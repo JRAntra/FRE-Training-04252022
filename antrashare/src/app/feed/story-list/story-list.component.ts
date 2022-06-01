@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { News } from '../../shared/models/News';
-import { StoriesService } from './stories-service/stories.service';
+import { StoriesService } from '../story-list/stories-service/stories.service';
 
 @Component({
   selector: 'app-story-list',

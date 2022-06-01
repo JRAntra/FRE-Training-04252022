@@ -4,7 +4,7 @@
     <h5>{{ comment.publisherName ? comment.publisherName : "- No comment.publisherName. TODO: ensure a post to backend includes publisherName -" }}</h5>
   </div>
   <p *ngIf="comment.content" id="content">
-    <img *ngIf="comment.content.image && comment.content.image.trim()" src={{ comment.content.image }}/>
-    <p *ngIf="comment.content.text">{{ comment.content.text }}
-    <p *ngIf="comment.content.video && comment.content.image.trim()">{{ comment.content.video }} />
+    <img *ngIf="comment.content.image && comment.content.image.trim()" src={{comment.content.image}}/>
+    <p *ngIf="comment.content.text">comment.text: {{ comment.content.text }}
+    <p *ngIf="comment.content.video && comment.content.image.trim()">comment.video: {{ comment.content.video }} />
 </div>

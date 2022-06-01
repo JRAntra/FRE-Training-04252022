@@ -4,11 +4,14 @@
     </div>
     <h4>{{ news.publisherName? news.publisherName : "- No publisherName. TODO: add validation to ensure publisherName exist on POST to backend. -" }}:</h4>
   </div>
+  <p *ngIf="!news.content">news.content is not exist
+
   <p *ngIf="news.content" id="content">
     <img *ngIf="news.content.image" src={{news.content.image}} />
-    <p *ngIf="news.content.text">{{ news.content.text }}
-    <p *ngIf="news.content.video">{{news.content.video}}
+    <p *ngIf="news.content.text">news.content.text: {{news.content.text}}
+    <p *ngIf="news.content.video">news.content.video: {{news.content.video}}
   </p>
+
   <div *ngIf="news.comment && news.comment.length" id="other">
     <app-comment [comments]="news.comment"></app-comment>
   </div>
