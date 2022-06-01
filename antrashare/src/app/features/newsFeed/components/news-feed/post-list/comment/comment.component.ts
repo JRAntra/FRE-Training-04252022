@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { ApiService } from 'src/app/core/services/api.service';
 import { News } from '../../news-feed.component';
+import { NewsfeedService } from 'src/app/features/newsFeed/newsfeed.service';
 
 @Component({
   selector: 'app-comment',
@@ -12,7 +12,7 @@ export class CommentComponent implements OnInit {
 
   avatarUrl = '../assets/antrashare.png';
   userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
-  constructor(private apiService: ApiService) {}
+  constructor(private newsfeedService: NewsfeedService) {}
 
   ngOnInit(): void {}
 
@@ -23,8 +23,10 @@ export class CommentComponent implements OnInit {
       content: { text: event },
     };
     this.story?.comment?.push(newComment);
-    this.apiService.addComment(newComment, this.story?._id).subscribe((res) => {
-      console.log(res);
-    });
+    this.newsfeedService
+      .addComment(newComment, this.story?._id)
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
 }
