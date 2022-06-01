@@ -19,12 +19,3 @@ export class StoriesService {
     return this.http.get<News[]>(this.baseURL + 'api/news', { headers });
   }
 }
-/*
-  postNews(news: any) {
-    const headers = { 'content-type': 'application/json' };
-    const body = JSON.stringify(news);
-    return this.http.post(this.baseURL + 'api/news', body, {headers: headers});
-  }
-}
-
-*/
