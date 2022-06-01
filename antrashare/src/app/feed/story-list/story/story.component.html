@@ -1,14 +1,16 @@
-<div id="story">
+<div *ngIf="news" id="story">
   <div id="poster">
     <div id="avatar" class="avatar">
     </div>
-    <h4>Person name</h4>
+    <h4>{{ news.publisherName? news.publisherName : "- No publisherName. TODO: add validation to ensure publisherName exist on POST to backend. -" }}:</h4>
   </div>
-  <p id="content">I am doing something today I am doing something today I am doing something today I am doing something today I am doing something today I am doing something today I am doing something today</p>
-  <div id="other">
-    <app-comment></app-comment>
-    <app-comment></app-comment>
-    <app-comment></app-comment>
+  <p *ngIf="news.content" id="content">
+    <img *ngIf="news.content.image" src={{news.content.image}} />
+    <p *ngIf="news.content.text">{{ news.content.text }}
+    <p *ngIf="news.content.video">{{news.content.video}}
+  </p>
+  <div *ngIf="news.comment && news.comment.length" id="other">
+    <app-comment [comments]="news.comment"></app-comment>
   </div>
   <div id="feedback">
     <input id="comment1" type="text" />

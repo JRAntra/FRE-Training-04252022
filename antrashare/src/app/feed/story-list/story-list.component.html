@@ -1,4 +1,4 @@
-<div id="list" class="section">
+<div *ngIf="newsList && newsList.length" id="list" class="section">
   <h4>What's happen today? </h4>
   <app-story *ngFor="let news of newsList" [news]="news"></app-story>
 </div>

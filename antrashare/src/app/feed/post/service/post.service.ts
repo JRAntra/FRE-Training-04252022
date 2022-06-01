@@ -16,5 +16,3 @@ export class PostService {
     return this.http.post(this.baseURL + 'api/news', body, {headers: headers});
   }
 }
-
-
