@@ -8,7 +8,7 @@ import { NewsfeedService } from '../../newsfeed.service';
 })
 export class NewsFeedComponent implements OnInit {
   newsList?: News[];
-  userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+  userInfo_userName = localStorage.getItem('userInfo_userName') || '';
 
   constructor(private newsfeedService: NewsfeedService) {}
 
@@ -16,11 +16,12 @@ export class NewsFeedComponent implements OnInit {
     this.newsfeedService.getNews().subscribe((res) => {
       this.newsList = res;
     });
+    console.log(this.userInfo_userName);
   }
 
   onPost(event: string) {
     const news: News = {
-      publisherName: this.userInfo.userName,
+      publisherName: this.userInfo_userName,
       publishedTime: new Date(),
       content: { text: event },
     };

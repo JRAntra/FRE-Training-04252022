@@ -9,8 +9,13 @@
     <div>
       <mat-form-field appearance="fill">
         <mat-label>User Email:</mat-label>
-        <input matInput placeholder="User Name" formControlName="userEmail" />
-        <mat-error>userEmail is required</mat-error>
+        <input
+          matInput
+          placeholder="User Name"
+          formControlName="userEmail"
+          required
+        />
+        <mat-error>{{ getErrorMessage() }}</mat-error>
       </mat-form-field>
     </div>
     <div>
@@ -21,8 +26,9 @@
           type="password"
           placeholder="Password"
           formControlName="password"
+          required
         />
-        <mat-error>Password is required</mat-error>
+        <mat-error>{{ getErrorMessage() }}</mat-error>
       </mat-form-field>
     </div>
     <div id="form-footer">
@@ -32,12 +38,13 @@
 
       <div><a>Need Help?</a></div>
     </div>
+
     <div>
       <button
         mat-raised-button
         color="accent"
         type="submit"
-        [disabled]="!form.value.agreement"
+        [disabled]="!form.value.agreement || form.invalid"
       >
         Log In
       </button>
@@ -45,6 +52,9 @@
 
     <div id="linkToRegister">
       <a routerLink="/register">No Account? Register Now!</a>
+    </div>
+    <div>
+      {{ errorMessage }}
     </div>
   </form>
 </section>

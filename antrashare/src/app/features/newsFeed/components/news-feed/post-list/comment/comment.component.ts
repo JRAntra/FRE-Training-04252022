@@ -11,14 +11,14 @@ export class CommentComponent implements OnInit {
   @Input() story?: News;
 
   avatarUrl = '../assets/antrashare.png';
-  userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+  userInfo_userName = localStorage.getItem('userInfo_userName') || '';
   constructor(private newsfeedService: NewsfeedService) {}
 
   ngOnInit(): void {}
 
   postComment(event: string) {
     const newComment = {
-      publisherName: this.userInfo.userName,
+      publisherName: this.userInfo_userName,
       publishedTime: new Date(),
       content: { text: event },
     };
