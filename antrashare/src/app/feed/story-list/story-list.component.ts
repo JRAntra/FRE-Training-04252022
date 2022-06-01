@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { News } from '../../shared/models/News';
 import { StoriesService } from '../story-list/stories-service/stories.service';
@@ -9,7 +9,7 @@ import { StoriesService } from '../story-list/stories-service/stories.service';
   styleUrls: ['./story-list.component.sass']
 })
 
-export class StoryListComponent implements OnInit, OnDestroy {
+export class StoryListComponent implements OnInit, OnDestroy, OnChanges {
 
   newsList: News[] = [];
   subscriptions: any[] = [];
@@ -17,7 +17,7 @@ export class StoryListComponent implements OnInit, OnDestroy {
   constructor( private storiesService: StoriesService ) { }
 
   // method grabbing stories from backend
-  displayStories() {
+  displayStories(): void {
     this.subscriptions.push(
       this.storiesService.getNews().subscribe(
         (response: News[]) => {
@@ -41,4 +41,6 @@ export class StoryListComponent implements OnInit, OnDestroy {
     // unsubscribe subscriptions to release memory and avoid memory leak
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
+
+  ngOnChanges(): void {  }
 }
