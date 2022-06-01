@@ -10,11 +10,13 @@ import { LoginService } from '../../login.service';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup = this.fb.group({
-    userEmail: [null, Validators.required],
+    userEmail: [null, Validators.email],
     password: [null, Validators.required],
     agreement: false,
   });
   imageUrl = '../assets/BroCode.jpeg';
+
+  errorMessage?: string;
 
   constructor(
     private router: Router,
@@ -24,17 +26,30 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSubmit() {
-    this.loginService
-      .loginUser({
-        userEmail: this.form.value.userEmail,
-        password: this.form.value.password,
-      })
-      .subscribe((res) => {
-        console.log(res);
-        localStorage.setItem('userInfo', JSON.stringify(res));
-      });
+  getErrorMessage() {
+    if (this.form.invalid) return 'You must enter a corret value';
+    return;
+  }
+  loginErrorMessage?: string;
 
-    this.router.navigate(['newsfeed']);
+  onSubmit() {
+    if (this.form.valid) {
+      this.loginService
+        .loginUser({
+          userEmail: this.form.value.userEmail,
+          password: this.form.value.password,
+        })
+        .subscribe((res) => {
+          console.log(res);
+          if (res.userName) {
+            console.log(res.userName);
+            localStorage.setItem(
+              'userInfo_userName',
+              JSON.stringify(res.userName)
+            );
+            this.router.navigate(['newsfeed']);
+          }
+        });
+    }
   }
 }

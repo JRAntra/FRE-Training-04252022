@@ -57,7 +57,14 @@
         getErrorMessage()
       }}</mat-error>
     </mat-form-field>
-
-    <button mat-raised-button color="accent">Register</button>
+    <div
+      *ngIf="
+        passwordConfirmation.touched &&
+        passwordConfirmation.value !== password.value
+      "
+    >
+      {{ getErrorMessage() }}
+    </div>
+    <button mat-raised-button color="accent" type="submit">Register</button>
   </form>
 </section>

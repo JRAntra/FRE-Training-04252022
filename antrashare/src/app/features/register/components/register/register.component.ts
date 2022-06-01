@@ -27,23 +27,37 @@ export class RegisterComponent implements OnInit {
     if (this.passwordConfirmation.hasError('required'))
       return 'You must enter a value';
     if (this.email.hasError('required')) return 'You must enter a value';
-
+    if (this.password.value !== this.passwordConfirmation.value)
+      return 'Passwords do NOT match ';
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
   ngOnInit(): void {}
 
   onSubmit() {
-    const user = {
+    const user: User = {
       userName: this.username.value,
       userEmail: this.email.value,
       password: this.password.value,
     };
+    console.log('test register button');
     this.registerService.registerUser(user).subscribe((res) => {
-      console.log(res);
-      localStorage.setItem('userInfo', JSON.stringify(res));
-      this.router.navigate(['newsfeed']);
+      if (res.userEmail) {
+        console.log(res.userEmail);
+        this.router.navigate(['/login']);
+      }
     });
-    // this.router.navigate(['/login']);
   }
+}
+
+export interface User {
+  name?: string;
+  userName: string;
+  userEmail: string;
+  password: string;
+
+  userRole?: string;
+  age?: number;
+  gender?: string;
+  phone?: string;
 }
