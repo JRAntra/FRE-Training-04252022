@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       this.error = 'Make sure to fill up all the things';
     }
 
-    if (valid == 1) {
+    if (valid) {
       const newUser = {
         userEmail: this.loginForm.value.email,
         password: this.loginForm.value.password

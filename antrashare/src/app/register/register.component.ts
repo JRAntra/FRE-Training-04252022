@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
       }
     });
 
-    if (valid == 1) {
+    if (valid) {
       const newUser = {
         userName: this.registerForm.value.username,
         userEmail: this.registerForm.value.email,
@@ -75,6 +75,7 @@ export class RegisterComponent implements OnInit {
       };
       
       this.service.registerAccount(newUser).subscribe((data) => {
+        // add something
         this.router.navigate(["feed"]);
       });
     }
