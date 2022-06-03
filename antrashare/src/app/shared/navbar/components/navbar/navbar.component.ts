@@ -17,7 +17,6 @@ export class NavbarComponent implements OnInit {
     private location: Location
   ) {
     location.onUrlChange((val) => {
-      console.log(val);
       this.likeListBtn = val === '/newsfeed';
     });
   }

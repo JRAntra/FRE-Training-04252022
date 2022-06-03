@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { resetFakeAsyncZone } from '@angular/core/testing';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../../login.service';
@@ -9,11 +10,12 @@ import { LoginService } from '../../login.service';
   styleUrls: ['./login.component.sass'],
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup = this.fb.group({
+  form!: FormGroup;
+  formElements = {
     userEmail: [null, Validators.email],
     password: [null, Validators.required],
     agreement: false,
-  });
+  };
   imageUrl = '../assets/BroCode.jpeg';
 
   errorMessage?: string;
@@ -24,12 +26,13 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService
   ) {}
 
-  ngOnInit(): void {}
-
-  getErrorMessage() {
-    if (this.form.invalid) return 'You must enter a corret value';
-    return;
+  ngOnInit(): void {
+    this.form = this.fb.group(this.formElements);
+    this.errorMessage = this.form.invalid
+      ? 'You must enter a corret value'
+      : '';
   }
+
   loginErrorMessage?: string;
 
   onSubmit() {
@@ -39,17 +42,24 @@ export class LoginComponent implements OnInit {
           userEmail: this.form.value.userEmail,
           password: this.form.value.password,
         })
-        .subscribe((res) => {
-          console.log(res);
-          if (res.userName) {
-            console.log(res.userName);
-            localStorage.setItem(
-              'userInfo_userName',
-              JSON.stringify(res.userName)
-            );
-            this.router.navigate(['newsfeed']);
+        .subscribe(
+          (res) => {
+            //check if login successfully
+            if (res.userName) {
+              localStorage.setItem(
+                'userInfo_userName',
+                JSON.stringify(res.userName)
+              );
+              //if login successful, navigate to newsfeed
+              this.router.navigate(['newsfeed']);
+            }
+          },
+          (error) => {
+            console.log(error);
           }
-        });
+        );
     }
+    this.form.reset();
+    this.errorMessage = '';
   }
 }

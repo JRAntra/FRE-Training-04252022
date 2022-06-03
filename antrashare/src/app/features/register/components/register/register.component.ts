@@ -60,4 +60,7 @@ export interface User {
   age?: number;
   gender?: string;
   phone?: string;
+
+  likeList?: [];
+  avatarUrl?: string;
 }

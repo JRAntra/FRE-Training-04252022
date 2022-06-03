@@ -28,8 +28,7 @@ export class LoginService {
   loginUrl = 'api/login';
 
   loginUser(logInfo: any): Observable<any> {
-    return this.http
-      .post(baseURL + this.loginUrl, logInfo)
-      .pipe(catchError(this.handleError));
+    return this.http.post(baseURL + this.loginUrl, logInfo);
+    // .pipe(catchError(this.handleError));
   }
 }

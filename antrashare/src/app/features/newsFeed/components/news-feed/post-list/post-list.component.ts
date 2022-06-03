@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { NewsfeedService } from '../../../newsfeed.service';
 import { News } from '../news-feed.component';
 
 @Component({
@@ -9,11 +11,19 @@ import { News } from '../news-feed.component';
 export class PostListComponent implements OnInit {
   @Input() storyList?: News[];
 
+  likeBtn: string = 'LIKE';
+  color = 'LIKE';
   avatarUrl = '../assets/bro-logo.png';
 
-  constructor() {}
+  constructor(private newsfeedService: NewsfeedService) {}
 
-  ngOnInit(): void {
-    console.log('feed list init');
+  ngOnInit(): void {}
+  addLikeList(story: News, likes: any) {
+    if (likes.textContent === 'LIKE') {
+      this.newsfeedService.addLikeList(story);
+      likes.textContent = 'UNLIKE';
+    } else {
+      likes.textContent = 'LIKE';
+    }
   }
 }

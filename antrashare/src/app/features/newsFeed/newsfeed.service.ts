@@ -1,13 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { filter, Observable, Subject } from 'rxjs';
 import { News } from 'src/app/features/newsFeed/components/news-feed/news-feed.component';
 import { baseURL } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NewsfeedService {
+  likeList$ = new Subject<any>();
+
   constructor(private http: HttpClient) {}
 
   getNews(): Observable<News[]> {
@@ -29,4 +32,32 @@ export class NewsfeedService {
       headers: headers,
     });
   }
+
+  addLikeList(story: News) {
+    this.likeList$.next(story);
+  }
+
+  getLikeListSubject() {
+    return this.likeList$;
+  }
+  // search(name: string): Observable<any> {
+  //   if (name === '') {
+  //     return this.http.get<News[]>(baseURL + 'api/news');
+  //   } else {
+  //     return this.http.get<News[]>(baseURL + 'api/news').pipe(
+  //       map((response) => {
+  //         return response.filter((item) => {
+  //           if (
+  //             item.content?.['text']?.length &&
+  //             item.content?.['text'].length > 0
+  //           ) {
+  //             return item.content?.['text'].includes(name);
+  //           } else {
+  //             return;
+  //           }
+  //         });
+  //       })
+  //     );
+  //   }
+  // }
 }

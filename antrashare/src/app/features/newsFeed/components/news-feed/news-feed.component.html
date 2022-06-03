@@ -5,6 +5,14 @@
   <div class="postForm">
     <app-news-feed-form (postNewStory)="onPost($event)"></app-news-feed-form>
   </div>
+  <div>
+    <input
+      type="search"
+      placeholder="Search"
+      id="search"
+      (keyup)="search(getValue($event))"
+    />
+  </div>
   <div class="postList">
     <app-post-list [storyList]="newsList"></app-post-list>
   </div>
