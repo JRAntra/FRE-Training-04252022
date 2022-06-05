@@ -12,7 +12,6 @@ export class PostListComponent implements OnInit {
   @Input() storyList?: News[];
 
   likeBtn: string = 'LIKE';
-  color = 'LIKE';
   avatarUrl = '../assets/bro-logo.png';
 
   constructor(private newsfeedService: NewsfeedService) {}
@@ -23,6 +22,7 @@ export class PostListComponent implements OnInit {
       this.newsfeedService.addLikeList(story);
       likes.textContent = 'UNLIKE';
     } else {
+      this.newsfeedService.deleteLikeList(story);
       likes.textContent = 'LIKE';
     }
   }

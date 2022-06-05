@@ -12,33 +12,29 @@ export class NewsFeedComponent implements OnInit {
   newsList?: News[];
   allList?: News[];
   userInfo_userName = localStorage.getItem('userInfo_userName') || '';
-  newsList$!: Observable<News[]>;
   private searchText$ = new Subject<string>();
 
   constructor(private newsfeedService: NewsfeedService) {}
 
   ngOnInit(): void {
     this.newsfeedService.getNews().subscribe((res) => {
-      this.newsList = res;
-      this.allList = res;
+      if (res !== undefined) {
+        let newsSort = res.reverse();
+        this.newsList = res;
+        this.allList = res;
+      }
     });
-
     this.searchText$
       .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe((val) => {
         if (val === '') {
           this.newsList = this.allList;
         } else {
-          this.newsList = this.allList?.filter((news) => {
-            if (
-              news.content?.['text']?.length &&
-              news.content?.['text'].length > 0
-            ) {
-              return news.content?.['text'].includes(val);
-            } else {
-              return;
-            }
-          });
+          this.newsList = this.allList?.filter(
+            (news) =>
+              news.content?.text?.includes(val) ||
+              news.publisherName?.includes(val)
+          );
         }
       });
   }

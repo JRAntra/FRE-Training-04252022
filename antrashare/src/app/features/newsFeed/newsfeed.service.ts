@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class NewsfeedService {
   likeList$ = new Subject<any>();
+  deleteLike$ = new Subject<any>();
 
   constructor(private http: HttpClient) {}
 
@@ -37,27 +38,7 @@ export class NewsfeedService {
     this.likeList$.next(story);
   }
 
-  getLikeListSubject() {
-    return this.likeList$;
+  deleteLikeList(story: News) {
+    this.deleteLike$.next(story);
   }
-  // search(name: string): Observable<any> {
-  //   if (name === '') {
-  //     return this.http.get<News[]>(baseURL + 'api/news');
-  //   } else {
-  //     return this.http.get<News[]>(baseURL + 'api/news').pipe(
-  //       map((response) => {
-  //         return response.filter((item) => {
-  //           if (
-  //             item.content?.['text']?.length &&
-  //             item.content?.['text'].length > 0
-  //           ) {
-  //             return item.content?.['text'].includes(name);
-  //           } else {
-  //             return;
-  //           }
-  //         });
-  //       })
-  //     );
-  //   }
-  // }
 }

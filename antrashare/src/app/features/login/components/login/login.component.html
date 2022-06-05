@@ -11,11 +11,17 @@
         <mat-label>User Email:</mat-label>
         <input
           matInput
-          placeholder="User Name"
+          placeholder="User Email"
           formControlName="userEmail"
           required
         />
-        <mat-error>{{ errorMessage }}</mat-error>
+        <mat-error *ngIf="form.controls['userEmail'].errors?.['required']"
+          >Email is required</mat-error
+        >
+
+        <mat-error *ngIf="form.controls['userEmail'].errors?.['email']">
+          Your Email format is incorrect</mat-error
+        >
       </mat-form-field>
     </div>
     <div>
@@ -28,7 +34,12 @@
           formControlName="password"
           required
         />
-        <mat-error>{{ errorMessage }}</mat-error>
+        <mat-error *ngIf="form.controls['password'].errors?.['required']"
+          >Password is required</mat-error
+        >
+        <mat-error *ngIf="form.controls['password'].errors?.['minlength']"
+          >You need at least 5 letters password</mat-error
+        >
       </mat-form-field>
     </div>
     <div id="form-footer">

@@ -8,7 +8,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-news-feed-form',
@@ -18,17 +18,23 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class NewsFeedFormComponent implements OnInit {
   @Output() postNewStory = new EventEmitter();
 
-  form = this.fb.group({
+  form!: FormGroup;
+
+  elements = {
     news: [null, Validators.required],
-  });
+  };
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.form = this.fb.group(this.elements);
+  }
 
   onSubmit() {
-    this.postNewStory.emit(this.form.value.news);
+    if (this.form.valid) {
+      this.postNewStory.emit(this.form.value.news);
 
-    this.form.setValue({ news: null });
+      this.form.setValue({ news: null });
+    }
   }
 }

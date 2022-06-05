@@ -39,7 +39,7 @@
           </div>
           <div>
             <button mat-button (click)="addLikeList(story, likes)">
-              <p #likes>LIKE</p></button
+              <p #likes>{{ likeBtn }}</p></button
             ><span>{{ story.likedIdList?.length }}</span>
           </div>
         </mat-card-actions>

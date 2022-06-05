@@ -7,6 +7,8 @@
     <div>{{ story.content.text }}</div>
   </div>
   <div>
-    <button mat-button><mat-icon aria-hidden="false">delete</mat-icon></button>
+    <button mat-button (click)="deleteStory(story)">
+      <mat-icon aria-hidden="false">delete</mat-icon>
+    </button>
   </div>
 </div>
