@@ -9,13 +9,15 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class NewsfeedService {
+  path = 'api/news';
   likeList$ = new Subject<any>();
+  newList: News[] = [];
   deleteLike$ = new Subject<any>();
 
   constructor(private http: HttpClient) {}
 
   getNews(): Observable<News[]> {
-    return this.http.get<News[]>(baseURL + 'api/news');
+    return this.http.get<News[]>(baseURL + this.path);
   }
 
   postNews(news: News): Observable<any> {

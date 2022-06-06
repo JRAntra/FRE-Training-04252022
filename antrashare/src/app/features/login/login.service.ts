@@ -25,10 +25,10 @@ export class LoginService {
     );
   }
   constructor(private http: HttpClient) {}
-  loginUrl = 'api/login';
+  path = 'api/login';
 
   loginUser(logInfo: any): Observable<any> {
-    return this.http.post(baseURL + this.loginUrl, logInfo);
+    return this.http.post(baseURL + this.path, logInfo);
     // .pipe(catchError(this.handleError));
   }
 }

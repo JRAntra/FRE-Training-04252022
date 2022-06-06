@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { NewsfeedService } from '../../newsfeed.service';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-news-feed',
@@ -20,12 +20,14 @@ export class NewsFeedComponent implements OnInit {
     this.newsfeedService.getNews().subscribe((res) => {
       if (res !== undefined) {
         let newsSort = res.reverse();
-        this.newsList = res;
-        this.allList = res;
+        this.newsList = newsSort;
+        this.allList = newsSort;
+        console.log(this.allList);
       }
     });
     this.searchText$
-      .pipe(debounceTime(500), distinctUntilChanged())
+      .pipe(debounceTime(1000), distinctUntilChanged())
+
       .subscribe((val) => {
         if (val === '') {
           this.newsList = this.allList;

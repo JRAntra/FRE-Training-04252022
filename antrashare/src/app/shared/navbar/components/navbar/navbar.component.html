@@ -16,7 +16,7 @@
   <div *ngIf="likeListBtn">
     <button class="likelist" (click)="triggerLikeList()">Like List</button>
     <div *ngIf="showLikeList" class="likelist-content" style="right: 0">
-      <app-like-list></app-like-list>
+      <app-like-list [likelist]="likeList"></app-like-list>
     </div>
   </div>
 </nav>

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+
 import { NewsfeedService } from '../../../newsfeed.service';
 import { News } from '../news-feed.component';
 
@@ -17,6 +17,7 @@ export class PostListComponent implements OnInit {
   constructor(private newsfeedService: NewsfeedService) {}
 
   ngOnInit(): void {}
+
   addLikeList(story: News, likes: any) {
     if (likes.textContent === 'LIKE') {
       this.newsfeedService.addLikeList(story);
