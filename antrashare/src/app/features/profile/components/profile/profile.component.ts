@@ -6,9 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.sass'],
 })
 export class ProfileComponent implements OnInit {
-  constructor() {}
-
   hide = true;
+
+  constructor() {}
 
   ngOnInit(): void {}
 }
