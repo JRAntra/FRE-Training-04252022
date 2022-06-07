@@ -2,51 +2,76 @@
   <div class="header">
     <h1>My Profile</h1>
   </div>
+
   <mat-card class="card-profile">
     <mat-card-header>
       <div mat-card-avatar class="header-image"></div>
       <mat-card-title>Shiba Inu</mat-card-title>
       <mat-card-subtitle>ShibaInu@gmail.com</mat-card-subtitle>
     </mat-card-header>
+
     <mat-card-content>
-      <form class="form-profile">
+      <form [formGroup]="form" class="form-profile" (ngSubmit)="onEdit()">
         <mat-form-field class="form-field-profile">
-          <input matInput placeholder="Username" disabled value="Shiba Inu" />
+          <input
+            matInput
+            placeholder="Username"
+            formControlName="username"
+            value="Shiba Inu"
+          />
+          <mat-error>{{ getErrorMessage() }}</mat-error>
         </mat-form-field>
+
         <mat-form-field class="form-field-profile">
           <input
             matInput
             placeholder="User email"
-            disabled
+            formControlName="email"
             value="ShibaInu@gmail.com"
           />
+          <mat-error>{{ getErrorMessage() }}</mat-error>
         </mat-form-field>
+
         <mat-form-field class="form-field-profile">
-          <input matInput placeholder="Age" disabled value="23" />
+          <input matInput placeholder="Age" formControlName="age" value="23" />
+          <mat-error>{{ getErrorMessage() }}</mat-error>
         </mat-form-field>
+
         <mat-form-field class="form-field-profile">
-          <input matInput placeholder="Gender" disabled value="male" />
+          <input
+            matInput
+            placeholder="Gender"
+            formControlName="gender"
+            value="male"
+          />
+          <mat-error>{{ getErrorMessage() }}</mat-error>
         </mat-form-field>
+
         <mat-form-field class="form-field-profile">
           <input
             matInput
             placeholder="Password"
             [type]="hide ? 'password' : 'text'"
-            disabled
+            formControlName="password"
             value="password23"
           />
           <mat-icon matSuffix (click)="hide = !hide">{{
             hide ? "visibility_off" : "visibility"
           }}</mat-icon>
+          <mat-error>{{ getErrorMessage() }}</mat-error>
         </mat-form-field>
+
+        <button mat-raised-button color="accent" type="submit">Edit</button>
       </form>
-      <p>Biography</p>
+
+      <!-- <p>Biography</p>
       <p>
         The Shiba Inu is the smallest of the six original and distinct spitz
         breeds of dog from Japan. A small, agile dog that copes very well with
         mountainous terrain, the Shiba Inu was originally bred for hunting.
-      </p>
+      </p> -->
     </mat-card-content>
+
     <mat-card-actions>
       <div class="icons">
         <mat-icon>chat</mat-icon>
