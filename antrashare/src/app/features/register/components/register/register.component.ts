@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import {
+  FormControl,
+  Validators,
+  FormGroup,
+  FormBuilder,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegisterService } from '../../register.service';
 
@@ -9,38 +14,39 @@ import { RegisterService } from '../../register.service';
   styleUrls: ['./register.component.sass'],
 })
 export class RegisterComponent implements OnInit {
-  email = new FormControl('', [Validators.required, Validators.email]);
-  username = new FormControl('', [Validators.required]);
-  password = new FormControl('', [Validators.required]);
-  passwordConfirmation = new FormControl('', [Validators.required]);
+  form: FormGroup = this.fb.group({
+    email: new FormControl(null, [Validators.email]),
+    username: new FormControl(null, [Validators.required]),
+    password: new FormControl(null, [Validators.required]),
+    passwordConfirmation: new FormControl(null, [Validators.required]),
+  });
 
   hide = true;
 
   constructor(
     private router: Router,
-    private registerService: RegisterService
+    private registerService: RegisterService,
+    private fb: FormBuilder
   ) {}
 
   getErrorMessage() {
-    if (this.username.hasError('required')) return 'You must enter a value';
-    if (this.password.hasError('required')) return 'You must enter a value';
-    if (this.passwordConfirmation.hasError('required'))
-      return 'You must enter a value';
-    if (this.email.hasError('required')) return 'You must enter a value';
-    if (this.password.value !== this.passwordConfirmation.value)
-      return 'Passwords do NOT match ';
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+    if (this.form.invalid) return 'You must enter a corret value';
+    if (this.form.value['password'] !== this.form.value['passwordConfirmation'])
+      return '  Password does NOT match';
+    return;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('Reactive form: ', this.form);
+  }
 
   onSubmit() {
     const user: User = {
-      userName: this.username.value,
-      userEmail: this.email.value,
-      password: this.password.value,
+      userName: this.form.value['username'],
+      userEmail: this.form.value['email'],
+      password: this.form.value['password'],
     };
-    console.log('test register button');
+    console.log('test register button', user);
     this.registerService.registerUser(user).subscribe((res) => {
       if (res.userEmail) {
         console.log(res.userEmail);
@@ -55,7 +61,6 @@ export interface User {
   userName: string;
   userEmail: string;
   password: string;
-
   userRole?: string;
   age?: number;
   gender?: string;

@@ -3,16 +3,17 @@
     <h1>Register your account</h1>
   </div>
 
-  <form class="form-container" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" class="form-container" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="fill">
       <mat-label>Enter Username</mat-label>
       <input
         matInput
         placeholder="username"
-        [formControl]="username"
+        formControlName="username"
         required
       />
-      <mat-error *ngIf="username.invalid">{{ getErrorMessage() }}</mat-error>
+      <!-- <mat-error *ngIf="username.invalid">{{ getErrorMessage() }}</mat-error> -->
+      <mat-error>{{ getErrorMessage() }}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -20,10 +21,11 @@
       <input
         matInput
         placeholder="ShibaInu@example.com"
-        [formControl]="email"
+        formControlName="email"
         required
       />
-      <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+      <!-- <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error> -->
+      <mat-error>{{ getErrorMessage() }}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -32,13 +34,14 @@
         matInput
         placeholder="password"
         [type]="hide ? 'password' : 'text'"
-        [formControl]="password"
+        formControlName="password"
         required
       />
       <mat-icon matSuffix (click)="hide = !hide">{{
         hide ? "visibility_off" : "visibility"
       }}</mat-icon>
-      <mat-error *ngIf="password.invalid">{{ getErrorMessage() }}</mat-error>
+      <!-- <mat-error *ngIf="password.invalid">{{ getErrorMessage() }}</mat-error> -->
+      <mat-error>{{ getErrorMessage() }}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -47,22 +50,16 @@
         matInput
         placeholder="confirmm password"
         [type]="hide ? 'password' : 'text'"
-        [formControl]="passwordConfirmation"
+        formControlName="passwordConfirmation"
         required
       />
       <mat-icon matSuffix (click)="hide = !hide">{{
         hide ? "visibility_off" : "visibility"
       }}</mat-icon>
-      <mat-error *ngIf="passwordConfirmation.invalid">{{
-        getErrorMessage()
-      }}</mat-error>
+      <!-- <mat-error *ngIf="passwordConfirmation.invalid">{{        getErrorMessage()      }}</mat-error>    </mat-form-field> -->
+      <mat-error>{{ getErrorMessage() }}</mat-error>
     </mat-form-field>
-    <div
-      *ngIf="
-        passwordConfirmation.touched &&
-        passwordConfirmation.value !== password.value
-      "
-    >
+    <div *ngIf="form.value['passwordConfirmation'] !== form.value['password']">
       {{ getErrorMessage() }}
     </div>
     <button mat-raised-button color="accent" type="submit">Register</button>
