@@ -34,5 +34,8 @@ export class NavbarComponent implements OnInit {
     this.newsfeedService.likeList$.subscribe((val) => {
       this.likeList.push(val);
     });
+    this.newsfeedService.deleteLike$.subscribe((val) => {
+      this.likeList = this.likeList.filter((item) => item._id !== val._id);
+    });
   }
 }

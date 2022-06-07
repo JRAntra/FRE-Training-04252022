@@ -13,11 +13,7 @@ export class LikeListComponent implements OnInit {
 
   constructor(private newsService: NewsfeedService) {}
 
-  ngOnInit(): void {
-    this.newsService.deleteLike$.subscribe((val) => {
-      this.likelist = this.likelist?.filter((item) => item._id !== val._id);
-    });
-  }
+  ngOnInit(): void {}
 
   deleteStory(story: News) {
     this.newsService.deleteLikeList(story);
