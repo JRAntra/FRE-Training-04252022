@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { News } from 'src/app/features/newsFeed/components/news-feed/news-feed.component';
+import { NewsfeedService } from 'src/app/features/newsFeed/newsfeed.service';
 
 @Component({
   selector: 'app-like-list',
   templateUrl: './like-list.component.html',
-  styleUrls: ['./like-list.component.sass']
+  styleUrls: ['./like-list.component.sass'],
 })
 export class LikeListComponent implements OnInit {
+  @Input() likelist?: News[];
 
-  constructor() { }
+  constructor(private newsService: NewsfeedService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  deleteStory(story: News) {
+    this.newsService.deleteLikeList(story);
   }
-
 }

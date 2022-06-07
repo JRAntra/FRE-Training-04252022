@@ -9,11 +9,12 @@ import { LoginService } from '../../login.service';
   styleUrls: ['./login.component.sass'],
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup = this.fb.group({
-    userEmail: [null, Validators.email],
-    password: [null, Validators.required],
+  form!: FormGroup;
+  formElements = {
+    userEmail: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(5)]],
     agreement: false,
-  });
+  };
   imageUrl = '../assets/BroCode.jpeg';
 
   errorMessage?: string;
@@ -24,13 +25,10 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService
   ) {}
 
-  ngOnInit(): void {}
-
-  getErrorMessage() {
-    if (this.form.invalid) return 'You must enter a corret value';
-    return;
+  ngOnInit(): void {
+    this.form = this.fb.group(this.formElements);
+    console.log(this.form);
   }
-  loginErrorMessage?: string;
 
   onSubmit() {
     if (this.form.valid) {
@@ -40,16 +38,17 @@ export class LoginComponent implements OnInit {
           password: this.form.value.password,
         })
         .subscribe((res) => {
-          console.log(res);
+          //check if login successfully
           if (res.userName) {
-            console.log(res.userName);
             localStorage.setItem(
               'userInfo_userName',
               JSON.stringify(res.userName)
             );
+            //if login successful, navigate to newsfeed
             this.router.navigate(['newsfeed']);
           }
         });
     }
+    this.form.reset();
   }
 }
