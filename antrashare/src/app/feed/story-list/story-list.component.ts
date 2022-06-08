@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
-import { News } from '../../shared/models/News';
-import { StoriesService } from '../story-list/stories-service/stories.service';
+import { News, News_ } from '../../shared/models/News';
+import { StoriesService } from '../stories-service/stories.service';
 
 @Component({
   selector: 'app-story-list',
@@ -9,38 +9,14 @@ import { StoriesService } from '../story-list/stories-service/stories.service';
   styleUrls: ['./story-list.component.sass']
 })
 
-export class StoryListComponent implements OnInit, OnDestroy, OnChanges {
+export class StoryListComponent implements OnInit, OnDestroy {
 
-  newsList: News[] = [];
-  subscriptions: any[] = [];
+  @Input() newsList: News_[] = [];
+  @Input() news!: News_;
 
-  constructor( private storiesService: StoriesService ) { }
+  constructor(  ) { }
 
-  // method grabbing stories from backend
-  displayStories(): void {
-    this.subscriptions.push(
-      this.storiesService.getNews().subscribe(
-        (response: News[]) => {
-          this.newsList = response;
-          // console.log('Response received: ', response, 'this.newsList: ', this.newsList);
-        },
-        (error: any) => console.log('Request failed with error: ', error),
-        // () => console.log('Request for newsList completed.')
-      )
-    )
-  }
+  ngOnInit(): void { }
 
-  // things to do on initializing the component
-  ngOnInit(): void {
-    // grab newsList from the backend to display on DOM
-    this.displayStories();
-  }
-
-  // things to do on destroying the component
-  ngOnDestroy(): void {
-    // unsubscribe subscriptions to release memory and avoid memory leak
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
-  }
-
-  ngOnChanges(): void {  }
+  ngOnDestroy(): void { }
 }

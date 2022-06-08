@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { News, dummyNews } from 'src/app/shared/models/News';
+import { News, News_, dummyNews } from 'src/app/shared/models/News';
 
 @Component({
   selector: 'app-story',
@@ -8,7 +8,8 @@ import { News, dummyNews } from 'src/app/shared/models/News';
 })
 export class StoryComponent implements OnInit {
 
-  @Input() news: News | undefined;
+  @Input() news!: News_;
+  @Input() newsList: News_[] = [];
   showComment: boolean = false;
 
   constructor() { }
