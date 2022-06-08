@@ -1,20 +1,10 @@
 <div id="post" class="section">
-  <div id="operation">
+  <form [formGroup]="postForm" (ngSubmit)="submit()">
     <h4>New Post</h4>
-    <button
-      id="infoButton"
-      class="btn btn-black"
-      (click)="onPost(postInput.value)"
-    >
-      Post
-    </button>
-    <button id="infoButton" class="btn btn-grey">Reset</button>
-  </div>
-  <textarea
-    id="w3review"
-    name="w3review"
-    rows="4"
-    cols="50"
-    #postInput
-  ></textarea>
+    <textarea id="w3review" name="w3review" rows="4" cols="50" formControlName="news"></textarea>
+    <p>{{error}}</p>
+    <div id="operation">
+      <button id="infoButton" class="btn btn-black">Post</button>    
+    </div>
+  </form>
 </div>

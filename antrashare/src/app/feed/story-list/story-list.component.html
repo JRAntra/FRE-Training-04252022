@@ -1,6 +1,4 @@
-<div *ngFor="let story of storyList">
-  <div id="list" class="section">
-    <h4>{{ story.content }}</h4>
-    <app-story></app-story>
-  </div>
+<div *ngIf="newsList && newsList.length" id="list" class="section">
+  <h4>What's happen today? </h4>
+  <app-story *ngFor="let news of newsList" [news]="news"></app-story>
 </div>

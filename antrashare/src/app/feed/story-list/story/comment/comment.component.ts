@@ -1,12 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Comment } from 'src/app/shared/models/News';
 
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
-  styleUrls: ['./comment.component.sass'],
+  styleUrls: ['./comment.component.sass']
 })
 export class CommentComponent implements OnInit {
-  constructor() {}
 
-  ngOnInit(): void {}
+  @Input() comments: Comment[] = [];
+
+  constructor() { }
+
+  ngOnInit(): void { }
+
 }

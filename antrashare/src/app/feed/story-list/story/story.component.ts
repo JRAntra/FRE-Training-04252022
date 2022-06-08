@@ -1,16 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { News, dummyNews } from 'src/app/shared/models/News';
 
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
-  styleUrls: ['./story.component.sass'],
+  styleUrls: ['./story.component.sass']
 })
 export class StoryComponent implements OnInit {
-  constructor() {}
 
-  @Input() storyList?: any[];
+  @Input() news: News | undefined;
+  showComment: boolean = false;
 
-  ngOnInit(): void {
-    console.log(this.storyList);
+  constructor() { }
+
+  showHideComments() {
+    this.showComment = !this.showComment;
   }
+
+  ngOnInit(): void { }
+
 }
