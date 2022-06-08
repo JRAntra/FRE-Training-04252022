@@ -8,6 +8,34 @@ const routes: Routes = [
     path: '',
     component: LoginComponent,
   },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import(`./features/admin/admin.module`).then(
+        (module) => module.AdminModule
+      ),
+  },
+  {
+    path: 'newsfeed',
+    loadChildren: () =>
+      import(`./features/newsFeed/news-feed.module`).then(
+        (module) => module.NewsFeedModule
+      ),
+  },
+  {
+    path: 'profile',
+    loadChildren: () =>
+      import(`./features/profile/profile.module`).then(
+        (module) => module.ProfileModule
+      ),
+  },
+  {
+    path: 'settings',
+    loadChildren: () =>
+      import(`./features/settings/settings.module`).then(
+        (module) => module.SettingsModule
+      ),
+  },
   { path: '**', component: NotFoundPageComponent },
 ];
 
