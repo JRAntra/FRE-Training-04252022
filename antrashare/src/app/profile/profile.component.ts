@@ -94,12 +94,9 @@ export class ProfileComponent implements OnInit {
 
 // Directive for password characters validator starts here.
 export function passwordValidator(filter: RegExp): ValidatorFn {
-  console.log('passwordValidator() taking', filter)
   return (control: AbstractControl): ValidationErrors | null => {
-    console.log('anonymousFn() taking', control)
     const isValid = filter.test(control.value);
     const result = isValid ? {validPassword: { value: control.value}}: null;
-    console.log('compare result isValid, ', isValid, result)
     return result;
   }
 }
