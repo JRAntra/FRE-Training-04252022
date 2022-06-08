@@ -15,14 +15,18 @@ export class StoriesService {
   constructor(private http: HttpClient) { }
 
   // Method to get data from backend, and next the newsList$ subject to emit data to subscriber
-  fetchNewsList() {
+  fetchNewsList(keyword: string = '') {
     return this.http
       .get<News_[]>(`${this.baseURL}api/news`)
       .subscribe(
         (response: any) => {
           // call helper to filter out bad data. - this is temporary -
           const data = helper(response);
-          this.newsList$.next(data);
+          if (keyword === '') this.newsList$.next(data);
+          else {
+            const filteredData = this.filterNewsList(data, keyword);
+            this.newsList$.next(filteredData);
+          }
         },
         (error: Error) => console.error('fetchNewsList() fails with: ', error),
         () => console.log('fetchNewsList() completed')

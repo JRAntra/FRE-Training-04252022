@@ -1,0 +1,34 @@
+<div id="postStory-container">
+
+    <form
+        id="postStory-form"
+        [formGroup]="inputForm"
+        (ngSubmit)="onSubmit()" >
+
+        <div class="fieldset">
+
+            <label
+                id="label-newStory" >
+                Looking for something? Look up!
+            </label>
+
+            <textarea
+                matInput
+                id="input-newStory"
+                type="text"
+                name="newStory"
+                placeholder="Search"
+                formControlName="search">
+            </textarea>
+
+        </div>
+
+        <button
+            class="btn btn-post btn-green"
+            type="submit"
+            [disabled]="!inputForm.valid">
+            Search
+        </button>
+
+    </form>
+</div>
