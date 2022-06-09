@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import jwtDecode from 'jwt-decode';
 import { LoginService } from '../../login.service';
 
 @Component({
@@ -45,16 +46,19 @@ export class LoginComponent implements OnInit {
           password: this.form.value.password,
         })
         .subscribe((res) => {
-          //check if login successfully
-          console.log(res);
-
-          //if login successful, navigate to newsfeed
-          if (res.userName) {
-            localStorage.setItem(
-              'userInfo_userName',
-              JSON.stringify(res.userName)
-            );
-
+          //check if login successfull
+          if (res.bearerToken) {
+            this.loginService.isloggedIn = true;
+            // store toke
+            localStorage.setItem('token', JSON.stringify(res.bearerToken));
+            // decode token
+            let tokenInfo: any = jwtDecode(res.bearerToken);
+            console.log('token: ', tokenInfo);
+            // check if user is admin
+            if (tokenInfo.userRole === 'admin') {
+              this.loginService.isAdmin = true;
+            }
+            //navigate to newsfeed
             this.router.navigate(['newsfeed']);
           }
         });

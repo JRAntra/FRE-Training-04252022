@@ -1,9 +1,9 @@
-import { AdminComponent } from './features/admin/components/admin/admin.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './features/login/components/login/login.component';
 import { NotFoundPageComponent } from './shared/not-found-page/not-found-page.component';
-import { AuthGuardService } from './core/services/auth-guard.service';
+
+import { AuthenticationService } from './core/services/authentication.service';
 
 const routes: Routes = [
   {
@@ -16,7 +16,7 @@ const routes: Routes = [
       import(`./features/admin/admin.module`).then(
         (module) => module.AdminModule
       ),
-    canActivate: [AuthGuardService],
+    canActivate: [AuthenticationService],
   },
   { path: '**', component: NotFoundPageComponent },
 ];

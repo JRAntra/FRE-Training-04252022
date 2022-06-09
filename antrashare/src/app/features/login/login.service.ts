@@ -9,6 +9,7 @@ import { baseURL } from 'src/environments/environment';
 export class LoginService {
   path = 'api/login';
   isloggedIn: boolean;
+  isAdmin: boolean;
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
@@ -30,6 +31,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) {
     this.isloggedIn = false;
+    this.isAdmin = false;
   }
 
   loginUser(logInfo: any): Observable<any> {
@@ -41,11 +43,8 @@ export class LoginService {
     return this.isloggedIn;
   }
 
-  isAdminUser(userRole: string): boolean {
-    if (userRole === 'Admin') {
-      return true;
-    }
-    return false;
+  isAdminUser(): boolean {
+    return this.isAdmin;
   }
 
   logoutUser(): void {
