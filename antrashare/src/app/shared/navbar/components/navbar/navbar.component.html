@@ -11,6 +11,9 @@
       <a routerLink="/login">Login</a>
       <a routerLink="/register">Register</a>
       <a routerLink="/admin">Admin</a>
+      <div *ngIf="logoutBtn">
+        <a routerLink="" (click)="logout()">Log out</a>
+      </div>
     </div>
   </div>
   <div *ngIf="likeListBtn">

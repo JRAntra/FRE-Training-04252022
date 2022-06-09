@@ -7,6 +7,9 @@ import { baseURL } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class LoginService {
+  private isloggedIn: boolean;
+  path = 'api/login';
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -24,11 +27,30 @@ export class LoginService {
       () => new Error('Something bad happened; please try again later.')
     );
   }
-  constructor(private http: HttpClient) {}
-  path = 'api/login';
+
+  constructor(private http: HttpClient) {
+    this.isloggedIn = false;
+  }
 
   loginUser(logInfo: any): Observable<any> {
+    // isloggedIn should be set to true after loggin is successful
+    this.isloggedIn = true;
     return this.http.post(baseURL + this.path, logInfo);
     // .pipe(catchError(this.handleError));
+  }
+
+  isUserLoggedIn(): boolean {
+    return this.isloggedIn;
+  }
+
+  isAdminUser(userName: string): boolean {
+    if (userName === 'Admin') {
+      return true;
+    }
+    return false;
+  }
+
+  logoutUser(): void {
+    this.isloggedIn = false;
   }
 }
