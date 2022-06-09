@@ -7,8 +7,8 @@ import { baseURL } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class LoginService {
-  private isloggedIn: boolean;
   path = 'api/login';
+  isloggedIn: boolean;
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
@@ -33,8 +33,6 @@ export class LoginService {
   }
 
   loginUser(logInfo: any): Observable<any> {
-    // isloggedIn should be set to true after loggin is successful
-    this.isloggedIn = true;
     return this.http.post(baseURL + this.path, logInfo);
     // .pipe(catchError(this.handleError));
   }
@@ -43,8 +41,8 @@ export class LoginService {
     return this.isloggedIn;
   }
 
-  isAdminUser(userName: string): boolean {
-    if (userName === 'Admin') {
+  isAdminUser(userRole: string): boolean {
+    if (userRole === 'Admin') {
       return true;
     }
     return false;

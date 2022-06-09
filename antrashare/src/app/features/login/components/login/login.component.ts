@@ -46,12 +46,15 @@ export class LoginComponent implements OnInit {
         })
         .subscribe((res) => {
           //check if login successfully
+          console.log(res);
+
+          //if login successful, navigate to newsfeed
           if (res.userName) {
             localStorage.setItem(
               'userInfo_userName',
               JSON.stringify(res.userName)
             );
-            //if login successful, navigate to newsfeed
+
             this.router.navigate(['newsfeed']);
           }
         });

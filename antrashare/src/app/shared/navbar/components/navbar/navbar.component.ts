@@ -1,9 +1,9 @@
-import { LoginService } from './../../../../features/login/login.service';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { News } from 'src/app/features/newsFeed/components/news-feed/news-feed.component';
 import { NewsfeedService } from 'src/app/features/newsFeed/newsfeed.service';
+import { LoginService } from 'src/app/features/login/login.service';
 
 @Component({
   selector: 'app-navbar',
