@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { baseURL } from 'src/environments/environment';
 import { User } from './components/register/register.component';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',

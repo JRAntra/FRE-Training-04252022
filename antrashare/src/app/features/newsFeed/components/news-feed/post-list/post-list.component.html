@@ -26,15 +26,7 @@
           [ngStyle]="{ display: 'flex', 'justify-content': 'space-between' }"
         >
           <div>
-            <button
-              mat-button
-              (click)="
-                comments.style.display === 'block'
-                  ? (comments.style.display = 'none')
-                  : (comments.style.display = 'block')
-              "
-            >
-              Comment</button
+            <button mat-button (click)="gotoStoryComment(story)">Comment</button
             ><span>{{ story.comment?.length }}</span>
           </div>
           <div>
@@ -44,9 +36,9 @@
           </div>
         </mat-card-actions>
       </mat-card>
-      <div #comments style="display: none">
+      <!-- <div #comments style="display: none">
         <app-comment [story]="story"> </app-comment>
-      </div>
+      </div> -->
     </li>
   </ul>
 </section>

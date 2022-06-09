@@ -8,6 +8,13 @@ const routes: Routes = [
     path: '',
     component: LoginComponent,
   },
+  {
+    path: 'newsfeed',
+    loadChildren: () =>
+      import('./features/newsFeed/news-feed.module').then(
+        (mod) => mod.NewsFeedModule
+      ),
+  },
   { path: '**', component: NotFoundPageComponent },
 ];
 

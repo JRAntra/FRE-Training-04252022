@@ -4,6 +4,11 @@ import {
   Validators,
   FormGroup,
   FormBuilder,
+  AsyncValidatorFn,
+  AbstractControl,
+  ValidationErrors,
+  AsyncValidator,
+  ValidatorFn,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegisterService } from '../../register.service';
@@ -16,7 +21,11 @@ import { RegisterService } from '../../register.service';
 export class RegisterComponent implements OnInit {
   form: FormGroup = this.fb.group({
     email: new FormControl(null, [Validators.email]),
-    username: new FormControl(null, [Validators.required]),
+    username: new FormControl(null, [
+      Validators.required,
+      forbiddenNameValidator(),
+      startWithUpperCase(),
+    ]),
     password: new FormControl(null, [Validators.required]),
     passwordConfirmation: new FormControl(null, [Validators.required]),
   });
@@ -41,6 +50,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('check valid form: ', this.form);
     const user: User = {
       userName: this.form.value['username'],
       userEmail: this.form.value['email'],
@@ -65,4 +75,20 @@ export interface User {
   age?: number;
   gender?: string;
   phone?: string;
+}
+
+export function startWithUpperCase(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    if (control.value !== 3) {
+      return { startwithuppercase: true };
+    } else {
+      return { startwithuppercase: true };
+    }
+  };
+}
+export function forbiddenNameValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const forbidden = control.value;
+    return forbidden ? { forbiddenName: { value: control.value } } : null;
+  };
 }

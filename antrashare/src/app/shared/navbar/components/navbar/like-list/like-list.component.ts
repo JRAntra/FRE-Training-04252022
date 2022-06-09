@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { News } from 'src/app/features/newsFeed/components/news-feed/news-feed.component';
-import { NewsfeedService } from 'src/app/features/newsFeed/newsfeed.service';
+
+import { LikeListService, News } from '../../../navbar.service';
 
 @Component({
   selector: 'app-like-list',
@@ -11,11 +11,11 @@ import { NewsfeedService } from 'src/app/features/newsFeed/newsfeed.service';
 export class LikeListComponent implements OnInit {
   @Input() likelist?: News[];
 
-  constructor(private newsService: NewsfeedService) {}
+  constructor(private likeListSevice: LikeListService) {}
 
   ngOnInit(): void {}
 
   deleteStory(story: News) {
-    this.newsService.deleteLikeList(story);
+    this.likeListSevice.deleteLikeList(story);
   }
 }

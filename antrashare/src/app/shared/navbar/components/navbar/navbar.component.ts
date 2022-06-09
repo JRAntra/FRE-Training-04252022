@@ -2,7 +2,8 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { News } from 'src/app/features/newsFeed/components/news-feed/news-feed.component';
-import { NewsfeedService } from 'src/app/features/newsFeed/newsfeed.service';
+
+import { LikeListService } from '../../navbar.service';
 
 @Component({
   selector: 'app-navbar',
@@ -18,7 +19,7 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private location: Location,
-    private newsfeedService: NewsfeedService
+    private likeListService: LikeListService
   ) {
     location.onUrlChange((val) => {
       this.likeListBtn =
@@ -31,10 +32,10 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.newsfeedService.likeList$.subscribe((val) => {
+    this.likeListService.likeList$.subscribe((val) => {
       this.likeList.push(val);
     });
-    this.newsfeedService.deleteLike$.subscribe((val) => {
+    this.likeListService.deleteLike$.subscribe((val) => {
       this.likeList = this.likeList.filter((item) => item._id !== val._id);
     });
   }

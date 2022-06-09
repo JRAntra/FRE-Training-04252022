@@ -1,18 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { filter, Observable, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { News } from 'src/app/features/newsFeed/components/news-feed/news-feed.component';
 import { baseURL } from 'src/environments/environment';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NewsfeedService {
   path = 'api/news';
-  likeList$ = new Subject<any>();
+
   newList: News[] = [];
-  deleteLike$ = new Subject<any>();
+  story?: News;
+  // likeList$ = new Subject<any>();
+  // deleteLike$ = new Subject<any>();
 
   constructor(private http: HttpClient) {}
 
@@ -36,11 +37,18 @@ export class NewsfeedService {
     });
   }
 
-  addLikeList(story: News) {
-    this.likeList$.next(story);
+  passStoryToComment(story: News) {
+    this.story = story;
+  }
+  getStoryData() {
+    return this.story;
   }
 
-  deleteLikeList(story: News) {
-    this.deleteLike$.next(story);
-  }
+  // addLikeList(story: News) {
+  //   this.likeList$.next(story);
+  // }
+
+  // deleteLikeList(story: News) {
+  //   this.deleteLike$.next(story);
+  // }
 }

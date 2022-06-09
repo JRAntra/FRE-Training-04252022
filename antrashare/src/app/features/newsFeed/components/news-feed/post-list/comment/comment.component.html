@@ -1,4 +1,6 @@
 <section class="commentsField">
+  {{ storyId }}
+  {{ story | json }}
   <app-comment-form (postComment)="postComment($event)"></app-comment-form>
   <ul>
     <li class="commentlist" *ngFor="let comment of story?.comment">
