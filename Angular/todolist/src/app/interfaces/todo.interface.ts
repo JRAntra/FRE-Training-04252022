@@ -5,7 +5,7 @@ export interface Todo {
   completed: boolean;
 }
 
-// export interface TodoState {
-//   todolist: Todo[];
-//   err?: string;
-// }
+export interface TodoState {
+  todolist: Todo[];
+  err?: string;
+}

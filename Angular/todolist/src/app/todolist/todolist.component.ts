@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Todo } from '../interfaces/todo.interface';
+
+import * as TodoSelectors from '../ngrx/todo.selector';
+import * as TodoActions from '../ngrx/todo.action';
 
 @Component({
   selector: 'app-todolist',
@@ -16,9 +20,11 @@ export class TodolistComponent implements OnInit {
     userId: 2,
   };
 
-  constructor() {}
+  constructor(private readonly store: Store) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.todolist$ = this.store.select(TodoSelectors.getTodoList);
+  }
 
   onChange() {}
 
