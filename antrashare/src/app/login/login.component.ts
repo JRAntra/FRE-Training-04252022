@@ -10,7 +10,7 @@ import { LoginService } from '../login/service/login.service';
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
-  
+
   constructor(private service: LoginService, private router: Router) { }
   error = "";
   ngOnInit(): void {
@@ -45,10 +45,14 @@ export class LoginComponent implements OnInit {
         }
       });
 
-      this.service.loginAccount(newUser).subscribe((data) => {
+      this.service.loginAccount(newUser)
+          .subscribe((data) => {
+            console.log(50, data)
+
         this.router.navigate(["feed"]);
       });
+
+
     }
   }
 }
-
