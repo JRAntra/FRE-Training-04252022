@@ -45,14 +45,8 @@ export class LoginComponent implements OnInit {
         }
       });
 
-      this.service.loginAccount(newUser)
-          .subscribe((data) => {
-            console.log(50, data)
-
-        this.router.navigate(["feed"]);
-      });
-
-
-    }
+      this.service.loginAccount(newUser);
+      this.router.navigate(["feed"]);
+      }
   }
 }
