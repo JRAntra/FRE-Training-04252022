@@ -47,6 +47,7 @@ export class LikeStoryInputComponent implements OnInit {
 
         // push the user's ._id into the news.likedIdList (create new copy`)
         this.news.likedIdList = [...this.news.likedIdList, {userId: this.user._id}]
+        console.log('user._id added to news"s likedId list: ', [...this.news.likedIdList, {userId: this.user._id}]);
 
         // grab the likedNews array from Subject
         const likedNewsObserver = {
@@ -58,7 +59,7 @@ export class LikeStoryInputComponent implements OnInit {
 
         // push the news._id into the user's likedList (currently stored in this.likedNew)
         this.likedNewsList = [...this.likedNewsList, { newsId: this.news._id}];
-        console.log('story._id added to user"s likedNews list: ', this.likedNewsList);
+        console.log('news._id added to user"s likedNews list: ', this.likedNewsList);
 
         // update the newsList with the updated news
         for (let i = 0; i < this.newsList.length; i++) {
@@ -69,8 +70,11 @@ export class LikeStoryInputComponent implements OnInit {
 
         // emit the newly updated news
         this.storiesService.newsList$.next(this.newsList);
+        console.log('updated newsList emitted with .next: ', this.newsList);
 
         // emit the updated likedNews list
         this.loginService.likedNewsList$.next(this.likedNewsList)
+        console.log('updated liked newsList emitted with .next: ', this.likedNewsList);
+
     }
 }

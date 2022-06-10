@@ -32,7 +32,7 @@ export class SearchBarComponent implements OnInit, OnChanges, DoCheck, OnDestroy
   // method to hit api only on delayed time after user stopped typing
   // // Ref.: https://www.tektutorialshub.com/angular/debouncetime-debounce-in-angular/
   debounceSearch(time: number): void {
-    console.log('debounceSearch()');
+    console.log('debounceSearch() initialized');
     const subscription$ = this.inputForm.valueChanges
       .pipe(debounceTime(time))
       .subscribe(

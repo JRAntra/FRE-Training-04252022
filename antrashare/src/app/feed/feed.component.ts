@@ -21,7 +21,7 @@ export class FeedComponent implements OnInit, OnDestroy{
       .subscribe(
         (response: any) => {
           this.newsList = response;
-          console.log('subscribed to: ', this.newsList)
+          console.log('NewsList subscribed: ', this.newsList)
         },
         (error: Error) => console.error('subscribeNewsList() fails with: ', error),
         () => console.log('subscribeNewsList() completed')
