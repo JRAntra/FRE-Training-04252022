@@ -9,6 +9,7 @@ import { StoryListComponent } from './story-list/story-list.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { LikeStoryInputComponent } from './story-list/story/like-story-input/like-story-input.component';
 import { FeedComponent } from './feed.component';
+import { LikedStoriesComponent } from './liked-stories/liked-stories.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { FeedComponent } from './feed.component';
         CommentComponent,
         StoryListComponent,
         SearchBarComponent,
-        LikeStoryInputComponent
+        LikeStoryInputComponent,
+        LikedStoriesComponent
     ],
     imports: [
         CommonModule,

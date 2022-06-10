@@ -1,0 +1,10 @@
+<div>
+    <h2>Liked: {{likedNewsList.length}} News</h2>
+
+    <div *ngIf="likedNewsList && likedNewsList.length">
+        <div *ngFor="let likedNews of likedNewsList">
+            <p>{{likedNews | json}}</p>
+        </div>
+    </div>
+    
+</div>
