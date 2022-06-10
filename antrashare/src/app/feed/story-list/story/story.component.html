@@ -30,6 +30,12 @@
       news.content.video: {{news.content.video}}
   </p>
 
+  <app-like-story-input
+    [newsList]="newsList"
+    [news]="news"
+    [likes]="news.likedIdList">
+  </app-like-story-input>
+
   <!-- comment section -->
   <div
     [style.visibility]=" showComment ? 'visible' : 'hidden' "

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import jwtDecode from 'jwt-decode'; // library to decode JWT Jason Web Token
-import { User } from 'src/app/shared/models/User';
+import { User, LikedNews } from 'src/app/shared/models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,7 @@ export class LoginService {
   baseURL: string = 'http://localhost:3000/';
 
   public user$: Subject<User> = new ReplaySubject<User>();
+  public likedNewsList$: Subject<LikedNews[]> = new ReplaySubject<LikedNews[]>();
 
   constructor(private http: HttpClient) { }
 

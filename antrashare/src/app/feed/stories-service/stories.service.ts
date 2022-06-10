@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Subject, ReplaySubject } from 'rxjs';
 
 import { News, News_, dummyNews, newsList } from '../../shared/models/News';
 
@@ -10,7 +10,7 @@ import { News, News_, dummyNews, newsList } from '../../shared/models/News';
 export class StoriesService {
   baseURL: string = 'http://localhost:3000/';
 
-  newsList$ = new BehaviorSubject([dummyNews])
+  newsList$: Subject<News_[]> = new ReplaySubject<News_[]>();
 
   constructor(private http: HttpClient) { }
 
