@@ -2,6 +2,9 @@
   <mat-form-field appearance="legacy" class="center-items">
     <mat-label>Comment</mat-label>
     <input matInput formControlName="comment" #input class="comment-input" />
+    <mat-error *ngIf="form.controls['comment'].errors?.['required']"
+      >You need to fill in the field</mat-error
+    >
     <div class="submitBtn">
       <button
         mat-button

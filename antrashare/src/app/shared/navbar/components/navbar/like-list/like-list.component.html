@@ -1,14 +1,19 @@
-<div class="likelist_container" *ngFor="let story of likelist">
-  <div class="likelist_item">
-    <div>
-      {{ story.publisherName
-      }}<span>{{ story.publishedTime | date: "longDate" }}</span>
+<div>
+  <button class="btn-close" (click)="clickClose()">X</button>
+</div>
+<div class="content">
+  <div class="likelist_container" *ngFor="let story of likelist">
+    <div class="likelist_item">
+      <div>
+        {{ story.publisherName
+        }}<span>{{ story.publishedTime | date: "longDate" }}</span>
+      </div>
+      <div>{{ story.content.text }}</div>
     </div>
-    <div>{{ story.content.text }}</div>
-  </div>
-  <div>
-    <button mat-button (click)="deleteStory(story)">
-      <mat-icon aria-hidden="false">delete</mat-icon>
-    </button>
+    <div>
+      <button mat-button (click)="deleteStory(story)">
+        <mat-icon aria-hidden="false">delete</mat-icon>
+      </button>
+    </div>
   </div>
 </div>

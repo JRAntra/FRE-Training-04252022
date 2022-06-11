@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewsfeedRoutingModule } from './newsfeed-routing.modules';
 import { MatCardModule } from '@angular/material/card';
 import { CommentFormComponent } from './components/news-feed/post-list/comment/comment-form/comment-form.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CommentFormComponent } from './components/news-feed/post-list/comment/c
     NewsfeedRoutingModule,
     FormsModule,
     MatCardModule,
+    MatDialogModule,
   ],
   exports: [],
 })

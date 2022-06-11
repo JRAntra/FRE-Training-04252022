@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { LikeListService, News } from '../../../navbar.service';
 
@@ -10,6 +9,7 @@ import { LikeListService, News } from '../../../navbar.service';
 })
 export class LikeListComponent implements OnInit {
   @Input() likelist?: News[];
+  @Output() onClose = new EventEmitter();
 
   constructor(private likeListSevice: LikeListService) {}
 
@@ -17,5 +17,8 @@ export class LikeListComponent implements OnInit {
 
   deleteStory(story: News) {
     this.likeListSevice.deleteLikeList(story);
+  }
+  clickClose() {
+    this.onClose.emit();
   }
 }

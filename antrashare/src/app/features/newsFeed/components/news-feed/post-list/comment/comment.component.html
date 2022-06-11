@@ -1,23 +1,26 @@
-<section class="commentsField">
-  {{ storyId }}
-  {{ story | json }}
-  <app-comment-form (postComment)="postComment($event)"></app-comment-form>
-  <ul>
-    <li class="commentlist" *ngFor="let comment of story?.comment">
-      <mat-card class="comment-card">
-        <mat-card-header>
-          <div mat-card-avatar class="avatar"></div>
-          <mat-card-title>{{ comment.publisherName }}</mat-card-title>
-          <mat-card-subtitle>{{
-            comment.publishedTime | date: "longDate"
-          }}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <p class="comment-content">
-            {{ comment.content.text }}
-          </p>
-        </mat-card-content>
-      </mat-card>
-    </li>
-  </ul>
-</section>
+<mat-dialog-content>
+  <section class="commentsField">
+    <app-comment-form (postComment)="postComment($event)"></app-comment-form>
+    <ul>
+      <li class="commentlist" *ngFor="let comment of story?.comment">
+        <mat-card class="comment-card">
+          <mat-card-header>
+            <div mat-card-avatar class="avatar"></div>
+            <mat-card-title>{{ comment.publisherName }}</mat-card-title>
+            <mat-card-subtitle>{{
+              comment.publishedTime | date: "longDate"
+            }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p class="comment-content">
+              {{ comment.content.text }}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </li>
+    </ul>
+  </section>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="onClose()">Cancel</button>
+</mat-dialog-actions>

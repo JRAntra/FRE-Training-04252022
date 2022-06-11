@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { LikeListService } from 'src/app/shared/navbar/navbar.service';
 
 import { NewsfeedService } from '../../../newsfeed.service';
 import { News } from '../news-feed.component';
+import { CommentComponent } from './comment/comment.component';
 
 @Component({
   selector: 'app-post-list',
@@ -19,7 +21,8 @@ export class PostListComponent implements OnInit {
   constructor(
     private newsfeedService: NewsfeedService,
     private likeListService: LikeListService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {}
@@ -35,9 +38,21 @@ export class PostListComponent implements OnInit {
   }
 
   gotoStoryComment(story: News) {
-    this.newsfeedService.passStoryToComment(story);
-    this.router.navigate(['newsfeed/', story._id], {
-      queryParams: { data: 'newparams' },
+    // this.newsfeedService.passStoryToComment(story);
+    // this.router.navigate(['newsfeed/', story._id], {
+    //   queryParams: { data: 'newparams' },
+    // });
+  }
+
+  openDialog(story: News) {
+    const dialogRef = this.dialog.open(CommentComponent, {
+      width: '450px',
+      height: '450px',
+      data: { story: story },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result);
     });
   }
 }

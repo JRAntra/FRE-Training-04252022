@@ -1,6 +1,5 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { News } from 'src/app/features/newsFeed/components/news-feed/news-feed.component';
 
 import { LikeListService } from '../../navbar.service';
@@ -16,22 +15,19 @@ export class NavbarComponent implements OnInit {
   likeList: News[] = [];
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
     private location: Location,
     private likeListService: LikeListService
-  ) {
-    location.onUrlChange((val) => {
-      this.likeListBtn =
-        val === '/newsfeed' || val === '/settings' || val === '/profile';
-    });
-  }
+  ) {}
 
   triggerLikeList() {
     this.showLikeList = !this.showLikeList;
   }
 
   ngOnInit(): void {
+    this.location.onUrlChange((val) => {
+      this.likeListBtn =
+        val === '/newsfeed' || val === '/settings' || val === '/profile';
+    });
     this.likeListService.likeList$.subscribe((val) => {
       this.likeList.push(val);
     });
