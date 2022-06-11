@@ -1,30 +1,35 @@
-<div id="postStory-container">
+<div
+    class="section"
+    id="search-container">
 
     <form
-        id="postStory-form"
+        id="search-form"
         [formGroup]="inputForm"
         (ngSubmit)="onSubmit()" >
 
         <div class="fieldset">
 
             <label
-                id="label-newStory" >
+                id="label-search" >
                 Looking for something? Look up!
             </label>
 
-            <textarea
+            <input
                 matInput
-                id="input-newStory"
+                id="input-search"
                 type="text"
-                name="newStory"
+                name="search"
                 placeholder="Search"
-                formControlName="search">
-            </textarea>
+                formControlName="search"/>
+
+            <figcaption>
+                Input keywords to search for publisher's name or text content.
+            </figcaption>
 
         </div>
 
         <button
-            class="btn btn-post btn-green"
+            class="btn btn-post btn-black"
             type="submit"
             [disabled]="!inputForm.valid">
             Search

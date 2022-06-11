@@ -1,34 +1,97 @@
 <style>
-    .dropdown {
-      display: inline-block;
-      color: red;
-      z-index: 1
-    }
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 10rem;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      padding: 12px 16px;
-      z-index: 2;
-    }
+a {
+    text-decoration: none;
+}
 
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
+a:hover {
+    color: powderblue;
+}
+
+
+#details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    color: red;
+    margin-top: 13rem;
+}
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.title {
+    width: 27.5rem;
+    background-color: black;
+    opacity: .9;
+    color: yellow;
+    border-radius: .3rem;
+}
+
+/* create popup START */
+.detail {
+    position: fixed
+}
+
+.detail > ul {
+    position: fixed;
+    display: flex;
+    background-color: black;
+    color: white;
+    border-radius: .3rem;
+    overflow: hidden;
+    max-height: 0;
+}
+
+.detail:hover ul {
+    top: 14rem;
+    height: 80%;
+    border-left: 1px solid white;
+    border-top: 1px solid white;
+    box-shadow: 2px 2px 5px grey;
+    padding: 3%;
+    opacity: .9;
+
+    max-height: 100%;
+    transition: fit-content .7s ease-in-out;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+}
+
+.newsId {
+    color: white
+}
+
+.project-img:hover {
+    cursor: pointer
+}
+/* create popup END */
 </style>
 
-<div class="dropdown">
-    <h2>Liked: {{likedNewsList.length}} News</h2>
+<section id="details">
 
-    <div
-        class="dropdown-content"
-        *ngIf="likedNewsList && likedNewsList.length">
-        <div *ngFor="let likedNews of likedNewsList">
-            <p>{{likedNews | json}}</p>
-        </div>
+    <div id="detail" class="detail">
+
+        <h2 class="title">Liked: {{likedNewsList.length}} News</h2>
+
+        <!-- start of pop-up/dropdown block -->
+        <p *ngIf="likedNewsList && likedNewsList.length">
+            <ul>
+                <li class="newsId" *ngFor="let likedNews of likedNewsList">
+                    <!-- TODO: a dialog / a link to the position of the story for detail -->
+                    <!-- <a href="#story-{{likedNews.newsId}}"> -->
+                    <!-- this should display title, nice to have. we can use pipe -->
+                        {{likedNews.newsId}}
+                </li>
+            </ul>
+        <!-- ends of pop-up/dropdown block -->
+
     </div>
-
-</div>
+</section>
