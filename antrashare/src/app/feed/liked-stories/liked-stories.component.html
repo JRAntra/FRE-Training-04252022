@@ -1,90 +1,23 @@
-<style>
+<section
+    id="details">
 
-a {
-    text-decoration: none;
-}
+    <div
+        id="detail"
+        class="detail">
 
-a:hover {
-    color: powderblue;
-}
-
-
-#details {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    align-items: center;
-    color: red;
-    margin-top: 13rem;
-}
-
-.detail {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1em;
-}
-
-.title {
-    width: 27.5rem;
-    background-color: black;
-    opacity: .9;
-    color: yellow;
-    border-radius: .3rem;
-}
-
-/* create popup START */
-.detail {
-    position: fixed
-}
-
-.detail > ul {
-    position: fixed;
-    display: flex;
-    background-color: black;
-    color: white;
-    border-radius: .3rem;
-    overflow: hidden;
-    max-height: 0;
-}
-
-.detail:hover ul {
-    top: 14rem;
-    height: 80%;
-    border-left: 1px solid white;
-    border-top: 1px solid white;
-    box-shadow: 2px 2px 5px grey;
-    padding: 3%;
-    opacity: .9;
-
-    max-height: 100%;
-    transition: fit-content .7s ease-in-out;
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-}
-
-.newsId {
-    color: white
-}
-
-.project-img:hover {
-    cursor: pointer
-}
-/* create popup END */
-</style>
-
-<section id="details">
-
-    <div id="detail" class="detail">
-
-        <h2 class="title">Liked: {{likedNewsList.length}} News</h2>
+        <h2
+            class="title">
+            Liked: {{likedNewsList.length}} News
+        </h2>
 
         <!-- start of pop-up/dropdown block -->
-        <p *ngIf="likedNewsList && likedNewsList.length">
+        <p
+            *ngIf="likedNewsList && likedNewsList.length">
+
             <ul>
-                <li class="newsId" *ngFor="let likedNews of likedNewsList">
+                <li
+                    class="newsId"
+                    *ngFor="let likedNews of likedNewsList">
                     <!-- TODO: a dialog / a link to the position of the story for detail -->
                     <!-- <a href="#story-{{likedNews.newsId}}"> -->
                     <!-- this should display title, nice to have. we can use pipe -->
