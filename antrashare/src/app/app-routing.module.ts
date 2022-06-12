@@ -11,7 +11,6 @@ import { ErrorComponent } from './shared/error/error.component';
 
 const routes: Routes = [
   // { path: '', component: LoginModule }, //don't know why iss not working
-  { path: '**', redirectTo: 'login'}
   // { path: '/text/:id', redirectTo:'', pathMatch:'prefix' }
 
   {
@@ -48,8 +47,8 @@ const routes: Routes = [
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
-  }
-
+  },
+  { path: '**', redirectTo: 'login'}
 ];
 
 @NgModule({
