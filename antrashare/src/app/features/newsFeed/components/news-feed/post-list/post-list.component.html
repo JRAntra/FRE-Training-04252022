@@ -26,7 +26,9 @@
           [ngStyle]="{ display: 'flex', 'justify-content': 'space-between' }"
         >
           <div>
-            <button
+            <button mat-button (click)="openDialog(story)">Comment</button>
+            <span>{{ story.comment?.length }}</span>
+            <!-- <button
               mat-button
               (click)="
                 comments.style.display === 'block'
@@ -35,7 +37,7 @@
               "
             >
               Comment</button
-            ><span>{{ story.comment?.length }}</span>
+            ><span>{{ story.comment?.length }}</span> -->
           </div>
           <div>
             <button mat-button (click)="addLikeList(story, likes)">

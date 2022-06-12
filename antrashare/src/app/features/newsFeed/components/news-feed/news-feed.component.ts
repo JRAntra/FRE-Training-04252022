@@ -22,7 +22,7 @@ export class NewsFeedComponent implements OnInit {
         let newsSort = res.reverse();
         this.newsList = newsSort;
         this.allList = newsSort;
-        console.log(this.allList);
+        // console.log(this.allList);
       }
     });
     this.searchText$

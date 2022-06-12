@@ -1,6 +1,7 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Inject, Optional } from '@angular/core';
 import { News } from '../../news-feed.component';
 import { NewsfeedService } from 'src/app/features/newsFeed/newsfeed.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-comment',
@@ -12,9 +13,24 @@ export class CommentComponent implements OnInit {
 
   avatarUrl = '../assets/antrashare.png';
   userInfo_userName = localStorage.getItem('userInfo_userName') || '';
-  constructor(private newsfeedService: NewsfeedService) {}
+  // fromPage!: string;
+  fromDialog!: string;
 
-  ngOnInit(): void {}
+  public dialogData: any;
+
+  constructor(
+    private newsfeedService: NewsfeedService,
+    private dialogRef: MatDialogRef<CommentComponent>,
+    @Inject(MAT_DIALOG_DATA) data: any
+  ) {
+    this.dialogData = data;
+  }
+
+  ngOnInit(): void {
+    // this.fromDialog = 'I am from dialog land...';
+    console.log('STORY List: ', this.story);
+    console.log('DIALOG Data: ', this.dialogData);
+  }
 
   postComment(event: string) {
     const newComment = {
@@ -28,5 +44,9 @@ export class CommentComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
       });
+  }
+
+  closeDialog() {
+    this.dialogRef.close({ event: 'close', data: this.fromDialog });
   }
 }

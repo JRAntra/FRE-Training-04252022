@@ -1,7 +1,7 @@
 <section class="commentsField">
   <app-comment-form (postComment)="postComment($event)"></app-comment-form>
   <ul>
-    <li class="commentlist" *ngFor="let comment of story?.comment">
+    <li class="commentlist" *ngFor="let comment of dialogData?.comment">
       <mat-card class="comment-card">
         <mat-card-header>
           <div mat-card-avatar class="avatar"></div>
@@ -18,4 +18,5 @@
       </mat-card>
     </li>
   </ul>
+  <button mat-button (click)="closeDialog()">Close</button>
 </section>
