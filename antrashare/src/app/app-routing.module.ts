@@ -8,7 +8,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { SettingComponent } from './setting/setting.component';
 import { ErrorComponent } from './shared/error/error.component';
-// import { HomeComponent } from '.home/home.component';
 
 const routes: Routes = [
   // { path: '', component: LoginModule }, //don't know why iss not working
