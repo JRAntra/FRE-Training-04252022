@@ -13,24 +13,26 @@ export class CommentComponent implements OnInit {
 
   avatarUrl = '../assets/antrashare.png';
   userInfo_userName = localStorage.getItem('userInfo_userName') || '';
-  // fromPage!: string;
+
   fromDialog!: string;
 
-  public dialogData: any;
+  public fullData?: any;
+  public pageData: any;
+  public page: number;
+  public pageSize: number;
 
   constructor(
     private newsfeedService: NewsfeedService,
     private dialogRef: MatDialogRef<CommentComponent>,
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
-    this.dialogData = data;
+    this.fullData = data;
+    this.page = 1;
+    this.pageSize = 5;
+    this.pageData = this.fullData?.comment?.slice(0, 5);
   }
 
-  ngOnInit(): void {
-    // this.fromDialog = 'I am from dialog land...';
-    console.log('STORY List: ', this.story);
-    console.log('DIALOG Data: ', this.dialogData);
-  }
+  ngOnInit(): void {}
 
   postComment(event: string) {
     const newComment = {
@@ -48,5 +50,26 @@ export class CommentComponent implements OnInit {
 
   closeDialog() {
     this.dialogRef.close({ event: 'close', data: this.fromDialog });
+  }
+
+  paginate(arr: [], pageNum: number, pageSize: number) {
+    this.pageData = arr.slice((pageNum - 1) * pageSize, pageNum * pageSize);
+    console.log(this.pageData);
+  }
+
+  paginatePrevious() {
+    if (this.page !== 1) {
+      this.page--;
+    }
+
+    this.paginate(this.fullData.comment, this.page, this.pageSize);
+  }
+
+  paginateNext() {
+    if (this.page < this.fullData.comment.length / 5) {
+      this.page++;
+    }
+
+    this.paginate(this.fullData.comment, this.page, this.pageSize);
   }
 }

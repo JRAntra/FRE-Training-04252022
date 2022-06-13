@@ -4,6 +4,8 @@ import { News } from '../news-feed.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CommentComponent } from './comment/comment.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { bufferToggle } from 'rxjs';
+import { isYieldExpression } from 'typescript';
 
 @Component({
   selector: 'app-post-list',
@@ -42,7 +44,7 @@ export class PostListComponent implements OnInit {
     this.dialog.open(CommentComponent, {
       data: story,
       width: '80%',
-      height: '80vh',
+      height: '90vh',
     });
 
     // this.dialog.afterClosed().subscribe((res) => {

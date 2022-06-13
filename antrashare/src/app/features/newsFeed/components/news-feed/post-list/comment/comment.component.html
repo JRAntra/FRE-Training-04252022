@@ -1,7 +1,8 @@
 <section class="commentsField">
   <app-comment-form (postComment)="postComment($event)"></app-comment-form>
+
   <ul>
-    <li class="commentlist" *ngFor="let comment of dialogData?.comment">
+    <li class="commentlist" *ngFor="let comment of pageData">
       <mat-card class="comment-card">
         <mat-card-header>
           <div mat-card-avatar class="avatar"></div>
@@ -10,6 +11,7 @@
             comment.publishedTime | date: "longDate"
           }}</mat-card-subtitle>
         </mat-card-header>
+
         <mat-card-content>
           <p class="comment-content">
             {{ comment.content.text }}
@@ -18,5 +20,22 @@
       </mat-card>
     </li>
   </ul>
-  <button mat-button (click)="closeDialog()">Close</button>
+  <button
+    *ngIf="pageData?.length"
+    mat-button
+    color="accent"
+    (click)="paginatePrevious()"
+  >
+    Previous
+  </button>
+  <span *ngIf="pageData?.length">Page: {{ this.page }}</span>
+  <button
+    *ngIf="pageData?.length"
+    mat-button
+    color="accent"
+    (click)="paginateNext()"
+  >
+    Next
+  </button>
+  <button mat-button color="warn" (click)="closeDialog()">Close</button>
 </section>
