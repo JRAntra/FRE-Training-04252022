@@ -37,5 +37,12 @@
   >
     Next
   </button>
-  <button mat-button color="warn" (click)="closeDialog()">Close</button>
+  <button
+    mat-button
+    color="warn"
+    [ngStyle]="{ float: 'right' }"
+    (click)="closeDialog()"
+  >
+    Close
+  </button>
 </section>
