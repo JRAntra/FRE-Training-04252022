@@ -1,0 +1,30 @@
+<section
+    id="details">
+
+    <div
+        id="detail"
+        class="detail">
+
+        <h2
+            class="title">
+            Liked: {{likedNewsList.length}} News
+        </h2>
+
+        <!-- start of pop-up/dropdown block -->
+        <p
+            *ngIf="likedNewsList && likedNewsList.length">
+
+            <ul>
+                <li
+                    class="newsId"
+                    *ngFor="let likedNews of likedNewsList">
+                    <!-- TODO: a dialog / a link to the position of the story for detail -->
+                    <!-- <a href="#story-{{likedNews.newsId}}"> -->
+                    <!-- this should display title, nice to have. we can use pipe -->
+                        {{likedNews.newsId}}
+                </li>
+            </ul>
+        <!-- ends of pop-up/dropdown block -->
+
+    </div>
+</section>

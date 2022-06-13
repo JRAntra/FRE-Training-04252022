@@ -1,0 +1,39 @@
+<div
+    class="section"
+    id="search-container">
+
+    <form
+        id="search-form"
+        [formGroup]="inputForm"
+        (ngSubmit)="onSubmit()" >
+
+        <div class="fieldset">
+
+            <label
+                id="label-search" >
+                Looking for something? Look up!
+            </label>
+
+            <input
+                matInput
+                id="input-search"
+                type="text"
+                name="search"
+                placeholder="Search"
+                formControlName="search"/>
+
+            <figcaption>
+                Input keywords to search for publisher's name or text content.
+            </figcaption>
+
+        </div>
+
+        <button
+            class="btn btn-post btn-black"
+            type="submit"
+            [disabled]="!inputForm.valid">
+            Search
+        </button>
+
+    </form>
+</div>

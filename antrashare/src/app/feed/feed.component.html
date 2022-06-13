@@ -1,2 +1,16 @@
-<app-post></app-post>
-<app-story-list></app-story-list>
+<div>
+    <app-liked-stories></app-liked-stories>
+
+    <app-post
+        [newsList]="newsList">
+    </app-post>
+
+    <app-search-bar
+        [newsList]="newsList">
+    </app-search-bar>
+
+    <app-story-list
+        [newsList]="newsList">
+    </app-story-list>
+
+</div>

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { News } from 'src/app/shared/models/News';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { News, News_ } from 'src/app/shared/models/News';
 import { FormGroup, FormControl } from '@angular/forms';
-import { PostService } from '../post/service/post.service';
+import { StoriesService } from '../stories-service/stories.service';
 
 @Component({
   selector: 'app-post',
@@ -9,31 +9,49 @@ import { PostService } from '../post/service/post.service';
   styleUrls: ['./post.component.sass']
 })
 export class PostComponent implements OnInit {
-  error = "";
-  constructor(private service: PostService) { }
+  @Input() newsList: News_[] = [];
 
-  ngOnInit(): void {
-  }
+  subscriptions$: any[] = [];
 
-  postForm = new FormGroup({
+  constructor(private storiesService: StoriesService) { }
+
+  inputForm = new FormGroup({
     news: new FormControl('')
   })
 
-  submit() {
-    let valid: number = 1;
-    if (this.postForm.value.news == "") {
-      valid = 0;
-      this.error = 'Your post is empty';
+  submit(): void {
+    const news = {
+      // TODO: we should grab the publisherName from params
+      publisherName: 'StephenAngularSis',
+      publishedTime: new Date(),
+      content: {
+        // TODO: for content video, text, and image, input value should be filtered by regex
+          video: 'video-placeholder.mp4',
+          text: this.inputForm.value.news,
+          image: 'https://wallpaperaccess.com/full/899071.jpg'
+      },
+      comment: [],
+      likedIdList: []
     }
-
-    if (valid == 1) {
-      const newPost = {
-        publishedTime: new Date(),
-        content: { text: this.postForm.value.news}
-      };
-
-      this.service.postNews(newPost).subscribe((data) => {});
-      this.error = "Posted";
-    }
+    // todo
+    console.log(`story to send: `, news, 'current newsList: ', this.newsList);
+    this.storiesService.postNews(news, this.newsList);
+    this.clearField();
   }
+
+  get news(): any {
+    return this.inputForm.get('news');
+  }
+
+  clearField() {
+    return this.news.reset();
+  }
+
+  ngOnInit(): void { }
+
+  ngOnDestroy(): void {
+    // when the component get's destroyed, unsubscribe all the subscriptions
+    this.subscriptions$.forEach((subscription$) => subscription$.unsubscribe())
+  }
+
 }

@@ -1,7 +1,7 @@
 // src/app/shared/models/News.ts
 
 export interface Content {
-    // _id: any; // omitted because MongoDB will assign its own id
+    // _id: any;
     image: string;
     video: string;
     text: string;
@@ -28,6 +28,37 @@ export interface News {
     likedIdList: LikedId[];
 };
 
+export interface Content_ {
+    _id: any;
+    image: string;
+    video: string;
+    text: string;
+};
+
+export interface Comment_ {
+    _id: any;
+    publisherName: string,
+    publishedTime: Date,
+    content: Content
+}
+
+export interface LikedId_ {
+    _id: any;
+    userId: string
+}
+
+export interface News_ {
+    _id: any;
+    publisherName: string;
+    publishedTime: Date;
+    content: Content;
+    comment: Comment[];
+    likedIdList: LikedId[];
+};
+
+
+
+
 export const dummyComment = {
     // _id: 1,
     publisherName: 'publisherName',
@@ -45,7 +76,21 @@ export const dummyNews = {
     publisherName: 'publisherName',
     publishedTime: new Date(),
     content: {
-        _id: 1,
+        // _id: 1,
+        video: 'video.mp4',
+        text: 'blah blah',
+        image: 'image.png'
+    },
+    comment: [],
+    likedIdList: []
+}
+
+export const dummyPostNews = {
+    // _id: 1,
+    publisherName: 'publisherName',
+    publishedTime: new Date(),
+    content: {
+        // _id: 1,
         video: 'video.mp4',
         text: 'blah blah',
         image: 'image.png'

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/shared/models/User';
 import { LoginService } from '../login/service/login.service';
 
 @Component({
@@ -10,7 +9,7 @@ import { LoginService } from '../login/service/login.service';
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
-  
+
   constructor(private service: LoginService, private router: Router) { }
   error = "";
   ngOnInit(): void {
@@ -45,10 +44,8 @@ export class LoginComponent implements OnInit {
         }
       });
 
-      this.service.loginAccount(newUser).subscribe((data) => {
-        this.router.navigate(["feed"]);
-      });
-    }
+      this.service.loginAccount(newUser);
+      this.router.navigate(["feed"]);
+      }
   }
 }
-

@@ -1,22 +1,74 @@
-<div *ngIf="news" id="story">
-  <div id="poster">
-    <div id="avatar" class="avatar">
-    </div>
-    <h4>{{ news.publisherName? news.publisherName : "- No publisherName. TODO: add validation to ensure publisherName exist on POST to backend. -" }}:</h4>
-  </div>
-  <p *ngIf="!news.content">news.content is not exist
+<div
+  *ngIf="news"
+  class="story"
+  id="story-{{news._id}}">
 
-  <p *ngIf="news.content" id="content">
-    <img *ngIf="news.content.image" src={{news.content.image}} />
-    <p *ngIf="news.content.text">news.content.text: {{news.content.text}}
-    <p *ngIf="news.content.video">news.content.video: {{news.content.video}}
+  <!-- grab from user._id for -->
+  <div
+    class="poster">
+
+    <img
+      [src]="avatar"
+      id="avatar-{{news._id}}"
+      class="avatar" />
+
+    <h4 >
+      {{ news.publisherName? news.publisherName : "- publisherName -" }}:
+    </h4>
+  </div>
+
+  <p
+    class="content">
+    On {{news.publishedTime | date:'medium' }} posted:
   </p>
 
-  <div [style.visibility]=" showComment ? 'visible' : 'hidden' " *ngIf="news.comment && news.comment.length" id="other">
+  <p *ngIf="!news.content">news.content is not exist
+
+  <p *ngIf="news.content"
+    class="content"
+    id="content-{{news._id}}">
+
+    <img
+      class="content content-image"
+      id="content-image-{{news._id}}"
+      *ngIf="news.content.image"
+      src={{news.content.image}} />
+
+    <p
+      class="content content-text"
+      id="content-text-{{news._id}}"
+      *ngIf="news.content.text">
+      news.content.text: {{news.content.text}}
+
+    <p
+      class="content content-video"
+      id="content-video-{{news._id}}"
+      *ngIf="news.content.video && news.content.video.length">
+      news.content.video: {{news.content.video}}
+  </p>
+
+  <app-like-story-input
+    [newsList]="newsList"
+    [news]="news"
+    [likes]="news.likedIdList">
+  </app-like-story-input>
+
+  <!-- comment section -->
+  <div
+    [style.visibility]=" showComment ? 'visible' : 'hidden' "
+    *ngIf="news.comment && news.comment.length"
+    class="other">
+
     <app-comment [comments]="news.comment"></app-comment>
   </div>
-  <div id="feedback">
-    <input id="comment1" type="text" />
-    <button (click)="showHideComments()" id="comment2" class="btn-black btn btn-sm">{{ showComment ? "Hide Comment" : "See Comment"}}</button>
+
+  <div class="feedback">
+    <input class="comment1" type="text" />
+    <button
+      (click)="showHideComments()"
+      class="comment2"
+      class="comment2 btn-black btn btn-sm">
+      {{ showComment ? "Hide Comment" : "See Comment"}}
+    </button>
   </div>
 </div>

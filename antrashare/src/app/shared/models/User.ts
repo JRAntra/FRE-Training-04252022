@@ -12,6 +12,10 @@ export interface User {
     gender: string;
 }
 
+export interface LikedNews {
+    newsId: any
+}
+
 export const dummyUser = {
     _id: 0,
     name: 'Name Placeholder',

@@ -1,10 +1,36 @@
-<div *ngFor="let comment of comments" id="comment">
-  <div id="commenter">
-    <div id="avatar" class="avatar"></div>
-    <h5>{{ comment.publisherName ? comment.publisherName : "- No comment.publisherName. TODO: ensure a post to backend includes publisherName -" }}</h5>
+<div
+  *ngFor="let comment of comments"
+  class="comment">
+
+  <div class="commenter">
+
+    <div
+      class="avatar">
+    </div>
+
+    <h5>{{ comment.publisherName ?
+      comment.publisherName :
+      "- No comment.publisherName." }}
+    </h5>
+
   </div>
-  <p *ngIf="comment.content" id="content">
-    <img *ngIf="comment.content.image && comment.content.image.trim()" src={{comment.content.image}}/>
-    <p *ngIf="comment.content.text">comment.text: {{ comment.content.text }}
-    <p *ngIf="comment.content.video && comment.content.image.trim()">comment.video: {{ comment.content.video }} />
+
+
+  <p
+    *ngIf="comment.content"
+    class="content">
+
+    <img
+      class="content content-image"
+      *ngIf="comment.content.image && comment.content.image.trim()"
+      src={{comment.content.image}}/>
+
+    <p
+      class="content content-text"
+      *ngIf="comment.content.text">comment.text: {{ comment.content.text }}
+
+    <p
+      class="content content-video"
+      *ngIf="comment.content.video && comment.content.image.trim()">comment.video: {{ comment.content.video }} />
+
 </div>

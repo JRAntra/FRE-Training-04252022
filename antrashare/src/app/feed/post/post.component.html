@@ -1,10 +1,9 @@
 <div id="post" class="section">
-  <form [formGroup]="postForm" (ngSubmit)="submit()">
+  <form [formGroup]="inputForm" (ngSubmit)="submit()">
     <h4>New Post</h4>
     <textarea id="w3review" name="w3review" rows="4" cols="50" formControlName="news"></textarea>
-    <p>{{error}}</p>
     <div id="operation">
-      <button id="infoButton" class="btn btn-black">Post</button>    
+      <button id="infoButton" class="btn btn-black">Post</button>
     </div>
   </form>
 </div>
