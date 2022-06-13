@@ -9,6 +9,7 @@
             story.publishedTime | date: "longDate"
           }}</mat-card-subtitle>
         </mat-card-header>
+
         <img
           class="postlist-img"
           *ngIf="story.content"
@@ -16,11 +17,13 @@
           [src]="story.content.image"
           [alt]=""
         />
+
         <mat-card-content>
           <p class="card-content" *ngIf="story.content">
             {{ story.content.text }}
           </p>
         </mat-card-content>
+
         <mat-card-actions
           class="card-actions"
           [ngStyle]="{ display: 'flex', 'justify-content': 'space-between' }"
@@ -28,17 +31,8 @@
           <div>
             <button mat-button (click)="openDialog(story)">Comment</button>
             <span>{{ story.comment?.length }}</span>
-            <!-- <button
-              mat-button
-              (click)="
-                comments.style.display === 'block'
-                  ? (comments.style.display = 'none')
-                  : (comments.style.display = 'block')
-              "
-            >
-              Comment</button
-            ><span>{{ story.comment?.length }}</span> -->
           </div>
+
           <div>
             <button mat-button (click)="addLikeList(story, likes)">
               <p #likes>{{ likeBtn }}</p></button
@@ -46,9 +40,10 @@
           </div>
         </mat-card-actions>
       </mat-card>
-      <div #comments style="display: none">
-        <app-comment [story]="story"> </app-comment>
-      </div>
+
+      <!-- <div #comments style="display: none">
+        <app-comment [story]="story"></app-comment>
+      </div> -->
     </li>
   </ul>
 </section>

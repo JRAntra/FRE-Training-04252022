@@ -1,11 +1,8 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NewsfeedService } from '../../../newsfeed.service';
 import { News } from '../news-feed.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CommentComponent } from './comment/comment.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { bufferToggle } from 'rxjs';
-import { isYieldExpression } from 'typescript';
 
 @Component({
   selector: 'app-post-list',

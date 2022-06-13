@@ -48,10 +48,6 @@ export class CommentComponent implements OnInit {
       });
   }
 
-  closeDialog() {
-    this.dialogRef.close({ event: 'close', data: this.fromDialog });
-  }
-
   paginate(arr: [], pageNum: number, pageSize: number) {
     this.pageData = arr.slice((pageNum - 1) * pageSize, pageNum * pageSize);
     console.log(this.pageData);
@@ -71,5 +67,9 @@ export class CommentComponent implements OnInit {
     }
 
     this.paginate(this.fullData.comment, this.page, this.pageSize);
+  }
+
+  closeDialog() {
+    this.dialogRef.close({ event: 'close', data: this.fromDialog });
   }
 }
