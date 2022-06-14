@@ -5,6 +5,7 @@
     placeholder="input your todo here..."
     [(ngModel)]="todo.title"
     #inputTodo
+    (change)="onChange()"
   />
 
   <ul id="todolist__container">

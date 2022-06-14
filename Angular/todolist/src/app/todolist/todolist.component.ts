@@ -24,9 +24,13 @@ export class TodolistComponent implements OnInit {
 
   ngOnInit(): void {
     this.todolist$ = this.store.select(TodoSelectors.getTodoList);
+    this.store.dispatch(TodoActions.loadTodolist());
   }
 
-  onChange() {}
+  onChange() {
+    console.log(this.todo.title);
+    this.store.dispatch(TodoActions.addTodo({ todo: this.todo }));
+  }
 
   deleteTodo(id: string) {}
 }
