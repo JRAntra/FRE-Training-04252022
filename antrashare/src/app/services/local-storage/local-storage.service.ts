@@ -23,6 +23,11 @@ export class LocalStorageService {
     public set token(value: Token) {
         localStorage.setItem(this.tokenName, JSON.stringify(value));
     }
+
+    // method to clear localStorage
+    public clear() {
+        localStorage.clear();
+    }
 }
 
 export interface Token {

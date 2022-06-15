@@ -29,7 +29,7 @@ export class CanActivateGuardService implements CanActivate {
     route: ActivatedRouteSnapshot
   , state: RouterStateSnapshot): boolean | UrlTree {
 
-    if (!this.loginService.checkExist()) {
+    if (this.loginService.checkLoggedIn() === false) {
       console.log('hit alert')
       alert('You have not logged in, redirected to Login.');
       this._router.navigate(['login'], { queryParams: { retUrl: route.url } });

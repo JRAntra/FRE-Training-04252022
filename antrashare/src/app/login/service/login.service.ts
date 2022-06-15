@@ -40,12 +40,13 @@ export class LoginService {
           jwt: jwtToken,
           expire: `${expiration}`
         };
-
-        if (response.userRole === 'user') this.isAdmin = true;
-        this._router.navigate(['feed']);
+        if (response.userRole === 'admin') this.isAdmin = true;
       },
       error: (err: Error) => console.log('Login fails, with: ', err),
-      complete: () => console.log('User logged in.')
+      complete: () => {
+        console.log('User logged in, redirecting to feed');
+        this._router.navigate(['feed']);
+      }
     };
 
     return this.http
@@ -59,12 +60,13 @@ export class LoginService {
 
   // check if user already logged in by checking this service and localStorage
   checkLoggedIn(): boolean {
-    if (this.isLoggedIn === true ||
-        (this.localStorage.token && this.localStorage.token.expire > nowInUnix())) {
-      console.log('checkLoggedIn(): ', this.localStorage.token, nowInUnix(), this.localStorage.token.expire > nowInUnix());
-      return true;
+    console.log('checkLoggedIn(): ', this.localStorage.token, nowInUnix(), this.localStorage.token.expire > nowInUnix());
+    if (!this.isLoggedIn && !this.localStorage.token) return false;
+    else if (this.localStorage.token && (!this.localStorage.token.jwt || !this.localStorage.token.jwt.length || !jwtDecode(this.localStorage.token.jwt)) || this.localStorage.token.expire < nowInUnix()) {
+      this.localStorage.clear()
+      return false;
     }
-    return false;
+    return true;
   }
 
 }

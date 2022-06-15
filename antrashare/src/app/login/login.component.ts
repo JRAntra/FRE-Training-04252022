@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit {
       });
 
       this.service.loginAccount(newUser);
-      this.router.navigate(["feed"]);
       }
   }
 }
