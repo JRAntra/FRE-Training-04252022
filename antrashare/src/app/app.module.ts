@@ -15,6 +15,7 @@ import { ErrorComponent } from './shared/error/error.component';
 import { StoriesService } from './feed/stories-service/stories.service';
 import { CanActivateGuardService } from './services/guards/can-activate-guard/can-activate-guard.service';
 import { CanLoadGuardService } from './services/guards/can-load-guard/can-load-guard.service';
+import { LocalStorageService } from './services/local-storage/local-storage.service';
 @NgModule({
   declarations: [
     NavigationComponent,
@@ -30,6 +31,7 @@ import { CanLoadGuardService } from './services/guards/can-load-guard/can-load-g
     StoriesService
     , CanActivateGuardService
     , CanLoadGuardService
+    , LocalStorageService
   ],
   bootstrap: [AppComponent]
 })

@@ -8,6 +8,7 @@ import {
   , UrlTree
 } from '@angular/router';
 import { LoginService } from 'src/app/login/service/login.service';
+import { LocalStorage } from 'src/app/services/local-storage';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class CanActivateGuardService implements CanActivate {
   constructor(
       private _router: Router
     , private loginService: LoginService
+    , private localStorage: LocalStorageService
   ) { }
 
   canActivate(
