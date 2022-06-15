@@ -41,7 +41,7 @@ export class LoginService {
           expire: `${expiration}`
         };
 
-        if (response.userRole === 'admin') this.isAdmin = true;
+        if (response.userRole === 'user') this.isAdmin = true;
         this._router.navigate(['feed']);
       },
       error: (err: Error) => console.log('Login fails, with: ', err),
