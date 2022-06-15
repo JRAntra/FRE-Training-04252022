@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../../login.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group(this.formElements);
-    console.log(this.form);
   }
 
   onSubmit() {
@@ -39,16 +39,18 @@ export class LoginComponent implements OnInit {
         })
         .subscribe((res) => {
           //check if login successfully
-          if (res.userName) {
-            localStorage.setItem(
-              'userInfo_userName',
-              JSON.stringify(res.userName)
-            );
+          if (res.bearerToken) {
+            //put token in localstorage
+
+            localStorage.setItem('token', res.bearerToken);
+
+            let decoded = jwt_decode(res.bearerToken); //decode token
+
             //if login successful, navigate to newsfeed
             this.router.navigate(['newsfeed']);
           }
         });
     }
-    this.form.reset();
+    // this.form.reset();
   }
 }

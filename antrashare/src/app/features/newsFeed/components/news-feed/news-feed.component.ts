@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { NewsfeedService } from '../../newsfeed.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'app-news-feed',
@@ -11,12 +12,16 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 export class NewsFeedComponent implements OnInit {
   newsList?: News[];
   allList?: News[];
-  userInfo_userName = localStorage.getItem('userInfo_userName') || '';
+  userInfo_userName?: string;
   private searchText$ = new Subject<string>();
 
-  constructor(private newsfeedService: NewsfeedService) {}
+  constructor(
+    private newsfeedService: NewsfeedService,
+    private authService: AuthenticationService
+  ) {}
 
   ngOnInit(): void {
+    this.userInfo_userName = this.authService.getUserInfo().userName;
     this.newsfeedService.getNews().subscribe((res) => {
       if (res !== undefined) {
         let newsSort = res.reverse();
@@ -43,14 +48,14 @@ export class NewsFeedComponent implements OnInit {
 
   onPost(event: string) {
     const news: News = {
-      publisherName: this.userInfo_userName,
+      publisherName: this.userInfo_userName!,
       publishedTime: new Date(),
       content: { text: event },
     };
 
-    this.newsList?.push(news);
+    // this.newsList?.push(news);
     this.newsfeedService.postNews(news).subscribe((res) => {
-      this.newsList?.push(res);
+      this.newsList?.unshift(res);
     });
   }
 

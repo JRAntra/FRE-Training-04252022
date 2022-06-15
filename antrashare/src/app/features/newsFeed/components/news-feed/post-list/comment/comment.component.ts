@@ -1,18 +1,27 @@
-import { Component, Input, OnInit, Inject, Optional } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  Inject,
+  Optional,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { News } from '../../news-feed.component';
 import { NewsfeedService } from 'src/app/features/newsFeed/newsfeed.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommentComponent implements OnInit {
-  @Input() story?: News;
+  // @Input() story?: News;
 
   avatarUrl = '../assets/antrashare.png';
-  userInfo_userName = localStorage.getItem('userInfo_userName') || '';
+  userInfo_userName?: string;
 
   fromDialog!: string;
 
@@ -24,7 +33,8 @@ export class CommentComponent implements OnInit {
   constructor(
     private newsfeedService: NewsfeedService,
     private dialogRef: MatDialogRef<CommentComponent>,
-    @Inject(MAT_DIALOG_DATA) data: any
+    @Inject(MAT_DIALOG_DATA) data: any,
+    private authService: AuthenticationService
   ) {
     this.fullData = data;
     this.page = 1;
@@ -32,19 +42,21 @@ export class CommentComponent implements OnInit {
     this.pageData = this.fullData?.comment?.slice(0, 5);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userInfo_userName = this.authService.getUserInfo().userName;
+  }
 
   postComment(event: string) {
     const newComment = {
-      publisherName: this.userInfo_userName,
+      publisherName: this.userInfo_userName!,
       publishedTime: new Date(),
       content: { text: event },
     };
-    this.story?.comment?.push(newComment);
+
     this.newsfeedService
-      .addComment(newComment, this.story?._id)
+      .addComment(newComment, this.fullData._id)
       .subscribe((res) => {
-        console.log(res);
+        this.fullData.comment.unshift(res);
       });
   }
 
