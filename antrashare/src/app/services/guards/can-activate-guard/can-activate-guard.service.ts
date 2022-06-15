@@ -8,7 +8,8 @@ import {
   , UrlTree
 } from '@angular/router';
 import { LoginService } from 'src/app/login/service/login.service';
-import { LocalStorage } from 'src/app/services/local-storage';
+import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
+import { setExpireInUnix, nowInUnix } from 'src/app/shared/utils/functions';
 
 @Injectable({
   providedIn: 'root'
@@ -22,17 +23,26 @@ export class CanActivateGuardService implements CanActivate {
     , private localStorage: LocalStorageService
   ) { }
 
+  // method to check localStorage and service whether a user already authenticated and have session
+  // // before deciding to permit user to access protected route for authenticated users
   canActivate(
-      route: ActivatedRouteSnapshot
-    , state: RouterStateSnapshot): boolean | UrlTree {
+    route: ActivatedRouteSnapshot
+  , state: RouterStateSnapshot): boolean | UrlTree {
 
-      if (this.loginService.isLoggedIn === false) {
-        alert('You have not logged in, redirected to Login.');
-
-        this._router.navigate(['login'], { queryParams: { retUrl: route.url } });
-        return false;
-      }
-      return true;
+    if (!this.loginService.checkExist()) {
+      console.log('hit alert')
+      alert('You have not logged in, redirected to Login.');
+      this._router.navigate(['login'], { queryParams: { retUrl: route.url } });
+      return false;
     }
+    const expiration = setExpireInUnix(24 * 60 * 60); // 24 hours
+    const newToken = {
+      jwt: this.localStorage.token.jwt,
+      expire: `${expiration}`
+    };
+    this.localStorage.token = newToken;
+    console.log('loginService.checkLoggedIn()', this.localStorage.token)
+    return true;
+  }
 
 }

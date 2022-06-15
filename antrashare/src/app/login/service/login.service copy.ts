@@ -4,9 +4,6 @@ import { Router } from '@angular/router';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import jwtDecode from 'jwt-decode'; // library to decode JWT Jason Web Token
 import { User, LikedNews } from 'src/app/shared/models/User';
-import { setExpireInUnix } from 'src/app/shared/utils/functions';
-import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
-import { nowInUnix } from 'src/app/shared/utils/functions';
 
 @Injectable({
   providedIn: 'root'
@@ -21,10 +18,8 @@ export class LoginService {
 
   constructor(
     private http: HttpClient
-    , private _router: Router
-    , private localStorage: LocalStorageService) { }
+    , private _router: Router) { }
 
-  // method to log in
   loginAccount(account: any) {
     const headers = { 'content-type': 'application/json' }
     const body = JSON.stringify(account);
@@ -34,13 +29,6 @@ export class LoginService {
         const decoded: User = jwtDecode(jwtToken);
         this.user$.next(decoded);
         this.isLoggedIn = true;
-
-        const expiration = setExpireInUnix(24 * 60 * 60); // 24 hours
-        this.localStorage.token = {
-          jwt: jwtToken,
-          expire: `${expiration}`
-        };
-
         if (response.userRole === 'admin') this.isAdmin = true;
         this._router.navigate(['feed']);
       },
@@ -56,15 +44,4 @@ export class LoginService {
   checkExist(): Observable<User[]> {
     return this.http.get<User[]>(this.baseURL + 'api/users/getAllUsers');
   }
-
-  // check if user already logged in by checking this service and localStorage
-  checkLoggedIn(): boolean {
-    if (this.isLoggedIn === true ||
-        (this.localStorage.token && this.localStorage.token.expire > nowInUnix())) {
-      console.log('checkLoggedIn(): ', this.localStorage.token, nowInUnix(), this.localStorage.token.expire > nowInUnix());
-      return true;
-    }
-    return false;
-  }
-
 }
