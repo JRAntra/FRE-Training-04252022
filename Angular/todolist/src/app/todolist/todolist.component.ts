@@ -5,6 +5,7 @@ import { Todo } from '../interfaces/todo.interface';
 
 import * as TodoSelectors from '../ngrx/todo.selector';
 import * as TodoActions from '../ngrx/todo.action';
+import { TodoService } from '../services/todo.service';
 
 @Component({
   selector: 'app-todolist',
@@ -20,16 +21,22 @@ export class TodolistComponent implements OnInit {
     userId: 2,
   };
 
-  constructor(private readonly store: Store) {}
+  constructor(
+    // private readonly store: Store,
+    private readonly todoService: TodoService
+  ) {}
 
   ngOnInit(): void {
-    this.todolist$ = this.store.select(TodoSelectors.getTodoList);
-    this.store.dispatch(TodoActions.loadTodolist());
+    // this.todolist$ = this.store.select(TodoSelectors.getTodoList);
+    // this.store.dispatch(TodoActions.loadTodolist());
+    this.todolist$ = this.todoService.todolist$;
+    this.todoService.getTodos().subscribe();
   }
 
   onChange() {
-    console.log(this.todo.title);
-    this.store.dispatch(TodoActions.addTodo({ todo: this.todo }));
+    // console.log(this.todo.title);
+    // this.store.dispatch(TodoActions.addTodo({ todo: this.todo }));
+    this.todoService.addTodo(this.todo).subscribe();
   }
 
   deleteTodo(id: string) {}
