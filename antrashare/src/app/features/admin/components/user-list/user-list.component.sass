@@ -5,7 +5,8 @@
     flex-direction: column
 
     ul
-        min-height: calc(100% - 6rem)
+        height: calc(100vh - 16rem)
+        overflow: auto
         .list_items
 
             width: 100%
@@ -16,6 +17,14 @@
             .user_tag
                 width: 75%
                 text-align: center
+                padding: 1rem 0
+                cursor: pointer
+
+            .user_tag:hover
+                color: red    
+            .del-btn
+                padding: 0.5rem 0
+                cursor: pointer
                 
 
     .add-button

@@ -1,3 +1,4 @@
+import { CommentComponent } from './features/newsFeed/components/news-feed/post-list/comment/comment.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,6 +13,11 @@ import { ProfileModule } from './features/profile/profile.module';
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarModule } from './shared/navbar/navbar.module';
 import { HttpClientModule } from '@angular/common/http';
+import {
+  MatDialogModule,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,8 +33,13 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     NavbarModule,
     HttpClientModule,
+    MatDialogModule,
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} },
+  ],
   bootstrap: [AppComponent],
+  entryComponents: [CommentComponent],
 })
 export class AppModule {}
