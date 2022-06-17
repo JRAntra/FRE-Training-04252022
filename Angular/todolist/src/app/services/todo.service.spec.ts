@@ -1,11 +1,15 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { of } from 'rxjs';
 
 import { TodoService } from './todo.service';
 
 describe('TodoService', () => {
   let service: TodoService;
+  let httpMock: HttpTestingController;
 
   const testTodolist = [
     {
@@ -33,15 +37,23 @@ describe('TodoService', () => {
       imports: [HttpClientTestingModule],
     });
     service = TestBed.inject(TodoService);
+    httpMock = TestBed.inject(HttpTestingController);
+  });
+  afterEach(() => {
+    httpMock.verify();
   });
 
-  it('should get todos by trigger the getTodos method', () => {
-    spyOn(service, 'getTodos').withArgs().and.returnValues(of(testTodolist));
+  it('should get todos by trigger the getTodos method', (done) => {
+    const url = 'https://jsonplaceholder.typicode.com/todos';
 
     service.getTodos().subscribe((data) => {
       expect(data).toEqual(testTodolist);
+      done();
     });
-    expect(service.getTodos).toHaveBeenCalledTimes(1);
+
+    const req = httpMock.expectOne(url);
+    expect(req.request.method).toBe('GET');
+    req.flush(testTodolist);
   });
 
   it('should be created', () => {
