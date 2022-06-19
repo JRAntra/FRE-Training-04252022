@@ -5,12 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 // LOCAL MODULES
 import { AppRoutingModule } from './app-routing.module';
-import { LoginModule } from './login/login.module';
-import { RegisterModule } from './register/register.module';
-import { SettingModule } from './setting/setting.module';
-import { ProfileModule } from './profile/profile.module';
-import { AdminModule } from './admin/admin.module';
-import { FeedModule } from './feed/feed.module';
 
 // COMPONENTS
 import { NavigationComponent } from './shared/navigation/navigation.component';
@@ -27,12 +21,6 @@ import { StoriesService } from './feed/stories-service/stories.service';
   ],
   imports: [
     BrowserModule,
-    LoginModule,
-    RegisterModule,
-    SettingModule,
-    ProfileModule,
-    AdminModule,
-    FeedModule,
     AppRoutingModule,
     HttpClientModule
   ],
