@@ -1165,21 +1165,21 @@ function myFetch(url, options) {
 // 	.then((response) => response.json())
 // 	.then((json) => console.log(json));
 
-const obj = {
-    userId: 4,
-    title: "fugiat veniam minus",
-    completed: false
-}
-// Post;
-myFetch("https://jsonplaceholder.typicode.com/todos", {
-	method: "POST",
-	body: JSON.stringify(obj),
-	headers: {
-		"Content-type": "application/json; charset=UTF-8",
-	},
-})
-	.then((response) => response.json())
-	.then((json) => console.log(json));
+// const obj = {
+//     userId: 4,
+//     title: "fugiat veniam minus",
+//     completed: false
+// }
+// // Post;
+// myFetch("https://jsonplaceholder.typicode.com/todos", {
+// 	method: "POST",
+// 	body: JSON.stringify(obj),
+// 	headers: {
+// 		"Content-type": "application/json; charset=UTF-8",
+// 	},
+// })
+// 	.then((response) => response.json())
+// 	.then((json) => console.log(json));
 
 // ~~~~~~~~~~~~~~~~~~~~ Day 6 ~~~~~~~~~~~~~~~~~~~~
 
@@ -1200,3 +1200,17 @@ myFetch("https://jsonplaceholder.typicode.com/todos", {
  * @class
  * JQuery
  */
+
+
+ const obj = {
+  name: 'TT',
+  bar: function() {
+    console.log('bar: ', this);
+    
+    const baz = function() {
+      console.log('baz: ', this);
+    }
+    baz();
+  },
+}
+obj.bar();

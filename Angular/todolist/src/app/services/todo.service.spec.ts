@@ -11,6 +11,9 @@ describe('TodoService', () => {
   let service: TodoService;
   let httpMock: HttpTestingController;
 
+  let baseUrl = 'https://jsonplaceholder.typicode.com';
+  let path = 'todos';
+
   const testTodolist = [
     {
       userId: 1,
@@ -44,14 +47,12 @@ describe('TodoService', () => {
   });
 
   it('should get todos by trigger the getTodos method', (done) => {
-    const url = 'https://jsonplaceholder.typicode.com/todos';
-
     service.getTodos().subscribe((data) => {
       expect(data).toEqual(testTodolist);
       done();
     });
 
-    const req = httpMock.expectOne(url);
+    const req = httpMock.expectOne([baseUrl, path].join('/'));
     expect(req.request.method).toBe('GET');
     req.flush(testTodolist);
   });
