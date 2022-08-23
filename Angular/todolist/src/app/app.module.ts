@@ -11,6 +11,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { TodoEffects } from './ngrx/todo.effect';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [AppComponent, TodolistComponent, TodoItemComponent],
@@ -26,6 +27,7 @@ import { TodoEffects } from './ngrx/todo.effect';
       name: 'Todo Demo',
     }),
     EffectsModule.forRoot([TodoEffects]),
+    GraphQLModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
