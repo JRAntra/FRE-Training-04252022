@@ -3,7 +3,7 @@ import { Apollo, gql } from 'apollo-angular';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Todo } from './interfaces/todo.interface';
-import { GetTodosGQL } from './services/todosGraphql.service';
+import { AddTodoGQL, GetTodosGQL } from './services/todosGraphql.service';
 
 const GET_TODOS = gql`
   query GetTodos {
@@ -28,13 +28,24 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly apollo: Apollo,
-    private readonly getTodoGql: GetTodosGQL
+    private readonly getTodoGql: GetTodosGQL,
+    private readonly addTodoGql: AddTodoGQL
   ) {}
 
   ngOnInit(): void {
-    this.querySubscription = this.getTodoGql
-      .fetch()
-      .pipe(map((gqldata) => gqldata.data.getTodos.todos))
+    // this.querySubscription = this.getTodoGql
+    //   .fetch()
+    //   .pipe(map((gqldata) => gqldata.data.getTodos.todos))
+    //   .subscribe(console.log);
+
+    this.addTodoGql
+      .mutate({
+        addTodoInput: {
+          title: 'test123',
+          userId: 1234,
+          completed: false,
+        },
+      })
       .subscribe(console.log);
 
     // this.querySubscription = this.apollo

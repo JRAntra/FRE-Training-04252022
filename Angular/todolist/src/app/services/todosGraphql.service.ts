@@ -89,6 +89,24 @@ export type GetTodosQuery = {
   };
 };
 
+export type AddTodoMutationVariables = Exact<{
+  addTodoInput: AddTodoInput;
+}>;
+
+export type AddTodoMutation = {
+  __typename?: 'Mutation';
+  addTodo: {
+    __typename?: 'AddTodoOutput';
+    todo: {
+      __typename?: 'Todo';
+      id?: string | null;
+      userId: number;
+      completed: boolean;
+      title: string;
+    };
+  };
+};
+
 export const GetTodosDocument = gql`
   query GetTodos {
     getTodos {
@@ -110,6 +128,32 @@ export class GetTodosGQL extends Apollo.Query<
   GetTodosQueryVariables
 > {
   document = GetTodosDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const AddTodoDocument = gql`
+  mutation AddTodo($addTodoInput: AddTodoInput!) {
+    addTodo(input: $addTodoInput) {
+      todo {
+        id
+        userId
+        completed
+        title
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AddTodoGQL extends Apollo.Mutation<
+  AddTodoMutation,
+  AddTodoMutationVariables
+> {
+  document = AddTodoDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

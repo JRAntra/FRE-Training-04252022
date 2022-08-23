@@ -8,3 +8,13 @@ query GetTodos {
     }
   }
 }
+mutation AddTodo($addTodoInput: AddTodoInput!) {
+  addTodo(input: $addTodoInput) {
+    todo {
+      id
+      userId
+      completed
+      title
+    }
+  }
+}
