@@ -4,7 +4,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
 } from '@angular/core';
 import { Todo } from '../interfaces/todo.interface';
@@ -15,13 +14,11 @@ import { Todo } from '../interfaces/todo.interface';
   styleUrls: ['./todo-item.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodoItemComponent implements OnInit {
+export class TodoItemComponent {
   @Input('item') todo!: Todo;
   @Output() triggerDelete = new EventEmitter();
 
   constructor() {}
-
-  ngOnInit(): void {}
 
   handleDelete() {
     this.triggerDelete.emit(this.todo?.id);
